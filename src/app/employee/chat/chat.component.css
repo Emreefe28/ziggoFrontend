@@ -1,0 +1,102 @@
+.content {
+  position: absolute;
+  left: 0;
+  top: 25px;
+  right: 0;
+  bottom: 0;
+}
+
+.employee-chat-list {
+  background-image: linear-gradient(to top, #555353, #34322C);
+  width: 200px;
+}
+
+.chat-label {
+  margin: 5px;
+  color: #EBEBEB;
+}
+
+mat-nav-list .mat-list-item {
+  background-color: #262420;
+}
+
+mat-nav-list .mat-list-item:hover {
+  background-color: #0D0D0D;
+}
+
+.unread-messages {
+  color: #EE5100;
+  font-weight: bold;
+}
+
+.employee-chat {
+  background-color: #F7F5F5;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  overflow: hidden;
+}
+
+.employee-chatbox {
+  height: 90px;
+  background-color: white;
+  border: 1px solid #D1D1D1;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.chat-messages {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.chat-message-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.chat-message {
+  height: fit-content;
+  width: fit-content;
+  margin: 10px 20px 10px 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #E60000;
+  color: #ffffff;
+}
+
+.sent {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.sent .chat-message{
+  background-color: #F48C00;
+}
+.employee-customer-details {
+  background-color: #F7F5F5;
+  width: 350px;
+}
+
+mat-form-field {
+  margin: 4px;
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D1D1;
+  border-radius: 10px;
+  height: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B8B8B;
+}
