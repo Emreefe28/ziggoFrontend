@@ -1,6 +1,6 @@
 <mat-sidenav-container class="content">
   <mat-sidenav class="employee-chat-list" opened mode="side">
-    <h3 class="chat-label">Klanten</h3>
+    <h3 class="chat-label">{{ chatLabel }}</h3>
     <mat-nav-list>
       <a mat-list-item>
         <h3 class="chat-label">customer.name</h3> <span class="unread-messages">3</span>
@@ -9,43 +9,16 @@
   </mat-sidenav>
 
   <div class="employee-chat">
+    <button mat-button (click)="sendMessage()">SEND</button>
     <div class="employee-chatbox">
       <mat-form-field>
-        <textarea matInput [mat-autosize]="true"></textarea>
+        <input matInput class="chatbox-field" [(ngModel)]="content">
       </mat-form-field>
     </div>
-
-    <div class="chat-messages">
-      <div class="chat-message-row">
-        <div class="chat-message"><span> message.content </span></div>
+      <div class="chat-messages">
+        <div [class.sent]="sentMessage" *ngFor="let message of messages">
+          <div class="chat-message">{{message.content}}</div>
+        </div>
       </div>
-      <div class="chat-message-row sent">
-        <div class="chat-message"><span>message.content</span></div>
-      </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div><div class="chat-message-row sent">
-      <div class="chat-message"><span>message.content</span></div>
-    </div>
-  </div>
   </div>
 </mat-sidenav-container>

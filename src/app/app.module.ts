@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmployeeComponent } from './employee/employee.component';
 import { MaterialModule } from './material.module';
 import { ChatComponent } from './employee/chat/chat.component';
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ChatComponent } from './employee/chat/chat.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
