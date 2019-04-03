@@ -5,6 +5,27 @@
   right: 0;
   bottom: 0;
 }
+.employee-chat-status{
+  display: flex;
+  flex-direction: column;
+}
+.employee-chat-status-row{
+  padding: 5px;
+
+}
+.employee-chat-status-row span{
+  color: #ffffff;
+  font-weight: bold;
+}
+#online{
+  background-color: #7FFF00;
+  margin: 2px;
+}
+
+#offline{
+  background-color: #FF0000;
+  margin: 2px;
+}
 
 .employee-chat-list {
   background-image: linear-gradient(to top, #555353, #34322C);
@@ -30,7 +51,7 @@ mat-nav-list .mat-list-item:hover {
 }
 
 .employee-chat {
-  background-color: #F7F5F5;
+  background-color: #ffffff;
   height: 100%;
   display: flex;
   flex-direction: column-reverse;
