@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'admin',
 component: AdminComponent
   , children: [
-  {path: 'medewerker aanmaken', component: CreateEmployeeComponent}]}];
+  {path: 'create', component: CreateEmployeeComponent}]}];
 
 @NgModule({
   imports: [

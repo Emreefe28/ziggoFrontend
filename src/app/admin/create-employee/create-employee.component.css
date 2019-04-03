@@ -1,0 +1,70 @@
+p {
+  font-family: Arial;
+}
+
+body {
+  font-family: Arial, Roboto, sans-serif;
+  margin: 0;
+}
+
+label {
+  display: inline-block;
+  width: 3em;
+  margin: .5em 0;
+  color: #607D8B;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+input {
+  height: 2em;
+  font-size: 1em;
+  padding-left: .4em;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+button {
+  margin-top: 20px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  background: linear-gradient(to right, #E60000, #F48C00);
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.employee-form {
+  padding-left: 50px;
+  padding-top: 20px;
+}
+
+.btn-submit {
+  -webkit-align-self: auto;
+}
+
+.mat-dialog-content {
+  padding-left: 40px;
+  padding-top: 20px;
+}

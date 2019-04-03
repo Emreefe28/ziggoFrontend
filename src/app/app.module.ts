@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { CreateEmployeeComponent } from './admin/create-employee/create-employee.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
