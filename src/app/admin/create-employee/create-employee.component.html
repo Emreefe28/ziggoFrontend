@@ -1,30 +1,30 @@
   <div mat-dialog-content>
     <p>Create employee</p>
     <mat-form-field>
-      <input matInput type="name" placeholder="Name">
+      <input matInput type="name" placeholder="Name" [type]="name">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput type="username" placeholder="Username">
+      <input matInput type="username" placeholder="Username" [type]="username">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password">
+      <input matInput type="password" placeholder="Password" [type]="password">
     </mat-form-field>
     <br>
     <mat-radio-group
       aria-labelledby="radio-group-label"
       class="example-radio-group">
       <!-- TODO check these values and adjust if needed-->
-      <mat-radio-button class="radio-button" value="1">
+      <mat-radio-button class="radio-button" value="1" [value]="role">
         Admin
       </mat-radio-button>
-      <mat-radio-button class="radio-button" value="2">
+      <mat-radio-button class="radio-button" value="2" [value]="role">
         Employee
       </mat-radio-button>
     </mat-radio-group>
     <br>
-    <button mat-raised-button>Submit</button>
+    <button mat-raised-button (click)="sendData()">Submit</button>
   </div>
 
 
