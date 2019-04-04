@@ -1,5 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
+
+
+  <h1 translate>Title</h1>
+
+  <div>
+    {{ 'Intro' | translate:user }}
+
+    <button (click)="switchLanguage('en')">english</button>
+    <button (click)="switchLanguage('du')">dutch</button>
+  </div>
+
   <h1>
     Welcome to {{ title }}!
   </h1>
