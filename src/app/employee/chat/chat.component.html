@@ -4,8 +4,8 @@
       <div class="employee-chat-status-row"><span>Status:</span><span [ngStyle]="{'color': status ? '#7FFF00' : '#FF0000'}"> {{employeeStatus}}</span></div>
       <mat-divider></mat-divider>
       <div class="employee-chat-status-row">
-      <button mat-mini-fab id="online" (click)="statusOnline()" ></button>
-      <button mat-mini-fab id="offline" (click)="statusOffline()"  ></button>
+        <button mat-mini-fab id="online" (click)="statusOnline()" ></button>
+        <button mat-mini-fab id="offline" (click)="statusOffline()"  ></button>
       </div>
     </div>
     <mat-divider></mat-divider>
@@ -20,12 +20,13 @@
   <div class="employee-chat">
     <div class="employee-chatbox">
       <mat-form-field>
-        <input matInput class="chatbox-field" [(ngModel)]="content" (keydown)="onKeydown($event)">
+        <input matInput class="chatbox-field" [(ngModel)]="content" (keydown.enter)="sendMessage()">
       </mat-form-field>
     </div>
     <div class="chat-messages">
       <div [class.sent]="sentMessage" *ngFor="let message of messages">
         <div class="chat-message">{{message.content}}</div>
+        <span>{{message.author}}</span>
       </div>
     </div>
   </div>

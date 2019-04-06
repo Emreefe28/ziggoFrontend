@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ChatService} from '../../services/chat.service';
+import {Message} from '../../models/message.model';
 
 @Component({
   selector: 'app-chat',
@@ -12,25 +14,31 @@ export class ChatComponent implements OnInit {
   sentMessage = false;
   status = false;
   employeeStatus = 'Offline';
+  author = 'first';
 
-  constructor() {
-  }
-
-  ngOnInit() {
-
+  constructor(private chatService: ChatService) {
   }
 
   sendMessage() {
-    if (this.content !== '') {
-      this.sentMessage = true;
-      this.messages.push({content: this.content});
-      this.content = '';
-    }
+    const draft = new Message();
+    draft.author = this.content;
+    draft.content = this.content;
+    this.chatService.sendMessage(draft);
+    this.content = '';
   }
 
-  onKeydown(event) {
-    if (event.key === 'Enter') {
-      this.sendMessage();
+  ngOnInit() {
+    this.chatService
+      .getMessages()
+      .subscribe((message: Message) => {
+        this.checkAuthor(message.author);
+        this.messages.push(message);
+      });
+  }
+
+  checkAuthor(name: string) {
+    if (name === this.author) {
+      this.sentMessage = true;
     }
   }
 
@@ -38,6 +46,7 @@ export class ChatComponent implements OnInit {
     this.status = true;
     this.employeeStatus = 'Online';
   }
+
   statusOffline() {
 
     this.status = false;
