@@ -9,12 +9,14 @@ import { ChatComponent } from './employee/chat/chat.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {ChatService} from './services/chat.service';
+import { ClientChatComponent } from './client-chat/client-chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    ChatComponent
+    ChatComponent,
+    ClientChatComponent
   ],
   imports: [
     BrowserModule,

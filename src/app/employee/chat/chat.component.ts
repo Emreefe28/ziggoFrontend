@@ -21,25 +21,20 @@ export class ChatComponent implements OnInit {
 
   sendMessage() {
     const draft = new Message();
-    draft.author = this.content;
+    draft.author = 'first';
     draft.content = this.content;
+    draft.room = 'room1';
     this.chatService.sendMessage(draft);
     this.content = '';
   }
 
   ngOnInit() {
+    this.chatService.joinRoom();
     this.chatService
       .getMessages()
       .subscribe((message: Message) => {
-        this.checkAuthor(message.author);
         this.messages.push(message);
       });
-  }
-
-  checkAuthor(name: string) {
-    if (name === this.author) {
-      this.sentMessage = true;
-    }
   }
 
   statusOnline() {

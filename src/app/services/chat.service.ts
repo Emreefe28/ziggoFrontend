@@ -13,6 +13,10 @@ export class ChatService {
     this.socket = io(this.url);
   }
 
+  public sendName(name) {
+    this.socket.emit('send-nickname', name);
+  }
+
   public sendMessage(message) {
     this.socket.emit('new-message', message);
   }
@@ -24,4 +28,14 @@ export class ChatService {
       });
     });
   }
+
+  public createRoom(author) {
+    this.socket.emit('create', 'room1');
+    this.sendName(author);
+  }
+
+  public joinRoom() {
+    this.socket.emit('join', 'room1');
+  }
+
 }

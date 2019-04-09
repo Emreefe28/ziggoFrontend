@@ -24,9 +24,12 @@
       </mat-form-field>
     </div>
     <div class="chat-messages">
-      <div [class.sent]="sentMessage" *ngFor="let message of messages">
-        <div class="chat-message">{{message.content}}</div>
-        <span>{{message.author}}</span>
+      <div *ngFor="let message of messages">
+        <mat-card class="chat-message">
+          <mat-card-title class="author">{{message.author}}</mat-card-title>
+          <mat-card-content class="chat-message__content">{{message.content}}</mat-card-content>
+          <mat-card-subtitle class="date" align="right">{{message.sentAt}}</mat-card-subtitle>
+        </mat-card>
       </div>
     </div>
   </div>
