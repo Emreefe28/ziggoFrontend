@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 
-
 export class AppComponent {
   title = 'EWAZiggo-frontend';
 
