@@ -1,0 +1,79 @@
+<mat-card-header>
+  <mat-toolbar class="toolbar">
+    <mat-card-title>Create Employee</mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+  </mat-toolbar>
+</mat-card-header>
+<mat-card-content>
+  <div class="container">
+    <form [formGroup]="employeeForm">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Firstname</label>
+            <input type="text" formControlName="firstName" class="form-control"
+                   [ngClass]="{'is-invalid': employeeForm.get('firstName').touched
+                   && employeeForm.get('firstName').invalid}"
+                   [(ngModel)]="employeeModel.firstname" required>
+            <div class="invalid-feedback">
+              <div>First name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Lastname</label>
+            <input type="text" formControlName="lastName" class="form-control"
+                   [ngClass]="{'is-invalid': employeeForm.get('lastName').touched
+                   && employeeForm.get('lastName').invalid}"
+                   [(ngModel)]="employeeModel.lastname" required>
+            <div class="invalid-feedback">
+              <div>Last name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Username</label>
+            <input type="text" formControlName="username" class="form-control"
+                   [ngClass]="{'is-invalid': employeeForm.get('username').touched
+                   && employeeForm.get('username').invalid}"
+                   [(ngModel)]="employeeModel.username" required>
+            <div class="invalid-feedback">
+              <div>Username is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Password</label>
+            <input type="text" formControlName="password" class="form-control"
+                   [ngClass]="{'is-invalid': employeeForm.get('password').touched
+                   && employeeForm.get('password').invalid}"
+                   [(ngModel)]="employeeModel.password" required>
+            <div class="invalid-feedback">
+              <div>Password must be 8 characters long</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Role</label>
+            <input type="number" min="1" max="2" placeholder="Numbers only" formControlName="role" class="form-control"
+                   [ngClass]="{'is-invalid': employeeForm.get('role').touched && employeeForm.get('role').invalid}"
+                   [(ngModel)]="employeeModel.role" required>
+            <div class="invalid-feedback">
+              <div>Role number is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" class="btn btn-success">
+          <button mat-button [disabled]="!employeeForm.valid" (click)="onSubmit()">Save</button>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card-content>

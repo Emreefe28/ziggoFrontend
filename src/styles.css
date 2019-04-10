@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.toolbar{
+  background: linear-gradient(to right, #E60000, #F48C00);
+  border-radius: 5px;
+  color:white;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.col-md-6 {
+  padding-top: 5px;
+}
