@@ -11,7 +11,6 @@ export class ChatComponent implements OnInit {
   chatLabel = 'Klanten';
   content: string;
   messages = [];
-  sentMessage = false;
   status = false;
   employeeStatus = 'Offline';
   author = 'first';

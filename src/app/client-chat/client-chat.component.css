@@ -83,7 +83,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #8B8B8B;
 }
-/* focused color */
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: #EC3C00;
 }

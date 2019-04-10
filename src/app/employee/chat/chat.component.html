@@ -1,22 +1,23 @@
 <mat-sidenav-container class="content">
   <mat-sidenav class="employee-chat-list" opened mode="side">
     <div class="employee-chat-status">
-      <div class="employee-chat-status-row"><span>Status:</span><span [ngStyle]="{'color': status ? '#7FFF00' : '#FF0000'}"> {{employeeStatus}}</span></div>
+      <div class="employee-chat-status-row"><span>Status:</span><span
+        [ngStyle]="{'color': status ? '#7FFF00' : '#FF0000'}"> {{employeeStatus}}</span></div>
       <mat-divider></mat-divider>
       <div class="employee-chat-status-row">
-        <button mat-mini-fab id="online" (click)="statusOnline()" ></button>
-        <button mat-mini-fab id="offline" (click)="statusOffline()"  ></button>
+        <button mat-mini-fab id="online" (click)="statusOnline()"></button>
+        <button mat-mini-fab id="offline" (click)="statusOffline()"></button>
       </div>
     </div>
     <mat-divider></mat-divider>
     <h3 class="chat-label">{{ chatLabel }}</h3>
     <mat-nav-list>
       <a mat-list-item>
-        <h3 class="chat-label">customer.name</h3> <span class="unread-messages">3</span>
+        <h3 class="chat-label"><span style="" matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">Beyoncé</span>
+        </h3>
       </a>
     </mat-nav-list>
   </mat-sidenav>
-
   <div class="employee-chat">
     <div class="employee-chatbox">
       <mat-form-field>

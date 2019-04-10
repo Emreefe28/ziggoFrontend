@@ -7,6 +7,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -17,7 +21,11 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatCardModule],
+    MatCardModule,
+    MatBadgeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule],
   exports: [
     MatButtonModule,
     MatToolbarModule,
@@ -26,7 +34,11 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatCardModule],
+    MatCardModule,
+    MatBadgeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule],
 })
 export class MaterialModule {
 }
