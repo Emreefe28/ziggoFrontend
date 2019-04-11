@@ -7,6 +7,8 @@ import { MatCardModule, MatDialogModule, MatToolbarModule, MatIconModule, MatBut
 import { DialogComponent } from './dialog/dialog.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { HttpClient } from '@angular/common/http';
+
 // import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
@@ -24,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    // HttpClient
   ],
   providers: [DialogComponent],
   entryComponents: [DialogComponent],

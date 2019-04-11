@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Employee } from '../model/employee';
+import { HttpClient } from '@angular/common/http';
 
 // import { ContactService } from '../service/contact.service';
 
@@ -19,7 +20,8 @@ export class DialogComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     role: new FormControl([], Validators.required)
   })
-  constructor(private dialogRef: MatDialogRef<DialogComponent>) { }
+  constructor(private dialogRef: MatDialogRef<DialogComponent>// private httpClient: HttpClient
+  ) { }
   employeeModel = new Employee('', '', '', '', null);
 
 
@@ -31,7 +33,8 @@ export class DialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.employeeModel)
+    // this.httpClient.post('https://jsonplaceholder.typicode.com/', this.employeeModel);
+    console.log(this.employeeModel);
     this.dialogRef.close();
   }
 
