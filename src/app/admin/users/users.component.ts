@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {User} from '../../models/user.model';
+import {EmployeeService} from '../../services/employee.service';
 
 @Component({
   selector: 'app-users',
@@ -8,28 +10,23 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 })
 export class UsersComponent implements OnInit {
 
-  USER_DATA = [
-    {username: 'adirk', name: 'Anton Dirk', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Yesterday', sessions: 2},
-    {username: 'droelvink', name: 'Dries Roelvink', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Yesterday', sessions: 22},
-    {username: 'aheijn', name: 'Albert Heijn', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Just now', sessions: 21},
-    {username: 'dvandenbroek', name: 'Dirk van den Broek', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Just now', sessions: 12},
-    {username: 'rmcdonald', name: 'Ronald Mcdonald', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Yesterday', sessions: 32},
-    {username: 'bking', name: 'Burger King', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Yesterday', sessions: 5},
-    {username: 'mrproper', name: 'Mister Proper', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Just now', sessions: 4},
-    {username: 'gloogman', name: 'Ger Loogman', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Yesterday', sessions: 22},
-    {username: 'cduizend', name: 'C1000', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Just now', sessions: 12},
-    {username: 'acuyp', name: 'Albert Cuyp', email: 'antondirk@vodafoneziggo.nl', lastSeen: 'Just now', sessions: 5},
-  ];
-
-  displayedColumns: string[] = ['username', 'name', 'email', 'lastSeen', 'sessions'];
-  dataSource = new MatTableDataSource(this.USER_DATA);
+  users;
+  displayedColumns: string[] = ['username', 'name', 'surname', 'password', 'email', 'role'];
+  dataSource = new MatTableDataSource(this.users);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor( ) {
+  constructor(private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
+    console.log(this.users);
+    this.employeeService.getEmployees().subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+      console.log( )
+      console.log(data);
+    });
     this.dataSource.paginator = this.paginator;
   }
 

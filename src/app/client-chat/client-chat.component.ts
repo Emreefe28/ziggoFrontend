@@ -22,7 +22,7 @@ export class ClientChatComponent implements OnInit {
     this.chatService
       .getMessages()
       .subscribe((message: Message) => {
-        if(message.author !== this.author){
+        if (message.author !== this.author) {
           this.recipient = message.author;
         }
         this.messages.push(message);
@@ -30,7 +30,7 @@ export class ClientChatComponent implements OnInit {
   }
 
   sendMessage() {
-    if(this.content !== '') {
+    if (this.content !== '') {
       const draft = new Message();
       draft.author = this.author;
       draft.content = this.content;

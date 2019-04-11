@@ -4,6 +4,7 @@ export class Message {
   author: string;
   content: string;
   room: string;
+
   constructor() {
     this.sentAt = new Date();
   }
