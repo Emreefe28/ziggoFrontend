@@ -36,11 +36,21 @@
     padding: 20px 20px 20px 80px;
 }
 
+.main-content{
+    background-color: #EAEAEA;
+    margin-top: 155px;
+}
+
+.troubleshoot-card__bottom{
+    background-image: linear-gradient(to right, #FF010A, #FF8D00);
+}
+
 .troubleshoot-container {
     background-color: #EBEBEB;
     padding: 30px 100 30px 0;
     min-height: 0px;
     display: flex;
+    width: 100%;
     justify-content: space-around;
     position: relative;
     -webkit-box-shadow: inset 0px 5px 12px -3px rgba(143, 140, 143, 1);
@@ -48,11 +58,15 @@
     box-shadow: inset 0px 5px 12px -3px rgba(143, 140, 143, 1);
 }
 
-.troubleshoot-card {
-    margin: 200px 150px 200px 225px;
-    width: 800px;
-    height: 600px;
-    border-radius: 10px;
+.mdl-card {
+    border-radius: 15px;
+    margin-top: 10%;
+    margin: 25px 50px;
+    margin-left: 24%;
+    width: 100%;
+    max-width: 850px;
+    height: 367px;
+    display: flex;
 }
 
 .mdl-card__title {
