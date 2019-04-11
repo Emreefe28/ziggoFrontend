@@ -59,20 +59,23 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label>Role</label>
-            <input type="number" min="1" max="2" placeholder="Numbers only" formControlName="role" class="form-control"
-                   [ngClass]="{'is-invalid': employeeForm.get('role').touched && employeeForm.get('role').invalid}"
-                   [(ngModel)]="employeeModel.role" required>
+            <mat-form-field style="color: black">
+              <label>Function</label>
+              <mat-select style="color: black" formControlName="role" class="form-control"
+                          [ngClass]="{'is-invalid': employeeForm.get('role').touched
+                          && employeeForm.get('role').invalid}">
+                <mat-option style="color: black" value="1">Admin</mat-option>
+                <mat-option style="color: black" value="2">Employee</mat-option>
+              </mat-select>
             <div class="invalid-feedback">
-              <div>Role number is required</div>
+              <div>Function is required</div>
             </div>
+            </mat-form-field>
           </div>
         </div>
       </div>
       <div class="row">
-        <button type="submit" class="btn btn-success">
-          <button mat-button [disabled]="!employeeForm.valid" (click)="onSubmit()">Save</button>
-        </button>
+          <button mat-flat-button [disabled]="!employeeForm.valid" (click)="onSubmit()">Save</button>
       </div>
     </form>
   </div>

@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Employee } from '../model/employee';
-import { HttpClient } from '@angular/common/http';
+// import { DataService } from '../service/data.service';
 
 // import { ContactService } from '../service/contact.service';
 
@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
+  dataS: DataService;
   public employeeForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -23,7 +24,9 @@ export class DialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<DialogComponent>// private httpClient: HttpClient
   ) { }
   employeeModel = new Employee('', '', '', '', null);
-
+  // onSubmit(): void {
+  // this.dataS.onSubmit();
+  // }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -32,10 +35,6 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(): void {
-    // this.httpClient.post('https://jsonplaceholder.typicode.com/', this.employeeModel);
-    console.log(this.employeeModel);
-    this.dialogRef.close();
-  }
+
 
 }
