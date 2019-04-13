@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
-import {User} from '../../models/user.model';
 import {EmployeeService} from '../../services/employee.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-users',
@@ -9,10 +9,9 @@ import {EmployeeService} from '../../services/employee.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  users;
+  employees: User[];
   displayedColumns: string[] = ['username', 'name', 'surname', 'password', 'email', 'role'];
-  dataSource = new MatTableDataSource(this.users);
+  dataSource = new MatTableDataSource(this.employees);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -20,19 +19,16 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.users);
-    this.employeeService.getEmployees().subscribe(data => {
-      this.users = data;
-      console.log(this.users);
-      console.log( )
-      console.log(data);
-    });
+    this.employeeService.getUsers().subscribe(
+      data => {
+        this.dataSource.data = data;
+      }
+    );
     this.dataSource.paginator = this.paginator;
   }
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }
+

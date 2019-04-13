@@ -12,6 +12,7 @@ import {ChatService} from './services/chat.service';
 import { ClientChatComponent } from './client-chat/client-chat.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
+import {EmployeeService} from './services/employee.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { UsersComponent } from './admin/users/users.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ChatService],
+  providers: [ChatService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
