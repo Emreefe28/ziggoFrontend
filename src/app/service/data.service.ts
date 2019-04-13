@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Employee } from '../model/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,8 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // onSubmit(): void {
-  //   this.httpClient.post(this.apiUrl, this.employeeModel);
-  //   console.log(this.employeeModel);
-  //   this.dialogRef.close();
-  // }
+  onSubmit(model: Employee): void {
+    this.httpClient.post(this.apiUrl, model);
+    console.log(model);
+  }
 }
