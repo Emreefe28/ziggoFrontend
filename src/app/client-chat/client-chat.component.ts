@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Message} from '../models/message.model';
 import {ChatService} from '../services/chat.service';
+import {ChatToken} from '../models/chat-token.model';
 
 @Component({
   selector: 'app-client-chat',
@@ -12,13 +13,31 @@ export class ClientChatComponent implements OnInit {
   messages = [];
   author = 'client';
   recipient: string;
+  room: string;
 
   constructor(private chatService: ChatService) {
   }
 
   ngOnInit() {
-    this.chatService.createRoom(this.author);
+    this.startChat();
+  }
 
+  sendMessage() {
+    if (this.content !== '') {
+      const draft = new Message();
+      draft.author = this.author;
+      draft.content = this.content;
+      draft.room = this.room;
+      this.chatService.sendMessage(draft);
+      this.content = '';
+    }
+  }
+
+  startChat() {
+    this.chatService.chatRequest(new ChatToken(this.author));
+    this.chatService.getRoom().subscribe(data => {
+      this.room = data;
+    });
     this.chatService
       .getMessages()
       .subscribe((message: Message) => {
@@ -27,17 +46,6 @@ export class ClientChatComponent implements OnInit {
         }
         this.messages.push(message);
       });
-  }
-
-  sendMessage() {
-    if (this.content !== '') {
-      const draft = new Message();
-      draft.author = this.author;
-      draft.content = this.content;
-      draft.room = 'room1';
-      this.chatService.sendMessage(draft);
-      this.content = '';
-    }
   }
 
   endChat() {

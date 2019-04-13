@@ -13,15 +13,31 @@ export class ChatService {
     this.socket = io(this.url);
   }
 
-  public sendName(name) {
-    this.socket.emit('send-nickname', name);
+  public login(user) {
+    this.socket.emit('login', user);
+  }
+
+  public logout(user) {
+    this.socket.emit('logout', user);
+  }
+
+  public chatRequest(token) {
+    this.socket.emit('chat-request', token);
+  }
+
+  public getRoom(): Observable<string> {
+    return Observable.create((observer) => {
+      this.socket.on('chatroom', (chatroom) => {
+        observer.next(chatroom);
+      });
+    });
   }
 
   public sendMessage(message) {
     this.socket.emit('new-message', message);
   }
 
-  public getMessages = () => {
+  public getMessages() {
     return Observable.create((observer) => {
       this.socket.on('new-message', (message) => {
         observer.next(message);
@@ -31,11 +47,10 @@ export class ChatService {
 
   public createRoom(author) {
     this.socket.emit('create', 'room1');
-    this.sendName(author);
   }
 
-  public joinRoom() {
-    this.socket.emit('join', 'room1');
+  public joinRoom(room) {
+    this.socket.emit('join', room);
   }
 
 }

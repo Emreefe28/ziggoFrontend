@@ -1,8 +1,11 @@
-<mat-sidenav-container class="content">
+<mat-sidenav-container class="content" (window:beforeunload)="statusOffline()">
   <mat-sidenav class="employee-chat-list" opened mode="side">
     <div class="employee-chat-status">
       <div class="employee-chat-status-row"><span>Status:</span><span
         [ngStyle]="{'color': status ? '#7FFF00' : '#FF0000'}"> {{employeeStatus}}</span></div>
+      <button mat-icon-button>
+        <i class="fa fa-refresh" style="color: #ffffff" (click)="startChatting()"></i>
+         </button>
       <mat-divider></mat-divider>
       <div class="employee-chat-status-row">
         <button mat-mini-fab id="online" (click)="statusOnline()"></button>
