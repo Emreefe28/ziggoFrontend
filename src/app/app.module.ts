@@ -7,12 +7,13 @@ import { EmployeeComponent } from './employee/employee.component';
 import { MaterialModule } from './material.module';
 import { ChatComponent } from './employee/chat/chat.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {ChatService} from './services/chat.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChatService } from './services/chat.service';
 import { ClientChatComponent } from './client-chat/client-chat.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
-import {EmployeeService} from './services/employee.service';
+import { EmployeeService } from './services/employee.service';
+import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {EmployeeService} from './services/employee.service';
     ChatComponent,
     ClientChatComponent,
     AdminComponent,
-    UsersComponent
+    UsersComponent,
+    CreateEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +31,11 @@ import {EmployeeService} from './services/employee.service';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [ChatService, EmployeeService],
+  entryComponents: [CreateEmployeeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
