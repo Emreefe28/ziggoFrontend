@@ -1,12 +1,14 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
 import {UserInterface} from "@app/_interfaces";
+import {Observable} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+
     constructor(private http: HttpClient) { }
 
     getAll() {
@@ -22,9 +24,16 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        return this.http.post(
+          `${environment.apiUrl}/adduser?username=${user.username}&password=${user.password}`,
+          user, { observe: 'response' });
     }
 
+    login(user: User) {
+      return this.http.post(
+        `${environment.apiUrl}/login?username=${user.username}&password=${user.password}`,
+        user, {observe: 'response'});
+    }
     // update(user: User) {
     //     return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
     // }

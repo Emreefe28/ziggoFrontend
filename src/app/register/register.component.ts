@@ -1,9 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
 
 import { AlertService, UserService, AuthenticationService } from '@app/_services';
+import {Subject} from "rxjs";
 
 @Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
@@ -37,24 +38,25 @@ export class RegisterComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
-        this.submitted = true;
+      this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+        return;
+      }
+
+      this.loading = true;
+      this.userService.register(this.registerForm.value).subscribe(response => {
+        if(response.status == 200){
+          //failure
+          this.alertService.error('already exists');
+          this.loading = false;
         }
-
-        this.loading = true;
-        this.userService.register(this.registerForm.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+        if(response.status == 201 ){
+          //success
+          this.alertService.success('login successful', true);
+          this.router.navigate(['/login']);
+        }
+      });
     }
 }
