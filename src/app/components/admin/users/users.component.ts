@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
-import {EmployeeService} from '../../services/employee.service';
-import {User} from '../../models/user.model';
+import {EmployeeService} from '../../../services/employee.service';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-users',

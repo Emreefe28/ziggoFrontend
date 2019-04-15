@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ChatService} from '../../services/chat.service';
-import {Message} from '../../models/message.model';
-import {ChatToken} from '../../models/chat-token.model';
+import {ChatService} from '../../../services/chat.service';
+import {Message} from '../../../models/message.model';
+import {ChatToken} from '../../../models/chat-token.model';
 
 @Component({
   selector: 'app-chat',
