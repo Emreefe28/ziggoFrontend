@@ -46,24 +46,17 @@
         <a href="../questionaire/questionaire.component.html"><i class="fas fa-arrow-left fa-4x"></i></a>
       <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio">
         <div class="troubleshoot-card-title mdl-card__title">
-          <div class=" mdl-card__title-text troubleshoot-card__numbering">1</div>
+          <div id="t1" class=" mdl-card__title-text troubleshoot-card__numbering">1</div>
           <h2 class="mdl-card__title-text">Lampjes</h2>
         </div>
 
         <div class="troubleshoot-card__content mdl-card__supporting-text " align="left">
           <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
-            <p>Aan de achterkant van uw modem ziet u hoogst waarschijnlijk lampjes schijnen.</p>
-            <p>Maar er is ook een kans dat er één of meerdere lampjes niet licht geven.</p>
-            <p>Hoeveel lampjes schijnen er?</p>
-            <input type="radio" name="lamp" value="0"> 0<br>
-            <input type="radio" name="lamp" value="1"> 1<br>
-            <input type="radio" name="lamp" value="2"> 2<br>
-            <input type="radio" name="lamp" value="3"> 3<br>
-            <div class="troubleshoot-card__layout-cell ">
-              <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
-                Submit
-              </button>
+            <div id="q1" class="troubleshoot-card__layout-cell ">
             </div>
+            <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+              Submit
+            </button>
           </div>
         </div>
       </div>
@@ -175,6 +168,26 @@
       </div>
     </div>
     </div>
+    <script>
+      fetch('package.json')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          appendData(data);
+        })
+        .catch(function (err) {
+          console.log('error: ' + err);
+        });
+      function appendData(data) {
+        var mainContainer = document.getElementById("q1");
+        for (var i = 2; i < data.length; i++) {
+          var div = document.createElement("div");
+          div.innerHTML = data[i].content;
+          mainContainer.appendChild(div);
+        }
+      }
+    </script>
 </body>
 
 </html>
