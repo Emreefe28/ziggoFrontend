@@ -6,6 +6,7 @@ import {ChatComponent} from './components/employee/chat/chat.component';
 import {ClientChatComponent} from './components/client-chat/client-chat.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {UsersComponent} from './components/admin/users/users.component';
+import {HomeComponent} from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,12 @@ const routes: Routes = [
     component: AdminComponent
     , children: [
       {path: 'users', component: UsersComponent}]
-  }
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
