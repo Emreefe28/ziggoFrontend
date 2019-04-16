@@ -9,7 +9,6 @@
     margin-top: 300px;
 }
 #top-header{
-
     display: flex;
     justify-content: space-around;
 }
@@ -71,6 +70,16 @@
 
 .mdl-card__title {
     padding: 0;
+}
+
+.icon-cog {
+  background-image: linear-gradient(to right, #FF010A, #FF8D00);
+  margin-top: 50px;
+}
+
+.arrow {
+  margin-top: 25px;
+  margin-left: 25px;
 }
 
 h2.mdl-card__title-text {
@@ -150,7 +159,6 @@ h2.mdl-card__title-text {
     margin-left:auto;
     margin-right:auto;
     text-align: center;
-
 }
 
 .troubleshoot-card__layout-cell{
