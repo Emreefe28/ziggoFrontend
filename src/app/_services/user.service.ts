@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
-import {UserInterface} from "@app/_interfaces";
 import {Observable} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
@@ -19,21 +18,23 @@ export class UserService {
         return this.http.get(`${environment.apiUrl}/users/${username}`);
     }
 
-    getName(){
-      return this.http.get<UserInterface>(`${environment.apiUrl}`);
-    }
-
     register(user: User) {
         return this.http.post(
-          `${environment.apiUrl}/adduser?username=${user.username}&password=${user.password}`,
-          user, { observe: 'response' });
+          `${environment.apiUrl}/adduser?userName=${user.userName}&password=${user.password}`,
+          user);
     }
+
+    getJwtToken(user: User) {
+      return this.http.get(`${environment.apiUrl}/jwt/${user.jwtToken}`);
+    }
+
 
     login(user: User) {
       return this.http.post(
-        `${environment.apiUrl}/login?username=${user.username}&password=${user.password}`,
-        user, {observe: 'response'});
+        `${environment.apiUrl}/login?userName=${user.userName}&password=${user.password}`,
+        user);
     }
+
     // update(user: User) {
     //     return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
     // }

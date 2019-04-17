@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import {AlertService, AuthenticationService, UserService} from '@app/_services';
+import {User} from "@app/_models";
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -11,6 +12,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required]
     });
 
@@ -50,16 +52,16 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.login(this.loginForm.value).subscribe(response => {
-      if (response.status == 200) {
-        //failure
-        this.alertService.error('invalid credentials');
+
+    this.userService.login(this.loginForm.value).subscribe(
+      (data: User) => {
+        this.user = { ...data};
+        this.authenticationService.authenticate(this.user);
+        this.router.navigate(['']);},
+      error => {
+        this.alertService.error(error);
         this.loading = false;
-      }
-      if (response.status == 201) {
-        //success
-        this.alertService.success('valid credentials', true);
-      }
-    });
+      });
+
   }
 }

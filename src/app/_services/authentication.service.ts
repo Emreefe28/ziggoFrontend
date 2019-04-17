@@ -2,13 +2,13 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '@app/_models';
-import {UserComponent} from "@app/_components/user.component";
+import {UserService} from "@app/_services/user.service";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    public userComponent: UserComponent;
+    private userService: UserService;
 
 
     constructor(private http: HttpClient) {
@@ -21,25 +21,15 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
+    authenticate(user: User) {
+                  localStorage.setItem('currentUser', JSON.stringify(user));
+                  this.currentUserSubject.next(user);
 
-    checkLoginData(username: string){
-      this.userComponent.getUser(username);
-      this.userComponent.showUser();
     }
 
-    login(username: string, password: string) {
-        this.checkLoginData(username);
-
-        // return this.http.post<any>(`${environment.apiUrl}/${username}`, { username, password })
-        //     .pipe(map(user => {
-        //         if (user) {
-        //             // store user details in local storage to keep user logged in between page refreshes
-        //             localStorage.setItem('currentUser', JSON.stringify(user));
-        //             this.currentUserSubject.next(user);
-        //         }
-        //
-        //         return user;
-        //     }));
+    //TODO: endpoint works, just need to make it work on frontend
+    checkJwtToken(user: User){
+      this.userService.getJwtToken(user);
     }
 
     logout() {

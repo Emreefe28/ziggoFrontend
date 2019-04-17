@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            username: ['', Validators.required],
+            userName: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
@@ -46,17 +46,14 @@ export class RegisterComponent implements OnInit {
       }
 
       this.loading = true;
-      this.userService.register(this.registerForm.value).subscribe(response => {
-        if(response.status == 200){
-          //failure
-          this.alertService.error('already exists');
-          this.loading = false;
-        }
-        if(response.status == 201 ){
-          //success
-          this.alertService.success('login successful', true);
+      this.userService.register(this.registerForm.value).subscribe(
+        data => {
+          this.alertService.success('register successful', true);
           this.router.navigate(['/login']);
-        }
-      });
+        },
+        error => {
+          this.alertService.error("Username already exists");
+          this.loading = false;
+        });
     }
 }
