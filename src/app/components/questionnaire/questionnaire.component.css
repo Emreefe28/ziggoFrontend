@@ -1,6 +1,6 @@
 @import "../../app.component.css";
 body {
-  background-color: #cccccc;
+  background-color:#EAEAEA;
 }
 .container {
   background-color:#EAEAEA;
@@ -14,7 +14,7 @@ body {
   font-weight: bolder;
 }
 .troubleshoot-navigation{
-  color: white;
+  color: #EAEAEA;
 }
 
 .title {
@@ -75,6 +75,7 @@ body {
   margin-bottom: 5%;
   margin-left: 15%;
   margin-right: 15%;
+  margin-top: 50px;
 
   width: 100%;
   max-width: 70%;

@@ -31,7 +31,6 @@
   </mat-toolbar>
 
   <div class="main-content">
-    <div class="arrow">
       <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" *ngFor="let question of pureQuestions">
 
 
@@ -72,12 +71,11 @@
       </div>
 
   </div>
-  </div>
 
 
 
-<div class ="footer"*ngIf="geenVragenOver">
-  <div class="troubleshoot-card__bottom troubleshoot-card__layout mdl-card__actions mdl-card--border " >
+<div class ="footer">
+  <div class="troubleshoot-card__bottom troubleshoot-card__layout mdl-card__actions mdl-card--border "*ngIf="geenVragenOver" >
     <div class="troubleshoot-card__layout-row">
       <div class="troubleshoot-card__layout-cell" style="text-align: left">
         <p><strong>Is uw probleem nog niet opgelost?</strong><br>Neem contact op met een van onze medewerkers.
