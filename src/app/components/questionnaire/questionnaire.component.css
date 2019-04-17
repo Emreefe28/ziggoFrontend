@@ -4,6 +4,9 @@
   background-color: white;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
 .header {
   background-image: url("../../../assets/images/troubleshoot-banner.png");
   background-repeat: no-repeat;
@@ -11,6 +14,28 @@
   color: #ffffff;
   font-weight: bolder;
 }
+.logo-row {
+  display: flex;
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.title-row {
+  padding: 15% 20px 40px 20px;
+  font-size: 40px;
+
+}
+
+.line {
+  margin: 0 50px;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to right, #E60000, #F48C00);
+}
+
 .troubleshoot-navigation{
   color: white;
 }
