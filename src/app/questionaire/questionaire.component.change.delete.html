@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="myApp" lang="nl">
 
 <head>
   <link data-require="bootstrap@4.0.5" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
@@ -7,15 +6,16 @@
   <script data-require="angularjs@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
   <link rel="stylesheet" href="style.css" />
   <script src="script.js"></script>
+  <title>Maak em, kraak em</title>
 </head>
 
-<body class="container" ng-app="myApp" ng-controller="studentController" ng-cloak>
+<body class="container"  ng-controller="QuestionaireListController" ng-cloak>
 
 <h1>Edit or delete questions.</h1>
 
 <!--Form-->
 <form ng-submit="createUser()">
-  <h4>Create User</h4>
+  <h4>Create question</h4>
   <div class="form-group" ng-show="userid">
     <label class="control-label col-md-2">ID</label>
     <div class="col-md-4">
@@ -25,7 +25,7 @@
   <div class="form-group">
     <label class="control-label col-md-2">Name:</label>
     <div class="col-md-4">
-      <input type="text" class="form-control" ng-model="user.name" placeholder="john.." />
+      <input type="text" class="form-control" data-ng-model="user.name" placeholder="john.." />
     </div>
   </div>
   <div class="col-md-offset-2 col-md-10">
@@ -47,8 +47,8 @@
     <td>Question</td>
   </tr>
   </thead>
-  <tbody>
-  <tr ngFor={let user in users}>
+  <tbody ng-repeat="user in users">
+  <tr>
     <td>
       {{user.id}}
     </td>
