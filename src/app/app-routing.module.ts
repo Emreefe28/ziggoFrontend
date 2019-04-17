@@ -7,7 +7,9 @@ import {ClientChatComponent} from './components/client-chat/client-chat.componen
 import {AdminComponent} from './components/admin/admin.component';
 import {UsersComponent} from './components/admin/users/users.component';
 import {HomeComponent} from './components/home/home.component';
-import {QuestionnaireComponent} from "./components/questionnaire/questionnaire.component";
+import {QuestionnaireComponent} from './components/questionnaire/questionnaire.component';
+import {LoginComponent} from './components/customer/login';
+import {RegisterComponent} from './components/customer/register';
 
 const routes: Routes = [
 
@@ -17,6 +19,8 @@ const routes: Routes = [
     , children: [
       {path: 'chats', component: ChatComponent}]
   },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'client-chat',
     component: ClientChatComponent

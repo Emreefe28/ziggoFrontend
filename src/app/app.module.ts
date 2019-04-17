@@ -17,6 +17,10 @@ import {QuestionnaireService} from './services/questionnaire.service';
 import {ClientChatComponent} from './components/client-chat/client-chat.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {CreateEmployeeComponent} from './components/admin/create-employee/create-employee.component';
+import {AlertComponent} from './components/customer/_components';
+import {LoginComponent} from './components/customer/login';
+import {RegisterComponent} from './components/customer/register';
+import {CustomMaterialModule} from './components/customer/core/material.module';
 
 
 @NgModule({
@@ -30,6 +34,9 @@ import {CreateEmployeeComponent} from './components/admin/create-employee/create
     HomeComponent,
     QuestionnaireComponent,
     CreateEmployeeComponent,
+    AlertComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +46,7 @@ import {CreateEmployeeComponent} from './components/admin/create-employee/create
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CustomMaterialModule,
   ],
   providers: [ChatService, EmployeeService, QuestionnaireService],
   entryComponents: [CreateEmployeeComponent],

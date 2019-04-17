@@ -17,6 +17,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@customer/*": ["src/app/components/customer*"],
+      "@environments/*": ["src/environments/*"]
+    }
   }
 }
