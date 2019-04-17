@@ -11,6 +11,7 @@ import { CreateService } from '../services/create.service';
   templateUrl: './create-employee.component.html',
   styleUrls: ['./create-employee.component.css']
 })
+
 export class CreateEmployeeComponent implements OnInit {
   public employeeForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -20,11 +21,19 @@ export class CreateEmployeeComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     role: new FormControl([], Validators.required)
   });
-  constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private dataService: CreateService) { }
-  employeeModel = new Employee('', '', '', '', '', null);
+
+  constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private service: CreateService) { }
+
+  newEmployee = new Employee('', '', '', '', '', null);
+
   onSubmit(): void {
-    this.dataService.onSubmit(this.employeeModel);
-    this.dialogRef.close();
+    this.service.onSubmit(this.newEmployee).subscribe(
+      (data: Employee) => {
+        console.log(data);
+        this.dialogRef.close();
+      },
+      (error: any) => console.log(error)
+    );
   }
 
   onNoClick(): void {

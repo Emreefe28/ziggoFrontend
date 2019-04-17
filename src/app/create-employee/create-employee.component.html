@@ -15,7 +15,7 @@
             <input type="text" formControlName="username" class="form-control"
                    [ngClass]="{'is-invalid': employeeForm.get('username').touched
                    && employeeForm.get('username').invalid}"
-                   [(ngModel)]="employeeModel.username" required>
+                   [(ngModel)]="newEmployee.username" required>
             <div class="invalid-feedback">
               <div>Username is required</div>
             </div>
@@ -27,7 +27,7 @@
             <input type="text" formControlName="name" class="form-control"
                    [ngClass]="{'is-invalid': employeeForm.get('name').touched
                    && employeeForm.get('name').invalid}"
-                   [(ngModel)]="employeeModel.name" required>
+                   [(ngModel)]="newEmployee.name" required>
             <div class="invalid-feedback">
               <div>First name is required</div>
             </div>
@@ -39,7 +39,7 @@
             <input type="text" formControlName="surname" class="form-control"
                    [ngClass]="{'is-invalid': employeeForm.get('surname').touched
                    && employeeForm.get('surname').invalid}"
-                   [(ngModel)]="employeeModel.surname" required>
+                   [(ngModel)]="newEmployee.surname" required>
             <div class="invalid-feedback">
               <div>Surname is required</div>
             </div>
@@ -51,7 +51,7 @@
             <input type="text" formControlName="password" class="form-control"
                    [ngClass]="{'is-invalid': employeeForm.get('password').touched
                    && employeeForm.get('password').invalid}"
-                   [(ngModel)]="employeeModel.password" required>
+                   [(ngModel)]="newEmployee.password" required>
             <div class="invalid-feedback">
               <div>Password must be 8 characters long</div>
             </div>
@@ -63,7 +63,7 @@
             <input type="text" formControlName="email" class="form-control"
                    [ngClass]="{'is-invalid': employeeForm.get('email').touched
                    && employeeForm.get('email').invalid}"
-                   [(ngModel)]="employeeModel.email" required>
+                   [(ngModel)]="newEmployee.email" required>
             <div class="invalid-feedback">
               <div>Email must be valid</div>
             </div>
@@ -76,7 +76,7 @@
               <mat-select type="number" style="color: black" formControlName="role" class="form-control"
                           [ngClass]="{'is-invalid': employeeForm.get('role').touched
                           && employeeForm.get('role').invalid}"
-                          [(ngModel)]="employeeModel.role" required>
+                          [(ngModel)]="newEmployee.role" required>
                 <mat-option style="color: black" value="1">Admin</mat-option>
                 <mat-option style="color: black" value="2">Employee</mat-option>
               </mat-select>
