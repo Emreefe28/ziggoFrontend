@@ -1,6 +1,13 @@
 <head>
-  <script></script>
-</head><div class="container">
+  <meta charset="UTF-8">
+  <title>VodafoneZiggo - Questionaire</title>
+  <link rel="shortcut icon" href="resources/images/favicon.ico" />
+
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+<div class="container">
   <mat-toolbar class="header">
     <mat-toolbar-row class="logo-row">
       <span class="spacer"></span>
@@ -22,32 +29,70 @@
       <span>Problemen & Storingen</span>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div>
-    <div *ngFor="let question of pureQuestions">
-      <h3 style="background-color:pink">
-      <p>question id:{{question.questionId}}</p>
-        <p>{{question.titel}}
-        </p>
-      <p>{{question.content}}</p>
-      </h3>
-   <button (click)="nextQuestion()">volgende vraag</button>
-    </div>
 
-    <div class="troubleshoot-card__content mdl-card__supporting-text " align="left" *ngFor="let question of pureQuestions">
-      <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
-        <p>Aan de achterkant van uw modem ziet u hoogst waarschijnlijk lampjes schijnen.</p>
-        <p>Maar er is ook een kans dat er één of meerdere lampjes niet licht geven.</p>
-        <p>Hoeveel lampjes schijnen er?</p>
-        <input type="radio" name="lamp" value="0"> 0<br>
-        <input type="radio" name="lamp" value="1"> 1<br>
-        <input type="radio" name="lamp" value="2"> 2<br>
-        <input type="radio" name="lamp" value="3"> 3<br>
-        <div class="troubleshoot-card__layout-cell ">
-          <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
-            Submit
-          </button>
+  <div class="main-content">
+    <div class="arrow">
+      <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" *ngFor="let question of pureQuestions">
+
+
+        <div class="troubleshoot-card-title mdl-card__title">
+
+          <div class=" mdl-card__title-text troubleshoot-card__numbering">{{question.questionId}}</div>
+          <h2 class="mdl-card__title-text">{{question.titel}}</h2>
         </div>
+
+        <div class="troubleshoot-card__content mdl-card__supporting-text " align="left">
+
+
+          <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
+            <p>{{question.content}}</p>
+
+
+            <p><b>Heeft dit uw probleem opgelost?</b></p>
+
+            <p></p>
+
+            <div class="troubleshoot-card__content troubleshoot-card__layout mdl-card__supporting-text">
+              <div class="troubleshoot-card__layout-row">
+                <div class="troubleshoot-card__layout-cell ">
+                  <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised"
+                          (click)="nextQuestion()">
+                    Nee
+                  </button>
+                </div>
+                <div class="troubleshoot-card__layout-cell">
+                  <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+                    Ja
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  </div>
+
+
+
+<div class ="footer"*ngIf="geenVragenOver">
+  <div class="troubleshoot-card__bottom troubleshoot-card__layout mdl-card__actions mdl-card--border " >
+    <div class="troubleshoot-card__layout-row">
+      <div class="troubleshoot-card__layout-cell" style="text-align: left">
+        <p><strong>Is uw probleem nog niet opgelost?</strong><br>Neem contact op met een van onze medewerkers.
+        </p>
+      </div>
+      <div class="troubleshoot-card__layout-cell">
+        <a routerLink="/client-chat">
+          <button class="chat-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+            Start liveChat <i class="far fa-comments fa-2x"></i>
+          </button>
+        </a>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+</body>
