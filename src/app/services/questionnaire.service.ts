@@ -10,7 +10,7 @@ import {Question} from "../models/question.model";
 })
 export class QuestionnaireService {
 
-  serviceUrl="https://api.myjson.com/bins/1gucxk";
+  serviceUrl="https://api.myjson.com/bins/we52o";
   constructor(private http:HttpClient) {
 
   }

@@ -20,17 +20,22 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <div>
-    <div *ngFor = "let question of pureQuestions" >
-     <h3 style="background-color:pink"> <p>
+    <div *ngFor="let question of pureQuestions">
+      <h3 style="background-color:pink">
+
+      <p>question id:{{question.questionId}}</p>
+
+        <p>{{question.titel}}
+
+        </p>
+
+      <p>question content:{{question.content}}</p>
+      </h3>
 
 
-     {{question.titel}}
-
-       <!--{{this.addedQuestions[this.category].vragen[this.nextQuestionCount].titel}}-->
-       <!--{{question[this.category].vragen[this.nextQuestionCount].titel}}-->
-     </p></h3>
 
 
       <button (click)="nextQuestion()">volgende vraag</button>
-    </div></div>
+    </div>
+  </div>
 </div>
