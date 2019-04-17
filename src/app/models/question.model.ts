@@ -3,9 +3,9 @@ import {QuestionContent} from "./questioncontent.model";
 export class  Question extends QuestionContent{
 
 
-  catId : number;
+  categorieId : number;
   catNaam:string;
-  vraag:[QuestionContent];
+  vragen:[QuestionContent];
 
   //
   // //vraag
