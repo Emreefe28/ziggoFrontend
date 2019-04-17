@@ -9,7 +9,7 @@ import {QuestionnaireService} from "../../services/questionnaire.service";
 export class QuestionnaireComponent implements OnInit {
 
   questions = [];
-  counter=1;
+  nextQuestionCount=1;
   category=0;
 
   addedQuestions=[];
@@ -26,14 +26,19 @@ export class QuestionnaireComponent implements OnInit {
 
 
   nextQuestion(){
-    console.log("counter: "+this.counter +"questionarray length: "+ this.addedQuestions.length+  "questionid: "+this.addedQuestions[this.counter-1].questionId);
-    if(this.counter<this.questions.length){
+    // console.log("nextQuestionCount: "+this.nextQuestionCount +"questionarray length: "+ this.addedQuestions.length+
+    //   "vraagtitel: "+this.addedQuestions[0].vragen[0].titel);
+    if(this.nextQuestionCount<this.questions.length){
 
 
-      this.addedQuestions.push(this.questions[this.counter])
-      this.counter++;
+      this.addedQuestions.push(this.questions[this.nextQuestionCount])
+      console.log("momentele vraag: "+this.nextQuestionCount +" questionarray length: "+ this.addedQuestions.length+
+       "categorienaam: "+ this.addedQuestions[this.category].catNaam+
+        "vraagtitel: "+this.addedQuestions[this.category].vragen[this.nextQuestionCount].titel);
 
-      // this.counter=this.questions[this.counter];
+      this.nextQuestionCount++;
+
+      // this.nextQuestionCount=this.questions[this.nextQuestionCount].qId;
 
     }
 

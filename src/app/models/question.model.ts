@@ -1,18 +1,16 @@
-import {QuestionContent} from "./questionContent";
+import {QuestionContent} from "./questioncontent.model";
 
 export class  Question extends QuestionContent{
 
-  /*
-  catId
-  catNaam
-  vraag[];
 
-   */
-  //vraag
-  questionId: number;
-  titel: string;
-  content: string;
+  catId : number;
+  catNaam:string;
+  vraag:[QuestionContent];
 
-  // tester:[QuestionContent];
+  //
+  // //vraag
+  // questionId: number;
+  // titel: string;
+  // content: string;
 
 }
