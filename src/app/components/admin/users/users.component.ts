@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig} from '@angular/material';
 import {EmployeeService} from '../../../services/employee.service';
 import {User} from '../../../models/user.model';
-import {MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource} from '@angular/material';
-import {EmployeeService} from '../../services/employee.service';
-import {User} from '../../models/user.model';
 import {CreateEmployeeComponent} from '../create-employee/create-employee.component';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {QuestionnaireService} from "../../services/questionnaire.service";
+import {QuestionnaireService} from '../../services/questionnaire.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,11 @@ import {QuestionnaireService} from "../../services/questionnaire.service";
 export class HomeComponent implements OnInit {
 
 
-  constructor(questionnaireService : QuestionnaireService) {
+  constructor(private questionnaireService: QuestionnaireService) {
 
   }
-  toCategory(categoryValue:number){
-    questionnaireService.setCategory(categoryValue);
+  toCategory(categoryValue: number ) {
+    this.questionnaireService.setCategory(categoryValue);
   }
 
   ngOnInit() {
