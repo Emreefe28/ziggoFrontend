@@ -12,11 +12,15 @@ export class QuestionnaireComponent implements OnInit {
   QuestionCount=1;
   category=0;
 
-  pureQuestions=[];
+   pureQuestions=[];
 
 
   constructor(private questionnaireservice:QuestionnaireService) {
 
+  }
+
+  setCategory(iets:number){
+    this.category =iets;
   }
 
 
@@ -32,6 +36,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
   }
+
   ngOnInit() {
     this.questionnaireservice.getQuestions().subscribe(
       data => {

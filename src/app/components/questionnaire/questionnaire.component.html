@@ -1,5 +1,8 @@
-<div class="container">
+<head>
+  <script></script>
+</head><div class="container">
   <mat-toolbar class="header">
+
     <mat-toolbar-row class="logo-row">
       <span class="spacer"></span>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="160"
@@ -12,6 +15,7 @@
     </mat-toolbar-row>
 
     <mat-toolbar-row>
+
       <span class="line"></span>
     </mat-toolbar-row>
 
@@ -22,20 +26,12 @@
   <div>
     <div *ngFor="let question of pureQuestions">
       <h3 style="background-color:pink">
-
       <p>question id:{{question.questionId}}</p>
-
         <p>{{question.titel}}
-
         </p>
-
-      <p>question content:{{question.content}}</p>
+      <p>{{question.content}}</p>
       </h3>
-
-
-
-
-      <button (click)="nextQuestion()">volgende vraag</button>
+   <button (click)="nextQuestion()">volgende vraag</button>
     </div>
   </div>
 </div>
