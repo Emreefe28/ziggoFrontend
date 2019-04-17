@@ -14,6 +14,7 @@ import { UsersComponent } from './components/admin/users/users.component';
 import {EmployeeService} from './services/employee.service';
 import {ClientChatComponent} from './components/client-chat/client-chat.component';
 import {HomeComponent} from './components/home/home.component';
+import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HomeComponent} from './components/home/home.component';
     ClientChatComponent,
     AdminComponent,
     UsersComponent,
-    HomeComponent
+    HomeComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,

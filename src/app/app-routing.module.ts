@@ -7,8 +7,10 @@ import {ClientChatComponent} from './components/client-chat/client-chat.componen
 import {AdminComponent} from './components/admin/admin.component';
 import {UsersComponent} from './components/admin/users/users.component';
 import {HomeComponent} from './components/home/home.component';
+import {QuestionnaireComponent} from "./components/questionnaire/questionnaire.component";
 
 const routes: Routes = [
+
   {
     path: 'employee',
     component: EmployeeComponent
@@ -18,6 +20,10 @@ const routes: Routes = [
   {
     path: 'client-chat',
     component: ClientChatComponent
+  },
+  {
+    path: 'questionnaire',
+    component: QuestionnaireComponent
   },
   {
     path: 'admin',
