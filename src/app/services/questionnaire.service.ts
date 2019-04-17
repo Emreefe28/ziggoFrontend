@@ -10,10 +10,23 @@ import {Question} from "../models/question.model";
 })
 export class QuestionnaireService {
 
+  private category:number;
+
+
+  getCategory(): number {
+    return this.category;
+  }
+
+   setCategory(value: number) {
+    this.category = value;
+  }
+
   serviceUrl="https://api.myjson.com/bins/we52o";
   constructor(private http:HttpClient) {
 
   }
+
+
 
 
   getQuestions(): Observable<Question[]> {

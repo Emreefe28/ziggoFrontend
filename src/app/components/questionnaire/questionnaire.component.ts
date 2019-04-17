@@ -17,12 +17,8 @@ export class QuestionnaireComponent implements OnInit {
 
   constructor(private questionnaireservice:QuestionnaireService) {
 
-  }
 
-  setCategory(iets:number){
-    this.category =iets;
   }
-
 
 
   nextQuestion(){
@@ -38,11 +34,15 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // this.category=this.questionnaireservice.getCategory();
+
+    console.log(this.category);
     this.questionnaireservice.getQuestions().subscribe(
       data => {
         this.questions = data;
         this.pureQuestions.push(this.questions[this.category].vragen[0]);
-
+        console.log(this.category)
 
       }
     );

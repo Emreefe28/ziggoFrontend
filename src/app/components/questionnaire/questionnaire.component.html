@@ -2,7 +2,6 @@
   <script></script>
 </head><div class="container">
   <mat-toolbar class="header">
-
     <mat-toolbar-row class="logo-row">
       <span class="spacer"></span>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="160"
@@ -32,6 +31,23 @@
       <p>{{question.content}}</p>
       </h3>
    <button (click)="nextQuestion()">volgende vraag</button>
+    </div>
+
+    <div class="troubleshoot-card__content mdl-card__supporting-text " align="left" *ngFor="let question of pureQuestions">
+      <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
+        <p>Aan de achterkant van uw modem ziet u hoogst waarschijnlijk lampjes schijnen.</p>
+        <p>Maar er is ook een kans dat er één of meerdere lampjes niet licht geven.</p>
+        <p>Hoeveel lampjes schijnen er?</p>
+        <input type="radio" name="lamp" value="0"> 0<br>
+        <input type="radio" name="lamp" value="1"> 1<br>
+        <input type="radio" name="lamp" value="2"> 2<br>
+        <input type="radio" name="lamp" value="3"> 3<br>
+        <div class="troubleshoot-card__layout-cell ">
+          <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

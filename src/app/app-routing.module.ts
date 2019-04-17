@@ -24,7 +24,9 @@ const routes: Routes = [
   {
     path: 'questionnaire',
     component: QuestionnaireComponent
+
   },
+
   {
     path: 'admin',
     component: AdminComponent
