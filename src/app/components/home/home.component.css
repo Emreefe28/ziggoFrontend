@@ -1,7 +1,7 @@
 @import "../../app.component.css";
 
 .container {
-  background-color: white;
+  min-height: 100%;
 }
 
 .header {
@@ -36,7 +36,6 @@
 
 .content {
   padding: 25px;
-  color: #2E2E2E;
 }
 
 .content__text {
