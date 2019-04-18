@@ -21,7 +21,7 @@ export class QuestionnaireService {
     this.category = value;
   }
 
-  serviceUrl="https://api.myjson.com/bins/we52o";
+  serviceUrl="https://api.myjson.com/bins/16yew0";
   constructor(private http:HttpClient) {
 
   }
