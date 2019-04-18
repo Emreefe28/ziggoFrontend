@@ -38,7 +38,7 @@ export class UsersComponent implements OnInit {
     const settings: MatDialogConfig = {
       minWidth: 400,
       minHeight: 300
-    }
+    };
     const dialogRef = this.dialog.open(CreateEmployeeComponent, settings);
 
     dialogRef.afterClosed().subscribe( result => {
