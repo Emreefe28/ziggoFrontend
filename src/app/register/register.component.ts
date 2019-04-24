@@ -1,16 +1,16 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {first, map} from 'rxjs/operators';
 
 import { AlertService, UserService, AuthenticationService } from '@app/_services';
-import {Subject} from "rxjs";
+import {User} from "@app/_models";
 
 @Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    user: User;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            userName: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
@@ -45,14 +45,16 @@ export class RegisterComponent implements OnInit {
         return;
       }
 
+      this.user = this.registerForm.value;
+
       this.loading = true;
-      this.userService.register(this.registerForm.value).subscribe(
-        data => {
+      this.userService.register(this.user).subscribe(
+        (data: User) => {
           this.alertService.success('register successful', true);
           this.router.navigate(['/login']);
         },
         error => {
-          this.alertService.error("Username already exists");
+          this.alertService.error("Email already exists");
           this.loading = false;
         });
     }

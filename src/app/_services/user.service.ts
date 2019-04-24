@@ -10,18 +10,21 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
+
+    static createAuthorizationHeader(headers: HttpHeaders) {
+      headers.append('Content-Type', 'application/json');
+    }
+
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
-    getByName(username: string) {
-        return this.http.get(`${environment.apiUrl}/users/${username}`);
-    }
 
-    register(user: User) {
+    register(user: User): Observable<any> {
+      const headers = new HttpHeaders();
+      UserService.createAuthorizationHeader(headers);
         return this.http.post(
-          `${environment.apiUrl}/adduser?userName=${user.userName}&password=${user.password}`,
-          user);
+          `${environment.apiUrl}/adduser`, user, {headers});
     }
 
     getJwtToken(user: User) {
@@ -30,9 +33,10 @@ export class UserService {
 
 
     login(user: User) {
+      const headers = new HttpHeaders();
+      UserService.createAuthorizationHeader(headers);
       return this.http.post(
-        `${environment.apiUrl}/login?userName=${user.userName}&password=${user.password}`,
-        user);
+        `${environment.apiUrl}/login`, user, {headers});
     }
 
     // update(user: User) {
