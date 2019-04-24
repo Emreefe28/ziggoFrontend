@@ -1,6 +1,8 @@
 ﻿export class User {
-    id: number;
-    userName: string;
-    password: string;
-    jwtToken: string;
+  id?: number;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  jwtToken?: string;
 }
