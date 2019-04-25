@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '@customer//_services';
+import {User} from '@customer//_models';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +9,13 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  currentUser: User;
 
-  openChat() {
-    const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-width=400,height=600,left=0,top=0`;
-    open('/client-chat', 'test', params);
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
+
 }
