@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../../services/chat.service';
-import {Message} from '../../../models/message.model';
-import {ChatToken} from '../../../models/chat-token.model';
+import {ChatToken} from '../../../models/chat/chat-token.model';
 
 @Component({
   selector: 'app-chat',
@@ -11,52 +10,45 @@ import {ChatToken} from '../../../models/chat-token.model';
 export class ChatComponent implements OnInit {
   chatLabel = 'Klanten';
   content: string;
-  messages = [];
-  status = false;
-  employeeStatus;
-  author = 'employee';
-  room: string;
+  chats = Array<ChatToken>();
+  currentChat = new ChatToken();
+  isOnline: boolean;
+  status: string;
+  user = {
+    username: 'mschaafsma',
+    name: 'Mattijs',
+    surname: 'Schaafsma',
+    password: 'workwork',
+    email: 'mschaafsma@vodafoneziggo.nl',
+    role: 2
+  };
 
   constructor(private chatService: ChatService) {
+
   }
 
-  sendMessage() {
-    this.chatService.joinRoom(this.room);
-    const draft = new Message();
-    draft.author = 'first';
-    draft.content = this.content;
-    draft.room = this.room;
-    this.chatService.sendMessage(draft);
-    this.content = '';
-  }
 
   ngOnInit() {
     this.statusOnline();
-    this.chatService.getRoom().subscribe(data => this.room = data);
-    this.chatService.joinRoom(this.room);
-    this.chatService
-      .getMessages()
-      .subscribe((message: Message) => {
-        this.messages.push(message);
-      });
+  }
+
+  sendMessage() {
+
   }
 
   statusOnline() {
-    this.chatService.login(new ChatToken(this.author));
-    this.status = true;
-    this.employeeStatus = 'Online';
+    if (!this.isOnline) {
+      this.isOnline = true;
+      this.status = 'online';
+      this.chatService.checkIn(this.user);
+    }
   }
 
   statusOffline() {
-    this.chatService.logout(new ChatToken(this.author));
-    this.status = false;
-    this.employeeStatus = 'Offline';
-  }
-
-  startChatting() {
-    console.log( '1 current room: ' + this.room);
-    this.chatService.getRoom().subscribe(data => this.room = data);
-    console.log( '2 current room: ' + this.room);
-    this.chatService.joinRoom(this.room);
+    if (this.isOnline) {
+      this.isOnline = false;
+      this.status = 'offline';
+      this.chatService.checkOut();
+    }
   }
 }

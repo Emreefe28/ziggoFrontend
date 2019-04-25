@@ -2,10 +2,8 @@
   <mat-sidenav class="employee-chat-list" opened mode="side">
     <div class="employee-chat-status">
       <div class="employee-chat-status-row"><span>Status:</span><span
-        [ngStyle]="{'color': status ? '#7FFF00' : '#FF0000'}"> {{employeeStatus}}</span></div>
-      <button mat-icon-button>
-        <i class="fa fa-refresh" style="color: #ffffff" (click)="startChatting()"></i>
-         </button>
+        [ngStyle]="{'color': isOnline ? '#7FFF00' : '#FF0000'}"> {{status}}</span></div>
+
       <mat-divider></mat-divider>
       <div class="employee-chat-status-row">
         <button mat-mini-fab id="online" (click)="statusOnline()"></button>
@@ -14,11 +12,14 @@
     </div>
     <mat-divider></mat-divider>
     <h3 class="chat-label">{{ chatLabel }}</h3>
+
     <mat-nav-list>
+      <div *ngFor="let chat of chats">
       <a mat-list-item>
-        <h3 class="chat-label"><span style="" matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">Beyoncé</span>
+        <h3 class="chat-label"><span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">{{chat.client}}</span>
         </h3>
       </a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <div class="employee-chat">
@@ -28,11 +29,11 @@
       </mat-form-field>
     </div>
     <div class="chat-messages">
-      <div *ngFor="let message of messages">
+      <div *ngFor="let message of currentChat.chat.messages">
         <mat-card class="chat-message">
-          <mat-card-title class="author">{{message.author}}</mat-card-title>
+          <mat-card-title class="author">{{message.user.name}}</mat-card-title>
           <mat-card-content class="chat-message__content">{{message.content}}</mat-card-content>
-          <mat-card-subtitle class="date" align="right">{{message.sentAt}}</mat-card-subtitle>
+          <mat-card-subtitle class="date" align="right">{{message.sent}}</mat-card-subtitle>
         </mat-card>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Message} from '../../models/message.model';
 import {ChatService} from '../../services/chat.service';
-import {ChatToken} from '../../models/chat-token.model';
+import {ChatToken} from '../../models/chat/chat-token.model';
 
 @Component({
   selector: 'app-client-chat',
@@ -10,45 +9,38 @@ import {ChatToken} from '../../models/chat-token.model';
 })
 export class ClientChatComponent implements OnInit {
   content: string;
-  messages = [];
-  author = 'client';
-  recipient: string;
-  room: string;
+  isHidden = true;
+  allOffline;
+  chatToken = new ChatToken();
+  user = {
+    username: 'yefe',
+    name: 'Youssef',
+    surname: 'Efe',
+    password: 'krowkrow',
+    email: 'yefe@vodafoneziggo.nl',
+    role: 3
+  };
 
   constructor(private chatService: ChatService) {
   }
 
   ngOnInit() {
-    this.startChat();
+    this.chatService.whosOnline().subscribe(data => {
+      if (data === 0) {
+        this.allOffline = true;
+      } else {
+        this.allOffline = false;
+      }
+    });
   }
 
+
   sendMessage() {
-    if (this.content !== '') {
-      const draft = new Message();
-      draft.author = this.author;
-      draft.content = this.content;
-      draft.room = this.room;
-      this.chatService.sendMessage(draft);
-      this.content = '';
-    }
   }
 
   startChat() {
-    this.chatService.chatRequest(new ChatToken(this.author));
-    this.chatService.getRoom().subscribe(data => {
-      this.room = data;
-    });
-    this.chatService
-      .getMessages()
-      .subscribe((message: Message) => {
-        if (message.author !== this.author) {
-          this.recipient = message.author;
-        }
-        this.messages.push(message);
-      });
+    this.isHidden = false;
   }
 
-  endChat() {
-    window.close();
-  }
 }
+

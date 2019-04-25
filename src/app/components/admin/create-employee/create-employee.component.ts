@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
-import { Employee } from '../../../models/employee.model';
-import { CreateService } from '../../../services/create.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Validators} from '@angular/forms';
+import {MatDialogRef} from '@angular/material';
+import {Employee} from '../../../models/employee.model';
+import {EmployeeService} from '../../../services/employee.service';
 
 
 @Component({
@@ -22,12 +22,13 @@ export class CreateEmployeeComponent implements OnInit {
     role: new FormControl([], Validators.required)
   });
 
-  constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private service: CreateService) { }
+  constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private service: EmployeeService) {
+  }
 
   newEmployee = new Employee('', '', '', '', '', null);
 
   onSubmit(): void {
-    this.service.onSubmit(this.newEmployee).subscribe(
+    this.service.createEmployee(this.newEmployee).subscribe(
       (data: Employee) => {
         console.log(data);
         this.dialogRef.close();
@@ -42,7 +43,6 @@ export class CreateEmployeeComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 
 }

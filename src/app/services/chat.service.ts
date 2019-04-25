@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
 import * as io from 'socket.io-client';
+import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Chat} from '../models/chat/chat.model';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,48 +13,54 @@ export class ChatService {
   private url = 'http://localhost:3000';
   private socket;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.socket = io(this.url);
   }
 
-  public login(user) {
-    this.socket.emit('login', user);
-  }
-
-  public logout(user) {
-    this.socket.emit('logout', user);
-  }
-
-  public chatRequest(token) {
-    this.socket.emit('chat-request', token);
-  }
-
-  public getRoom(): Observable<string> {
+  public whosOnline(): Observable<number> {
+    this.socket.emit('who-is-on');
     return Observable.create((observer) => {
-      this.socket.on('chatroom', (chatroom) => {
-        observer.next(chatroom);
+      this.socket.on('whos-online', (data) => {
+        observer.next(data);
+        console.log(data);
       });
     });
   }
 
-  public sendMessage(message) {
-    this.socket.emit('new-message', message);
+  public connectToEmployee(user, chat: Chat) {
+    const token = {room: chat.created, client: user};
+    this.socket.emit('match', token);
   }
 
-  public getMessages() {
+  public listenForRequests() {
     return Observable.create((observer) => {
-      this.socket.on('new-message', (message) => {
-        observer.next(message);
+      this.socket.on('chat-request', (data) => {
+        observer.next(data);
+        console.log(data);
       });
     });
   }
 
-  public createRoom(author) {
-    this.socket.emit('create', 'room1');
+  public joinRoom(user, room) {
+    const token = {roomId: room, client: user};
+    this.socket.emit('accept-request', token);
   }
 
-  public joinRoom(room) {
-    this.socket.emit('join', room);
+  public whoJoinedRoom() {
+    return Observable.create((observer) => {
+      this.socket.on('request-re', (data) => {
+        observer.next(data);
+        console.log(data);
+      });
+    });
   }
 
+  public checkIn(user: User) {
+    const employee = {socketId: null, employee: user};
+    this.socket.emit('check-in', employee);
+  }
+
+  public checkOut() {
+    this.socket.emit('check-out');
+  }
 }

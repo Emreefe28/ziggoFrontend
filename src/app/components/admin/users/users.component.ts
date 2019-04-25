@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employeeService.getUsers().subscribe(
+    this.employeeService.getEmployees().subscribe(
       data => {
         this.dataSource.data = data;
       }
@@ -38,10 +38,10 @@ export class UsersComponent implements OnInit {
     const settings: MatDialogConfig = {
       minWidth: 400,
       minHeight: 300
-    }
+    };
     const dialogRef = this.dialog.open(CreateEmployeeComponent, settings);
 
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       this.isPopupOpened = false;
     });
   }
