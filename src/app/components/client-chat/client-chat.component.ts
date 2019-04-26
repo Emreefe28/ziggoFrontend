@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import {ChatToken} from '../../models/chat/chat-token.model';
+import {MessageToken} from '../../models/chat/message-token.model';
+import {Message} from '../../models/chat/message.model';
 
 @Component({
   selector: 'app-client-chat',
@@ -10,7 +12,7 @@ import {ChatToken} from '../../models/chat/chat-token.model';
 export class ClientChatComponent implements OnInit {
   content: string;
   isHidden = true;
-  allOffline;
+  allOffline = true;
   chatToken = new ChatToken();
   user = {
     username: 'yefe',
@@ -21,7 +23,7 @@ export class ClientChatComponent implements OnInit {
     role: 3
   };
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -32,15 +34,33 @@ export class ClientChatComponent implements OnInit {
         this.allOffline = false;
       }
     });
+    this.chatService.getMessages().subscribe((token: MessageToken) => {
+      this.chatToken.chat.messages.push(token.message);
+      this.scrollToBottom();
+    });
   }
 
 
   sendMessage() {
+    console.log('sending message!!!');
+    const msg = new Message(this.content, this.user);
+    this.chatService.sendMessage(this.chatToken.chat.id, msg);
+    this.content = '';
   }
 
   startChat() {
+    this.chatToken.client = this.user;
+    this.chatService.connectToEmployee(this.chatToken);
+    this.chatService.whoJoinedRoom().subscribe(chatToken => {
+      this.chatToken = chatToken;
+    });
     this.isHidden = false;
   }
 
+  scrollToBottom(): void {
+    const scrollPane: any = this.el
+      .nativeElement.querySelector('.chat-messages');
+    scrollPane.scrollTop = scrollPane.scrollHeight;
+  }
 }
 

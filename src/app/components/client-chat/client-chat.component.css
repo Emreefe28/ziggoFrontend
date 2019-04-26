@@ -90,6 +90,7 @@
 .chat-message__content {
   font-size: 18px;
   color: #3A3A3A;
+  word-break: break-all;
 }
 
 .chat-message .date {

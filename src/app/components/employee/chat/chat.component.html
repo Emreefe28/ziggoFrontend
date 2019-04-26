@@ -14,28 +14,29 @@
     <h3 class="chat-label">{{ chatLabel }}</h3>
 
     <mat-nav-list>
-      <div *ngFor="let chat of chats">
-      <a mat-list-item>
-        <h3 class="chat-label"><span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">{{chat.client}}</span>
+      <div *ngFor="let chat of chats; let i = index">
+      <a mat-list-item (click)="openChat(i)">
+        <h3 class="chat-label"><span matBadge="&#8288;" matBadgeOverlap="false" matBadgeColor="warn" [matBadgeHidden]=" !chat.newMessages">{{chat.client.name + ' ' + chat.client.surname}} </span>
         </h3>
       </a>
       </div>
     </mat-nav-list>
   </mat-sidenav>
   <div class="employee-chat">
-    <div class="employee-chatbox">
+    <div class="employee-chatbox" [hidden]="isHidden">
       <mat-form-field>
         <input matInput class="chatbox-field" [(ngModel)]="content" (keydown.enter)="sendMessage()">
       </mat-form-field>
     </div>
     <div class="chat-messages">
       <div *ngFor="let message of currentChat.chat.messages">
-        <mat-card class="chat-message">
+        <mat-card class="chat-message" >
           <mat-card-title class="author">{{message.user.name}}</mat-card-title>
           <mat-card-content class="chat-message__content">{{message.content}}</mat-card-content>
           <mat-card-subtitle class="date" align="right">{{message.sent}}</mat-card-subtitle>
         </mat-card>
       </div>
+
     </div>
-  </div>
+    </div>
 </mat-sidenav-container>

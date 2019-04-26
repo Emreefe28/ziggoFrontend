@@ -7,7 +7,9 @@ export class Message {
   content: string;
   isRead: boolean;
 
-  constructor() {
+  constructor(content: string, user: User) {
+    this.content = content;
+    this.user = user;
     this.sent = new Date().getUTCDate();
     this.isRead = false;
   }
