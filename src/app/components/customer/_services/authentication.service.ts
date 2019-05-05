@@ -22,6 +22,12 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
+    checkIfLoggedIn(){
+      if(this.currentUserSubject.value){
+        this.loggedIn = true;
+      }
+    }
+
     authenticate(user: User) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
