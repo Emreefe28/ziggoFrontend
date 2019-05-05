@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private questionnaireService: QuestionnaireService,
     private authenticationService: AuthenticationService)     {
+    this.authenticationService.checkIfLoggedIn();
+    if(authenticationService.loggedIn == true)
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
@@ -27,12 +29,18 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
   }
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.currentUserSubscription.unsubscribe();
+    if(this.currentUserSubscription){
+      this.currentUserSubscription.unsubscribe();
+    }
+  }
+
+  logout(){
+    this.authenticationService.logout();
   }
 
 }
