@@ -14,4 +14,7 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  logout() {
+
+  }
 }

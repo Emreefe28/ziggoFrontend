@@ -1,4 +1,4 @@
-<mat-sidenav-container class="content" (window:beforeunload)="statusOffline()">
+<mat-sidenav-container  class="content" (window:beforeunload)="statusOffline()">
   <mat-sidenav class="employee-chat-list" opened mode="side">
     <div class="employee-chat-status">
       <div class="employee-chat-status-row"><span>Status:</span><span
@@ -15,28 +15,134 @@
 
     <mat-nav-list>
       <div *ngFor="let chat of chats; let i = index">
-      <a mat-list-item (click)="openChat(i)">
-        <h3 class="chat-label"><span matBadge="&#8288;" matBadgeOverlap="false" matBadgeColor="warn" [matBadgeHidden]=" !chat.newMessages">{{chat.client.name + ' ' + chat.client.surname}} </span>
-        </h3>
-      </a>
+        <a mat-list-item (click)="openChat(i)">
+          <h3 class="chat-label"><span matBadge="&#8288;" matBadgeOverlap="false" matBadgeColor="warn"
+                                       [matBadgeHidden]=" !chat.newMessages">{{chat.client.name + ' ' + chat.client.surname}} </span>
+          </h3>
+        </a>
       </div>
     </mat-nav-list>
   </mat-sidenav>
-  <div class="employee-chat">
-    <div class="employee-chatbox" [hidden]="isHidden">
+  <mat-sidenav #details class="employee-customer-details"  mode="side" position="end">
+
+    <span class="customer-details-title">Gegevens</span>
+    <mat-card class="customer-info-card">
+      <mat-card-header class="customer-info-card-header">
+        <mat-card-title class="customer-info-card-title">Klantgegevens</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="customer-info-card-content">
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Klantnummer</span>
+          <span>23314332</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Naam</span>
+          <span>Oberyn</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Voornaam</span>
+          <span>Brandon</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Geboortedatum</span>
+          <span>17-02-1977</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Adres aansluiting</span>
+          <span>King's landing, Westeros</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="customer-info-card">
+      <mat-card-header class="customer-info-card-header">
+        <mat-card-title class="customer-info-card-title">Contactgegevens</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="customer-info-card-content">
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Telefoonnummer</span>
+          <span>21134567642</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Mobiel nummer</span>
+          <span>0634567642</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">E-mailadres</span>
+          <span>rwqsd@gmail.com</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="customer-info-card">
+      <mat-card-header class="customer-info-card-header">
+        <mat-card-title class="customer-info-card-title">Apparatuur</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="customer-info-card-content">
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Modem</span>
+          <span>Linksys v3.2</span>
+        </div>
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Splitter</span>
+          <span>N/A</span>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="customer-info-card">
+      <mat-card-header class="customer-info-card-header">
+        <mat-card-title class="customer-info-card-title">Monteursafspraken</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="customer-info-card-content">
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Datum</span>
+          <span class="customer-info-card-content-title">Status</span>
+        </div>
+        <div class="content-row">
+          <span>22-12-2015</span>
+          <span>geannuleerd</span>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="customer-info-card">
+      <mat-card-header class="customer-info-card-header">
+        <mat-card-title class="customer-info-card-title">Probleemgeschiedenis</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="customer-info-card-content">
+        <div class="content-row">
+          <span class="customer-info-card-content-title">Datum</span>
+          <span class="customer-info-card-content-title">Probleem</span>
+        </div>
+        <div class="content-row problem-info">
+          <span>07-11-2017</span>
+          <span>geen internet</span>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav>
+  <div class="welcome-message">
+    <span>Welkom terug, {{user.name}}</span>
+  </div>
+  <div class="employee-chat" [hidden]="isHidden">
+    <div class="employee-chatbox">
       <mat-form-field>
         <input matInput class="chatbox-field" [(ngModel)]="content" (keydown.enter)="sendMessage()">
       </mat-form-field>
     </div>
     <div class="chat-messages">
       <div *ngFor="let message of currentChat.chat.messages">
-        <mat-card class="chat-message" >
+        <mat-card class="chat-message">
           <mat-card-title class="author">{{message.user.name}}</mat-card-title>
           <mat-card-content class="chat-message__content">{{message.content}}</mat-card-content>
           <mat-card-subtitle class="date" align="right">{{message.sent}}</mat-card-subtitle>
         </mat-card>
       </div>
-
     </div>
+    <div class="employee-chat-header">
+      <span>{{currentChat.client}}</span>
+      <span class="spacer"></span>
+      <i class="fa fa-info-circle" (click)="details.toggle()"></i>
     </div>
+  </div>
 </mat-sidenav-container>

@@ -63,6 +63,7 @@ export class ChatComponent implements OnInit {
   openChat(index) {
     console.log('opening chat on index: ' + index);
     this.currentChat = this.chats[index];
+    this.getCustomerInfo();
     this.chats[index].newMessages = false;
     this.isHidden = false;
   }
@@ -92,6 +93,10 @@ export class ChatComponent implements OnInit {
       }
     });
   }
+
+getCustomerInfo() {
+
+}
 
   scrollToBottom(): void {
     const scrollPane: any = this.el

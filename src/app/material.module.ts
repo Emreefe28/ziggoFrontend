@@ -12,6 +12,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     MatSortModule,
     MatSelectModule,
-    MatCheckboxModule],
+    MatCheckboxModule,
+    MatExpansionModule],
   exports: [
     MatButtonModule,
     MatToolbarModule,
@@ -49,7 +51,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     MatSortModule,
     MatSelectModule,
-    MatCheckboxModule]
+    MatCheckboxModule,
+    MatExpansionModule]
 })
 export class MaterialModule {
 }
