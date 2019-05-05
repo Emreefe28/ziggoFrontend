@@ -20,6 +20,19 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
+  editQuestion() {
+    this.questions[this.category].vragen[this.QuestionCount];
+  }
+
+  deleteQuestionContent() {
+      this.deleteQuestionContent(this.questions.id).subscribe(
+        () => console.log('Question with Id ${this.questions.id} deleted'),
+        (err) => console.log(err);
+      );
+      this.notifyDelete.emit(this.questions.id);
+  }
+
+
 
   nextQuestion(){
     // console.log("nextQuestionCount: "+this.QuestionCount

@@ -31,6 +31,12 @@
       <p>{{question.content}}</p>
       </h3>
    <button (click)="nextQuestion()">volgende vraag</button>
+      <button>Edit vraag</button>
+      <span *ngIf="confirmDelete">
+        <button class="btn btn-danger" (click)="deleteQuestionContent()">Yes</button>
+        <button class="btn btn-primary" (click)="confirmDelete=false">No</button>
+      </span>
+      <button *ngIf="!confirmDelete" class="btn btn-danger" (click)="confirmDelete=true">Delete vraag</button>
     </div>
 
     <div class="troubleshoot-card__content mdl-card__supporting-text " align="left" *ngFor="let question of pureQuestions">

@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   }
   toCategory(categoryValue:number){
+    // @ts-ignore
     questionnaireService.setCategory(categoryValue);
   }
 

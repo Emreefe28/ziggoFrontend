@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/user.model";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {Question} from "../models/question.model";
+import {QuestionContent} from "../models/questioncontent.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,22 @@ export class QuestionnaireService {
 
   }
 
-
-
-
   getQuestions(): Observable<Question[]> {
     return this.http.get(this.serviceUrl)
       .pipe(map(data => data as Question[]));
+  }
+
+  editQuestionContent(question: QuestionContent): Observable<any> {
+    return this.http.put(this.serviceUrl, question, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  deleteQuestionContent(question: QuestionContent): observable<void> {
+    return this.httpClient.delete<void>(this.serviceUrl)
+
   }
 
 }
