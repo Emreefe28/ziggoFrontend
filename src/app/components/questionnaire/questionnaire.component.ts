@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../../services/questionnaire.service';
+import {CreateService} from '../../services/create.service';
+import {Question} from '../../models/question.model';
 
 @Component({
   selector: 'app-questionnaire',
@@ -17,7 +19,10 @@ export class QuestionnaireComponent implements OnInit {
 
   constructor(private questionnaireservice: QuestionnaireService) {
 
+
+
   }
+
 
 
   geenVragenMeer() {
@@ -26,6 +31,12 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
+
+  answerFalse(question:Question) {
+    question=
+
+
+  }
   nextQuestion() {
     // console.log("nextQuestionCount: "+this.QuestionCount
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
@@ -34,9 +45,7 @@ export class QuestionnaireComponent implements OnInit {
 
       this.pureQuestions.push(this.questions[this.category].vragen[this.QuestionCount]);
       this.QuestionCount++;
-    }
-    // die if statement is niet eens echt nodig maar ach
-    else if (this.QuestionCount >= this.questions[this.category].vragen.length) {
+    } else if (this.QuestionCount >= this.questions[this.category].vragen.length) {
       console.log('er zijn geen vragen meer. Roep gerust een supercoole functie aan om chatknop ' +
         'tevoorschijn te halen');
       this.geenVragenMeer();

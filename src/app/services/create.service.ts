@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Employee } from '../models/employee.model';
 import {Observable} from 'rxjs';
+import {Question} from '../models/question.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,4 +16,6 @@ export class CreateService {
     headers.append('Content-Type', 'application/json');
     return this.httpClient.post<Employee>('http://localhost:8080/VodafoneZiggoAPI-1.0/rest/employee', model, {headers});
   }
+
+
 }
