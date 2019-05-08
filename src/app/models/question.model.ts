@@ -4,7 +4,7 @@ export class  Question {
 
   questionId:number;
   solved:boolean;
-  titel:string;
+  title:string;
   question:string
 
 

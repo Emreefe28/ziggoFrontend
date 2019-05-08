@@ -14,11 +14,10 @@ export class QuestionnaireComponent implements OnInit {
   QuestionCount = 1;
   category = 0;
   geenVragenOver = false;
-  pureQuestions = [];
+  pureQuestions = [Question];
 
 
   constructor(private questionnaireservice: QuestionnaireService) {
-
 
 
   }
@@ -40,11 +39,11 @@ export class QuestionnaireComponent implements OnInit {
     // console.log("nextQuestionCount: "+this.QuestionCount
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
 
-    if (this.QuestionCount < this.questions[this.category].vragen.length) {
+    if (this.QuestionCount < this.questions.length) {
 
-      this.pureQuestions.push(this.questions[this.category].vragen[this.QuestionCount]);
+      this.pureQuestions.push(this.questions[this.QuestionCount]);
       this.QuestionCount++;
-    } else if (this.QuestionCount >= this.questions[this.category].vragen.length) {
+    } else if (this.QuestionCount >= this.questions.length) {
       console.log('er zijn geen vragen meer. Roep gerust een supercoole functie aan om chatknop ' +
         'tevoorschijn te halen');
       this.geenVragenMeer();
@@ -55,19 +54,23 @@ export class QuestionnaireComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.category=this.questionnaireservice.getCategory();
 
+    questoservice:QuestionnaireService;
+
+    this.category=this.questionnaireservice.getCategory();
+       this.questionnaireservice.setCategory(1);
 
     console.log(this.category);
-    this.questionnaireservice.
+    this.questionnaireservice.setQuestionnaireId(1);
+
+
     this.questionnaireservice.getQuestions().subscribe(
-      data => {
-        this.questions = data;
-        this.pureQuestions.push(this.questions[this.category].vragen[0]);
-        console.log(this.category);
+      data => {this.questions = data;
 
       }
     );
+
+
 
   }
 

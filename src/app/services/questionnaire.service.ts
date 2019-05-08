@@ -14,43 +14,81 @@ export class QuestionnaireService {
 
   }
 
-  get questionnaireId(): number {
-    return this._questionnaireId;
-  }
 
-  set questionnaireId(value: number) {
-    this._questionnaireId = value;
-  }
 
-  private _questionnaireId:number;
+
   private category: number;
+  private questionnaireId:number;
+  private question:Question;
 
-  getQuestionsUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questions/'+this._questionnaireId;
+  getQuestion():Question {
+    console.log("questionnaire id is:"+this.question);
+    return this.question;
+  }
+
+  setQuestion(value:Question) {
+    console.log("questionnaire id is:"+this.question);
+    return this.question;
+  }
+
+
+
+  setQuestionnaireId(value: number) {
+    this.questionnaireId = value;
+    console.log("DE QUESTIONNAIRE ID IS NU"+this.questionnaireId);
+
+  }
+
+
+  getQuestionnaireId():number {
+    console.log("questionnaire id is:"+this.questionnaireId);
+    return this.questionnaireId;
+  }
+
+
+
+
+
+  getQuestionsUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questions/'+1;     //this.getQuestionnaireId();
+  postQuestionUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestion/';
+
   serviceUrl = 'https://api.myjson.com/bins/16yew0';
   // verander naar getQuestionByIdUrl
   questionUrl = 'http://localhost:8080/VodafoneZiggoAPI-1.0/rest/employee/{id}';
 
 
   getCategory(): number {
+    console.log(this.category);
     return this.category;
   }
 
    setCategory(value: number) {
     this.category = value;
+    console.log("DE CATEGORY VALUE IS NU:"+this.category);
   }
 
   submitQuestion(model: Question): Observable<Question> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     // de url moet natuurlijk verandert worden
-    return this.http.post<Question>('http://localhost:8080/VodafoneZiggoAPI-1.0/rest/employee', model, {headers});
+    return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
+
+  submitQuestiontoQuestionnaire(model: Question): Observable<Question> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    // de url moet natuurlijk verandert worden
+    return this.http.post<Question>(this.postQuestionUrl, model, {headers});
+  }
+
+
 
 
   getQuestionById(): Observable<Question> {
     return this.http.get(this.questionUrl)
       .pipe(map(data => data as Question));
   }
+
 
 
   getQuestions(): Observable<Question[]> {
