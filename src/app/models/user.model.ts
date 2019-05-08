@@ -1,13 +1,13 @@
 export class User {
-
-  username: string;
+  idUser: number;
+  email: string;
+  password: string;
   name: string;
   surname: string;
-  password: string;
-  email: string;
-  role: number;
+  jwtToken: number;
 
   constructor() {
-
+    this.name = '';
+    this.surname = '';
   }
 }

@@ -2,8 +2,8 @@ import {User} from '../user.model';
 import {Chat} from './chat.model';
 
 export class ChatToken {
-  client: User;
-  employee: User;
+  client = new User();
+  employee = new User();
   newMessages = false;
   chat = new Chat();
 }

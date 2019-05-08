@@ -15,12 +15,12 @@ export class ClientChatComponent implements OnInit {
   allOffline = true;
   chatToken = new ChatToken();
   user = {
-    username: 'yefe',
-    name: 'Youssef',
-    surname: 'Efe',
-    password: 'krowkrow',
-    email: 'yefe@vodafoneziggo.nl',
-    role: 3
+    idUser: 1544216,
+    email: 'info@liaaarsbergen.nl',
+    password: '2E2721KN',
+    name: 'Lia',
+    surname: 'Aarsbergen',
+    jwtToken: 223452
   };
 
   constructor(private chatService: ChatService, private el: ElementRef) {

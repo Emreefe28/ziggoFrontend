@@ -33,23 +33,23 @@
       <mat-card-content class="customer-info-card-content">
         <div class="content-row">
           <span class="customer-info-card-content-title">Klantnummer</span>
-          <span>23314332</span>
+          <span>{{customer.klantNummer}}</span>
         </div>
         <div class="content-row">
           <span class="customer-info-card-content-title">Naam</span>
-          <span>Oberyn</span>
+          <span>{{customer.surname}}</span>
         </div>
         <div class="content-row">
           <span class="customer-info-card-content-title">Voornaam</span>
-          <span>Brandon</span>
+          <span>{{customer.name}}</span>
         </div>
         <div class="content-row">
           <span class="customer-info-card-content-title">Geboortedatum</span>
-          <span>17-02-1977</span>
+          <span>{{customer.birthday}}</span>
         </div>
         <div class="content-row">
           <span class="customer-info-card-content-title">Adres aansluiting</span>
-          <span>King's landing, Westeros</span>
+          <span>{{customer.adres}}</span>
         </div>
       </mat-card-content>
     </mat-card>
@@ -60,15 +60,15 @@
       <mat-card-content class="customer-info-card-content">
         <div class="content-row">
           <span class="customer-info-card-content-title">Telefoonnummer</span>
-          <span>21134567642</span>
+          <span>{{customer.phone}}</span>
         </div>
         <div class="content-row">
           <span class="customer-info-card-content-title">Mobiel nummer</span>
-          <span>0634567642</span>
+          <span>{{customer.mobilePhone}}</span>
         </div>
         <div class="content-row">
           <span class="customer-info-card-content-title">E-mailadres</span>
-          <span>rwqsd@gmail.com</span>
+          <span>{{customer.email}}</span>
         </div>
       </mat-card-content>
     </mat-card>
@@ -121,7 +121,7 @@
       </mat-card-content>
     </mat-card>
   </mat-sidenav>
-  <div class="welcome-message">
+  <div class="welcome-message" [hidden]="!isHidden">
     <span>Welkom terug, {{user.name}}</span>
   </div>
   <div class="employee-chat" [hidden]="isHidden">
@@ -140,7 +140,7 @@
       </div>
     </div>
     <div class="employee-chat-header">
-      <span>{{currentChat.client}}</span>
+      <span>{{currentChat.client.name + ' ' + currentChat.client.surname}}</span>
       <span class="spacer"></span>
       <i class="fa fa-info-circle" (click)="details.toggle()"></i>
     </div>

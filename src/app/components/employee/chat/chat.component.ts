@@ -3,6 +3,8 @@ import {ChatService} from '../../../services/chat.service';
 import {ChatToken} from '../../../models/chat/chat-token.model';
 import {Message} from '../../../models/chat/message.model';
 import {MessageToken} from '../../../models/chat/message-token.model';
+import {CustomerService} from '../../../services/customer.service';
+import {Customer} from '../../../models/customer.model';
 
 @Component({
   selector: 'app-chat',
@@ -18,16 +20,16 @@ export class ChatComponent implements OnInit {
   isHidden = true;
   status: string;
   user = {
-    username: 'mschaafsma',
-    name: 'Matthijs',
-    surname: 'Schaafsma',
-    password: 'workwork',
-    email: 'mschaafsma@vodafoneziggo.nl',
-    role: 2
+    idUser: 4535214,
+    email: 'asselt-suringh@planet.nl',
+    password: 'ytoakfx',
+    name: 'Chris',
+    surname: 'van Asselt',
+    jwtToken: 223452
   };
+  customer = new Customer();
 
-  constructor(private chatService: ChatService, private el: ElementRef) {
-
+  constructor(private chatService: ChatService, private el: ElementRef, private customerService: CustomerService) {
   }
 
 
@@ -94,9 +96,13 @@ export class ChatComponent implements OnInit {
     });
   }
 
-getCustomerInfo() {
-
-}
+  getCustomerInfo() {
+    this.customerService.getCustomer(this.currentChat.client.idUser).subscribe(data => {
+        this.customer = data;
+        console.log(this.customer);
+      }
+  );
+  }
 
   scrollToBottom(): void {
     const scrollPane: any = this.el
