@@ -7,6 +7,4 @@ export class  Question {
   title:string;
   question:string
 
-
-
 }

@@ -70,18 +70,22 @@ export class QuestionnaireService {
   submitQuestion(model: Question): Observable<Question> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    // de url moet natuurlijk verandert worden
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
 
-  submitQuestiontoQuestionnaire(model: Question): Observable<Question> {
+  //MOET NOG GEIMPLEMENTEERD WORDEN
+  submitQuestionToQuestionnaire(model: Question): Observable<Question> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    // de url moet natuurlijk verandert worden
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
 
-
+  //MOET NOG GEIMPLEMENTEERD WORDEN
+  submitQuestionnaireToUser(model: Question): Observable<Question> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<Question>(this.postQuestionUrl, model, {headers});
+  }
 
 
   getQuestionById(): Observable<Question> {
