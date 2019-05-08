@@ -25,7 +25,7 @@ export class CreateEmployeeComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private service: EmployeeService) {
   }
 
-  newEmployee = new Employee('', '', '', '', '', null);
+  newEmployee;
 
   onSubmit(): void {
     this.service.createEmployee(this.newEmployee).subscribe(

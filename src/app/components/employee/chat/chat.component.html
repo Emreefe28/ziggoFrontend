@@ -97,11 +97,12 @@
           <span class="customer-info-card-content-title">Datum</span>
           <span class="customer-info-card-content-title">Status</span>
         </div>
-        <div class="content-row">
-          <span>22-12-2015</span>
-          <span>geannuleerd</span>
+        <div *ngFor="let appointment of appointments">
+        <div class="content-row" >
+          <span>{{appointment.id.datum.substring(0, 10)}}</span>
+          <span>{{appointment.status}}</span>
         </div>
-
+        </div>
       </mat-card-content>
     </mat-card>
     <mat-card class="customer-info-card">

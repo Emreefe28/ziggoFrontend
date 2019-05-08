@@ -3,6 +3,7 @@ import {MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig} from '@ang
 import {EmployeeService} from '../../../services/employee.service';
 import {User} from '../../../models/user.model';
 import {CreateEmployeeComponent} from '../create-employee/create-employee.component';
+import {Employee} from '../../../models/employee.model';
 
 @Component({
   selector: 'app-users',
@@ -10,9 +11,9 @@ import {CreateEmployeeComponent} from '../create-employee/create-employee.compon
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  employees: User[];
+  employees: Employee[];
   isPopupOpened = false;
-  displayedColumns: string[] = ['username', 'name', 'surname', 'password', 'email', 'role'];
+  displayedColumns: string[] = ['idUser', 'email', 'password', 'name', 'surname', 'afdeling'];
   dataSource = new MatTableDataSource(this.employees);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

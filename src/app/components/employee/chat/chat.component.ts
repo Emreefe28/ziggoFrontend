@@ -5,6 +5,7 @@ import {Message} from '../../../models/chat/message.model';
 import {MessageToken} from '../../../models/chat/message-token.model';
 import {CustomerService} from '../../../services/customer.service';
 import {Customer} from '../../../models/customer.model';
+import {Appointment} from '../../../models/appointment.model';
 
 @Component({
   selector: 'app-chat',
@@ -28,6 +29,7 @@ export class ChatComponent implements OnInit {
     jwtToken: 223452
   };
   customer = new Customer();
+  appointments;
 
   constructor(private chatService: ChatService, private el: ElementRef, private customerService: CustomerService) {
   }
@@ -66,6 +68,7 @@ export class ChatComponent implements OnInit {
     console.log('opening chat on index: ' + index);
     this.currentChat = this.chats[index];
     this.getCustomerInfo();
+    this.getMechanicAppointments();
     this.chats[index].newMessages = false;
     this.isHidden = false;
   }
@@ -99,9 +102,19 @@ export class ChatComponent implements OnInit {
   getCustomerInfo() {
     this.customerService.getCustomer(this.currentChat.client.idUser).subscribe(data => {
         this.customer = data;
+        console.log('Customer Info...');
         console.log(this.customer);
       }
-  );
+    );
+  }
+
+  getMechanicAppointments() {
+    this.customerService.getMechanicAppointments(this.currentChat.client.idUser).subscribe(data => {
+        this.appointments = data;
+        console.log('Mechanic Appointments...');
+        console.log(this.appointments);
+      }
+    );
   }
 
   scrollToBottom(): void {
