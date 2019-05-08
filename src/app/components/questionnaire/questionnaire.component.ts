@@ -33,7 +33,6 @@ export class QuestionnaireComponent implements OnInit {
 
 
   answerFalse(question:Question) {
-    question=
 
 
   }
@@ -58,7 +57,9 @@ export class QuestionnaireComponent implements OnInit {
 
     // this.category=this.questionnaireservice.getCategory();
 
+
     console.log(this.category);
+    this.questionnaireservice.
     this.questionnaireservice.getQuestions().subscribe(
       data => {
         this.questions = data;

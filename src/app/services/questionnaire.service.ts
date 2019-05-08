@@ -14,8 +14,18 @@ export class QuestionnaireService {
 
   }
 
+  get questionnaireId(): number {
+    return this._questionnaireId;
+  }
+
+  set questionnaireId(value: number) {
+    this._questionnaireId = value;
+  }
+
+  private _questionnaireId:number;
   private category: number;
 
+  getQuestionsUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questions/'+this._questionnaireId;
   serviceUrl = 'https://api.myjson.com/bins/16yew0';
   // verander naar getQuestionByIdUrl
   questionUrl = 'http://localhost:8080/VodafoneZiggoAPI-1.0/rest/employee/{id}';
@@ -42,8 +52,9 @@ export class QuestionnaireService {
       .pipe(map(data => data as Question));
   }
 
+
   getQuestions(): Observable<Question[]> {
-    return this.http.get(this.serviceUrl)
+    return this.http.get(this.getQuestionsUrl)
       .pipe(map(data => data as Question[]));
   }
 

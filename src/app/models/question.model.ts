@@ -1,16 +1,12 @@
-import {QuestionContent} from "./questioncontent.model";
 
-export class  Question extends QuestionContent{
+export class  Question {
 
 
-  categorieId : number;
-  catNaam:string;
-  vragen:[QuestionContent];
+  questionId:number;
+  solved:boolean;
+  titel:string;
+  question:string
 
-  //
-  // //vraag
-  // questionId: number;
-  // titel: string;
-  // content: string;
+
 
 }
