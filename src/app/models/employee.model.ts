@@ -1,10 +1,10 @@
 import {User} from './user.model';
 
 export class Employee extends User {
-  afdeling: string;
+  department: string;
 
   constructor() {
     super();
-    this.afdeling = '';
+    this.department = '';
   }
 }

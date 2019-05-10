@@ -20,7 +20,7 @@ export class CustomerService {
   }
 
   getMechanicAppointments(userId: number) {
-    return this.http.get(this.serviceUrl + '/' + userId + '/monteursafspraken')
+    return this.http.get(this.serviceUrl + '/' + userId + '/appointments')
       .pipe(map(data => data as Appointment[]));
   }
 }

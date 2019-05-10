@@ -1,11 +1,9 @@
-
 export class Appointment {
-
-  datum: string;
+  date: string;
   status: string;
 
   constructor() {
-    this.datum = '';
+    this.date = '';
     this.status = '';
   }
 }

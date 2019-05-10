@@ -2,17 +2,17 @@ import {User} from './user.model';
 
 export class Customer extends User {
 
-  klantNummer: string;
-  adres: string;
-  birthday: string;
+  customerCode: string;
+  address: string;
+  birthdate: string;
   phone: string;
   mobilePhone: string;
 
   constructor() {
     super();
-    this.klantNummer = '';
-    this.adres = '';
-    this.birthday = '';
+    this.customerCode = '';
+    this.address = '';
+    this.birthdate = '';
     this.phone = '';
     this.mobilePhone = '';
   }
