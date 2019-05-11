@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService, UserService, AuthenticationService } from '../_services';
-import {User} from "../_models";
+import {User} from '../../../models/user.model';
 
 @Component({templateUrl: 'register.component.html',
             styleUrls: ['../my-theme.scss' + '../styles.css']})

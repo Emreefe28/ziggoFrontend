@@ -2,8 +2,8 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { environment } from '@environments/environment';
-import { User } from '../_models';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
+import {User} from '../../../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

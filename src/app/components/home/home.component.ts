@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../../services/questionnaire.service';
-import {User} from '@customer//_models';
 import {Subscription} from 'rxjs';
 import {AuthenticationService} from '@customer//_services';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   currentUser: User;
   currentUserSubscription: Subscription;

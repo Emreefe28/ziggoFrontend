@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import {AlertService, AuthenticationService, UserService} from '../_services';
-import {User} from "../_models";
+import {User} from '../../../models/user.model';
 
 @Component({templateUrl: 'login.component.html',
             styleUrls: ['../my-theme.scss,' + '../styles.css']})
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.authenticate(this.user);
         this.router.navigate(['']);},
       error => {
-        this.alertService.error("Invalid credentials");
+        this.alertService.error('Invalid credentials');
         this.loading = false;
       });
 
