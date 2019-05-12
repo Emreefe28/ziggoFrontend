@@ -39,6 +39,10 @@ export class UserService {
       `${environment.apiUrl}/login`, user, {headers});
   }
 
+  getDepartment(user: User) {
+    return this.http.get(`${environment.apiUrl}/` + user.id + '/type');
+  }
+
   // update(user: User) {
   //     return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
   // }

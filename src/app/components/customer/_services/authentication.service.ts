@@ -30,7 +30,15 @@ export class AuthenticationService {
 
     authenticate(user: User) {
           localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
+          console.log(this.userService.getDepartment(user));
+          const employee = this.userService.getDepartment(user);
+    //   if (employee == 'kcc'){
+    //         this.router.navigate(['/employee']);
+    //       }
+    //       if (this.user.department == 'admin'){
+    //         this.router.navigate(['/admin']);
+    //       }
+        console.log(user);
           this.loggedIn = true;
 
     }

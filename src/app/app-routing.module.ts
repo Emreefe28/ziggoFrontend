@@ -10,12 +10,16 @@ import {HomeComponent} from './components/home/home.component';
 import {QuestionnaireComponent} from './components/questionnaire/questionnaire.component';
 import {LoginComponent} from './components/customer/login';
 import {RegisterComponent} from './components/customer/register';
+import { AuthGuard } from '@customer//_guards';
+import { Role } from '@customer//_models';
 
 const routes: Routes = [
 
   {
     path: 'employee',
-    component: EmployeeComponent
+    component: EmployeeComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Employee]}
     , children: [
       {path: 'chats', component: ChatComponent}]
   },
@@ -33,8 +37,10 @@ const routes: Routes = [
 
   {
     path: 'admin',
-    component: AdminComponent
-    , children: [
+    component: AdminComponent,
+    canActivate:[AuthGuard],
+    data: { roles: [Role.Admin]},
+    children: [
       {path: 'users', component: UsersComponent}]
   },
   {

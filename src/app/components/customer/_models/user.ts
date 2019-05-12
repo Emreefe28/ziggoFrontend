@@ -5,4 +5,5 @@
   firstName?: string;
   lastName?: string;
   jwtToken?: string;
+  department?: string;
 }

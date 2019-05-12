@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/login-registration-1.0-SNAPSHOT/services/rest/users'
+  apiUrl: 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/users'
 };
 
 /*
