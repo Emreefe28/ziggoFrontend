@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../../services/questionnaire.service';
 import {CreateService} from '../../services/create.service';
 import {Question} from '../../models/question.model';
+import {Questionnaire} from '../../models/questionnaire.model';
 
 @Component({
   selector: 'app-questionnaire',
@@ -15,7 +16,7 @@ export class QuestionnaireComponent implements OnInit {
   category = 0;
   geenVragenOver = false;
   pureQuestions = [Question];
-
+  questionnaire:Questionnaire;
 
   constructor(private questionnaireservice: QuestionnaireService) {
 
@@ -30,9 +31,29 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
+  defineQuestionnaire(){
+    /*Pak de questionnaire list size +1 voor id. dit gaat mogelijk wel voor problemen zorgen als er questionnaires worden gedelete.
+    * als echt nodig ga de lijst met ids door tot de vorige id verschil tussen momentele id groter is dan 1 en pak dat getal.
+    * */
+    this.questionnaire.questionnaireId
+    //Category is gelijk aan momentele category van questionnaireservice.
+    this.questionnaire.category
+    this.questionnaire.created
+
+  }
+
 
   answerFalse(question:Question) {
 
+    question.solved=false;
+
+  }
+
+  answerTrue(question:Question) {
+
+    //Get questions. define question id op zelfde manier als questionnaire. Commit deze naar de database.
+    //Commit vervolgens de question id naar de questionnaire van userid.
+    question.solved=true;
 
   }
   nextQuestion() {
@@ -42,6 +63,7 @@ export class QuestionnaireComponent implements OnInit {
     if (this.QuestionCount < this.questions.length) {
 
       this.pureQuestions.push(this.questions[this.QuestionCount]);
+      this.answerFalse(this.questions[this.QuestionCount]);
       this.QuestionCount++;
     } else if (this.QuestionCount >= this.questions.length) {
       console.log('er zijn geen vragen meer. Roep gerust een supercoole functie aan om chatknop ' +
@@ -55,7 +77,6 @@ export class QuestionnaireComponent implements OnInit {
   ngOnInit() {
 
 
-    questoservice:QuestionnaireService;
 
     this.category=this.questionnaireservice.getCategory();
        this.questionnaireservice.setCategory(1);
@@ -66,9 +87,10 @@ export class QuestionnaireComponent implements OnInit {
 
     this.questionnaireservice.getQuestions().subscribe(
       data => {this.questions = data;
-
+        this.pureQuestions.push(this.questions[0]);
       }
     );
+
 
 
 

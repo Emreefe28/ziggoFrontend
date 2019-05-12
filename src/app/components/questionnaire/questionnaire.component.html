@@ -31,12 +31,11 @@
   </mat-toolbar>
 
   <div class="main-content">
+
       <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" *ngFor="let question of pureQuestions">
-
-
         <div class="troubleshoot-card-title mdl-card__title">
 
-          <div class=" mdl-card__title-text troubleshoot-card__numbering">{{question.questionId}}</div>
+          <div class=" mdl-card__title-text troubleshoot-card__numbering">{{question.id}}</div>
           <h2 class="mdl-card__title-text">{{question.title}}</h2>
         </div>
 
@@ -44,7 +43,7 @@
 
 
           <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
-            <p>{{question.content}}</p>
+            <p>{{question.question}}</p>
 
 
             <p><b>Heeft dit uw probleem opgelost?</b></p>
@@ -60,7 +59,7 @@
                   </button>
                 </div>
                 <div class="troubleshoot-card__layout-cell">
-                  <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+                  <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised"(click)="answerTrue(question)">
                     Ja
                   </button>
                 </div>

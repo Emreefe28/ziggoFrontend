@@ -49,7 +49,7 @@ export class QuestionnaireService {
 
 
 
-  getQuestionsUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questions/'+1;     //this.getQuestionnaireId();
+  getQuestionsUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questionnaire/questions/1';     //this.getQuestionnaireId();
   postQuestionUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestion/';
 
   serviceUrl = 'https://api.myjson.com/bins/16yew0';
