@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {QuestionnaireService} from '../../services/questionnaire.service';
+import {AuthenticationService} from '@customer//_services';
 
 @Component({
   selector: 'app-employee',
@@ -7,7 +9,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -15,6 +18,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   logout() {
-
+    this.authenticationService.logout();
   }
 }

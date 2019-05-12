@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig} from '@angular/material';
 import {EmployeeService} from '../../../services/employee.service';
 import {User} from '../../../models/user.model';
-import {CreateEmployeeComponent} from '../create-employee/create-employee.component';
+import {CreateEmployeeComponent} from './create-employee/create-employee.component';
 import {Employee} from '../../../models/employee.model';
 
 @Component({
@@ -13,7 +13,7 @@ import {Employee} from '../../../models/employee.model';
 export class UsersComponent implements OnInit {
   employees: Employee[];
   isPopupOpened = false;
-  displayedColumns: string[] = ['idUser', 'email', 'password', 'name', 'surname', 'afdeling'];
+  displayedColumns: string[] = ['idUser', 'email', 'password', 'name', 'surname', 'department'];
   dataSource = new MatTableDataSource(this.employees);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

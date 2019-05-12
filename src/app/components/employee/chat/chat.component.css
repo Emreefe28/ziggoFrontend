@@ -15,6 +15,15 @@
   padding: 5px;
 
 }
+.close{
+  margin-right: 5px;
+  color: #5D5D5D;
+  display: none;
+  cursor: pointer;
+}
+.employee-chat-header:hover .close{
+  display: flex;
+}
 
 .employee-chat-status-row span {
   color: #ffffff;
@@ -44,6 +53,7 @@
 
 mat-nav-list .mat-list-item {
   background-color: #262420;
+  margin-bottom: 1px;
 }
 
 mat-nav-list .mat-list-item:hover {
@@ -119,16 +129,11 @@ mat-nav-list .mat-list-item:hover {
   padding: 10px;
 }
 
-.tent {
-  overflow: hidden;
-}
-
 .customer-info-card {
   border: 1px solid #f6f7f7;
   margin-top: 20px;
   padding: 0;
   border-radius: 10px;
-
 }
 
 .customer-info-card-header {

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
-import {Employee} from '../../../models/employee.model';
-import {EmployeeService} from '../../../services/employee.service';
+import {Employee} from '../../../../models/employee.model';
+import {EmployeeService} from '../../../../services/employee.service';
 
 
 @Component({

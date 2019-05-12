@@ -17,7 +17,7 @@
       <div *ngFor="let chat of chats; let i = index">
         <a mat-list-item (click)="openChat(i)">
           <h3 class="chat-label"><span matBadge="&#8288;" matBadgeOverlap="false" matBadgeColor="warn"
-                                       [matBadgeHidden]=" !chat.newMessages">{{chat.client.name + ' ' + chat.client.surname}} </span>
+                                       [matBadgeHidden]=" !chat.newMessages">  {{chat.client.name + ' ' + chat.client.surname}} </span>
           </h3>
         </a>
       </div>
@@ -77,13 +77,11 @@
         <mat-card-title class="customer-info-card-title">Apparatuur</mat-card-title>
       </mat-card-header>
       <mat-card-content class="customer-info-card-content">
-        <div class="content-row">
-          <span class="customer-info-card-content-title">Modem</span>
-          <span>Linksys v3.2</span>
-        </div>
-        <div class="content-row">
-          <span class="customer-info-card-content-title">Splitter</span>
-          <span>N/A</span>
+        <div *ngFor="let item of equipment">
+          <div class="content-row" >
+            <span  class="customer-info-card-content-title">{{item.id.type}}</span>
+            <span>{{item.model}}</span>
+          </div>
         </div>
 
       </mat-card-content>
@@ -99,7 +97,7 @@
         </div>
         <div *ngFor="let appointment of appointments">
         <div class="content-row" >
-          <span>{{appointment.id.datum.substring(0, 10)}}</span>
+          <span>{{appointment.id.date}}</span>
           <span>{{appointment.status}}</span>
         </div>
         </div>
@@ -141,9 +139,10 @@
       </div>
     </div>
     <div class="employee-chat-header">
-      <span>{{currentChat.client.name + ' ' + currentChat.client.surname}}</span>
+      <i class="fa fa-times close" (click)="closeChat()"></i>
+      <span clas>{{currentChat.client.name + ' ' + currentChat.client.surname}}</span>
       <span class="spacer"></span>
-      <i class="fa fa-info-circle" (click)="details.toggle()"></i>
+      <i class="fa fa-info-circle" (click)="details.toggle()" style="cursor: pointer"></i>
     </div>
   </div>
 </mat-sidenav-container>

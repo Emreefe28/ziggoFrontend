@@ -1,4 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '../../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .toolbar{
   background: linear-gradient(to bottom, #464646, #2e2e2e);

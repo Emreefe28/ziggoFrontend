@@ -23,4 +23,8 @@ export class CustomerService {
     return this.http.get(this.serviceUrl + '/' + userId + '/appointments')
       .pipe(map(data => data as Appointment[]));
   }
+
+  getEquipment(userId: number) {
+    return this.http.get(this.serviceUrl + '/' + userId + '/equipment');
+  }
 }

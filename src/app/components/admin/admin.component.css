@@ -44,3 +44,14 @@ span{
   -webkit-text-fill-color: transparent;
 }
 
+.logout{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+
+.logout:hover{
+  color: #E60000;
+  cursor: pointer;
+}

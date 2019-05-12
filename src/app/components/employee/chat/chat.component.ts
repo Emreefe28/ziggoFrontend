@@ -5,7 +5,13 @@ import {Message} from '../../../models/chat/message.model';
 import {MessageToken} from '../../../models/chat/message-token.model';
 import {CustomerService} from '../../../services/customer.service';
 import {Customer} from '../../../models/customer.model';
-import {Appointment} from '../../../models/appointment.model';
+import {User} from '../../../models/user.model';
+import {Subscription} from 'rxjs';
+import {AuthenticationService} from '@customer//_services';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {CloseDialogComponent} from './close-dialog/close-dialog.component';
+import {Employee} from '../../../models/employee.model';
+import {Chat} from '../../../models/chat/chat.model';
 
 @Component({
   selector: 'app-chat',
@@ -20,18 +26,25 @@ export class ChatComponent implements OnInit {
   isOnline: boolean;
   isHidden = true;
   status: string;
-  user = {
-    idUser: 4535214,
-    email: 'asselt-suringh@planet.nl',
-    password: 'ytoakfx',
-    name: 'Chris',
-    surname: 'van Asselt',
-    jwtToken: 223452
-  };
+  user: User;
+  currentUserSubscription: Subscription;
   customer = new Customer();
   appointments;
+  equipment;
+  confirmCloseDialog: MatDialogRef<CloseDialogComponent>;
+  currentChatIndex: number;
 
-  constructor(private chatService: ChatService, private el: ElementRef, private customerService: CustomerService) {
+  constructor(private chatService: ChatService,
+              private el: ElementRef,
+              private customerService: CustomerService,
+              private authenticationService: AuthenticationService,
+              private dialog: MatDialog) {
+    this.authenticationService.checkIfLoggedIn();
+    if (authenticationService.loggedIn === true) {
+      this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+        this.user = user;
+      });
+    }
   }
 
 
@@ -42,7 +55,7 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    console.log('sending MEssage!!!');
+    console.log('sending Message..');
     const msg = new Message(this.content, this.user);
     this.chatService.sendMessage(this.currentChat.chat.id, msg);
     this.content = '';
@@ -69,8 +82,10 @@ export class ChatComponent implements OnInit {
     this.currentChat = this.chats[index];
     this.getCustomerInfo();
     this.getMechanicAppointments();
+    this.getEquipment();
     this.chats[index].newMessages = false;
     this.isHidden = false;
+    this.currentChatIndex = index;
   }
 
   listenForRequests() {
@@ -117,9 +132,36 @@ export class ChatComponent implements OnInit {
     );
   }
 
+  getEquipment() {
+    this.customerService.getEquipment(this.currentChat.client.idUser).subscribe(data => {
+        this.equipment = data;
+        console.log('Equipment...');
+        console.log(this.equipment);
+      }
+    );
+  }
+
   scrollToBottom(): void {
     const scrollPane: any = this.el
       .nativeElement.querySelector('.chat-messages');
     scrollPane.scrollTop = scrollPane.scrollHeight;
+  }
+
+  closeChat() {
+    this.confirmCloseDialog = this.dialog.open(CloseDialogComponent);
+    this.confirmCloseDialog.afterClosed().subscribe(result => {
+      console.log('close Chat? ' + result);
+      if (result) {
+        this.chats.splice(this.currentChatIndex, 1);
+        this.isHidden = true;
+        console.log(this.currentChat.chat);
+        this.chatService.endChat(this.currentChat.chat).subscribe(
+          (data: Chat) => {
+            console.log(data);
+          },
+          (error: any) => console.log(error)
+        );
+      }
+    });
   }
 }

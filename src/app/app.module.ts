@@ -16,12 +16,15 @@ import {QuestionnaireComponent} from './components/questionnaire/questionnaire.c
 import {QuestionnaireService} from './services/questionnaire.service';
 import {ClientChatComponent} from './components/client-chat/client-chat.component';
 import {AdminComponent} from './components/admin/admin.component';
-import {CreateEmployeeComponent} from './components/admin/create-employee/create-employee.component';
+import {CreateEmployeeComponent} from './components/admin/users/create-employee/create-employee.component';
 import {AlertComponent} from './components/customer/_components';
 import {LoginComponent} from './components/customer/login';
 import {RegisterComponent} from './components/customer/register';
 import {CustomMaterialModule} from './components/customer/core/material.module';
-
+import { CloseDialogComponent } from './components/employee/chat/close-dialog/close-dialog.component';
+import { RatingDialogComponent } from './components/client-chat/rating-dialog/rating-dialog.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {CustomMaterialModule} from './components/customer/core/material.module';
     CreateEmployeeComponent,
     AlertComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CloseDialogComponent,
+    RatingDialogComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +53,10 @@ import {CustomMaterialModule} from './components/customer/core/material.module';
     FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
+    GoogleChartsModule
   ],
   providers: [ChatService, EmployeeService, QuestionnaireService],
-  entryComponents: [CreateEmployeeComponent],
+  entryComponents: [CreateEmployeeComponent, CloseDialogComponent, RatingDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

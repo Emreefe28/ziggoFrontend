@@ -10,6 +10,7 @@ import {HomeComponent} from './components/home/home.component';
 import {QuestionnaireComponent} from './components/questionnaire/questionnaire.component';
 import {LoginComponent} from './components/customer/login';
 import {RegisterComponent} from './components/customer/register';
+import {StatisticsComponent} from './components/admin/statistics/statistics.component';
 
 const routes: Routes = [
 
@@ -35,7 +36,8 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent
     , children: [
-      {path: 'users', component: UsersComponent}]
+      {path: 'users', component: UsersComponent},
+      {path: 'statistics', component: StatisticsComponent}]
   },
   {
     path: 'home',
