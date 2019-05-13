@@ -3,6 +3,7 @@ import {QuestionnaireService} from '../../services/questionnaire.service';
 import {CreateService} from '../../services/create.service';
 import {Question} from '../../models/question.model';
 import {Questionnaire} from '../../models/questionnaire.model';
+import {Employee} from '../../models/employee.model';
 
 @Component({
   selector: 'app-questionnaire',
@@ -12,11 +13,16 @@ import {Questionnaire} from '../../models/questionnaire.model';
 export class QuestionnaireComponent implements OnInit {
 
   questions = [];
+  htmlQuestions = [Question];
+
+
   QuestionCount = 1;
   category = 0;
   geenVragenOver = false;
-  pureQuestions = [Question];
+
   questionnaire:Questionnaire;
+
+
 
   constructor(private questionnaireservice: QuestionnaireService) {
 
@@ -42,10 +48,31 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-
   answerFalse(question:Question) {
 
+    var ok  = [question];
+
+    this.questionnaireservice.getAllQuestions().subscribe(
+      data => {ok = data;
+      }
+    );
+
+
+
+    // question.id= ok[ok.length];
+
+    question.id=57;
     question.solved=false;
+
+
+    this.questionnaireservice.submitQuestion(question).subscribe(
+      (data: Question) => {
+        console.log(data);
+      },
+      (error: any) => console.log(error)
+    );
+
+
 
   }
 
@@ -62,7 +89,7 @@ export class QuestionnaireComponent implements OnInit {
 
     if (this.QuestionCount < this.questions.length) {
 
-      this.pureQuestions.push(this.questions[this.QuestionCount]);
+      this.htmlQuestions.push(this.questions[this.QuestionCount]);
       this.answerFalse(this.questions[this.QuestionCount]);
       this.QuestionCount++;
     } else if (this.QuestionCount >= this.questions.length) {
@@ -87,7 +114,7 @@ export class QuestionnaireComponent implements OnInit {
 
     this.questionnaireservice.getQuestions().subscribe(
       data => {this.questions = data;
-        this.pureQuestions.push(this.questions[0]);
+        this.htmlQuestions.push(this.questions[0]);
       }
     );
 

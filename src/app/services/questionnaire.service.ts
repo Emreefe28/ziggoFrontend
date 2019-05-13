@@ -49,16 +49,17 @@ export class QuestionnaireService {
 
 
 
-  getQuestionsUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questionnaire/questions/1';     //this.getQuestionnaireId();
-  postQuestionUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestion/';
+  getQuestionsUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questionnaire/questions/1';
+  //this.getQuestionnaireId();
 
-  serviceUrl = 'https://api.myjson.com/bins/16yew0';
-  // verander naar getQuestionByIdUrl
-  questionUrl = 'http://localhost:8080/VodafoneZiggoAPI-1.0/rest/employee/{id}';
+  allQuestionsUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question';
+
+  postQuestionUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestion';
+
 
 
   getCategory(): number {
-    console.log(this.category);
+    console.log("De category is momenteel: "+this.category);
     return this.category;
   }
 
@@ -68,10 +69,13 @@ export class QuestionnaireService {
   }
 
   submitQuestion(model: Question): Observable<Question> {
+    console.log("Question id:" +model.id+ " Solved: "+model.solved +" vraag: " + model.question +" Title:" +model.title)
+
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
+
 
   //MOET NOG GEIMPLEMENTEERD WORDEN
   submitQuestionToQuestionnaire(model: Question): Observable<Question> {
@@ -88,15 +92,19 @@ export class QuestionnaireService {
   }
 
 
-  getQuestionById(): Observable<Question> {
-    return this.http.get(this.questionUrl)
-      .pipe(map(data => data as Question));
-  }
+
+
 
 
 
   getQuestions(): Observable<Question[]> {
     return this.http.get(this.getQuestionsUrl)
+      .pipe(map(data => data as Question[]));
+  }
+
+  getAllQuestions(): Observable<Question[]> {
+    console.log("getquestions is aangeroepen");
+    return this.http.get(this.allQuestionsUrl)
       .pipe(map(data => data as Question[]));
   }
 
