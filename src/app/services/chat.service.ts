@@ -83,10 +83,13 @@ export class ChatService {
   }
 
   public endChat(chat: Chat) {
-    this.socket.emit('end-chat', chat.id);
     const headers = new HttpHeaders();
+    const timestamp = chat.created;
+    chat.created = null;
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Chat>(this.serviceUrl, chat, {headers});
+    const obs = this.http.post<Chat>(this.serviceUrl + '/' + timestamp, chat, {headers});
+    this.socket.emit('end-chat', chat.id);
+    return obs;
   }
 
   public hasChatEnded() {

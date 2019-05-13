@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {StatisticsService} from '../../../services/statistics.service';
+import {Stats} from '../../../models/stats.model';
 
 @Component({
   selector: 'app-statistics',
@@ -9,7 +11,7 @@ export class StatisticsComponent implements OnInit {
   title = 'amount of chats';
   type = 'ColumnChart';
   data;
-  stats;
+  stats: Stats = new Stats();
 
   columnNames = ['week', 'Chats'];
   options = {
@@ -19,10 +21,17 @@ export class StatisticsComponent implements OnInit {
 
   };
 
-  constructor() {
+  constructor(private statService: StatisticsService) {
   }
 
   ngOnInit() {
+    this.statService.getStats().subscribe(
+      data => {
+        this.stats = data;
+        console.log(this.stats);
+      }
+    );
   }
+
 
 }

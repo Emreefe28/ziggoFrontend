@@ -64,6 +64,7 @@ export class ClientChatComponent implements OnInit {
   }
 
   startChat() {
+    this.chatToken  = new ChatToken();
     this.chatToken.client = this.user;
     this.chatService.connectToEmployee(this.chatToken);
     this.chatService.whoJoinedRoom().subscribe(chatToken => {
