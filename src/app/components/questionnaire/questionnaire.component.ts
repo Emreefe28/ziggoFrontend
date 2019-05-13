@@ -20,7 +20,7 @@ export class QuestionnaireComponent implements OnInit {
   category = 0;
   geenVragenOver = false;
 
-  questionnaire:Questionnaire;
+  questionnaire =  new Questionnaire(87,1500);
 
 
 
@@ -41,10 +41,18 @@ export class QuestionnaireComponent implements OnInit {
     /*Pak de questionnaire list size +1 voor id. dit gaat mogelijk wel voor problemen zorgen als er questionnaires worden gedelete.
     * als echt nodig ga de lijst met ids door tot de vorige id verschil tussen momentele id groter is dan 1 en pak dat getal.
     * */
-    this.questionnaire.questionnaireId
+    this.questionnaire.questionnaireId=1;
     //Category is gelijk aan momentele category van questionnaireservice.
-    this.questionnaire.category
-    this.questionnaire.created
+    this.questionnaire.created=12;
+
+
+    var tester= new Questionnaire(87,200);
+    this.questionnaireservice.submitQuestionnaire(tester).subscribe(
+      (data: Questionnaire) => {
+        console.log(data);
+      },
+      (error: any) => console.log(error)
+    );
 
   }
 
@@ -105,6 +113,8 @@ export class QuestionnaireComponent implements OnInit {
 
 
 
+    console.log("submitting questionnaire");
+    this.defineQuestionnaire();
     this.category=this.questionnaireservice.getCategory();
        this.questionnaireservice.setCategory(1);
 

@@ -5,6 +5,7 @@ import {User} from '../models/user.model';
 import {map} from 'rxjs/operators';
 import {Question} from '../models/question.model';
 import {Employee} from '../models/employee.model';
+import {Questionnaire} from '../models/questionnaire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,8 @@ export class QuestionnaireService {
 
   postQuestionUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestion';
 
+  postQuestionnaireUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionnaire/1';
+
 
 
   getCategory(): number {
@@ -76,6 +79,12 @@ export class QuestionnaireService {
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
 
+  submitQuestionnaire(model: Questionnaire): Observable<Questionnaire> {
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<Questionnaire>(this.postQuestionnaireUrl, model, {headers});
+  }
 
   //MOET NOG GEIMPLEMENTEERD WORDEN
   submitQuestionToQuestionnaire(model: Question): Observable<Question> {

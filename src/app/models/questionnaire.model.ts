@@ -41,10 +41,9 @@ export class Questionnaire{
     this._category = value;
   }
 
-  constructor(questionnaireId: number, created: number, question: [Question], category: Category) {
+  constructor(questionnaireId: number, created: number) {
     this._questionnaireId = questionnaireId;
     this._created = created;
-    this._question = question;
-    this._category = category;
+
   }
 }
