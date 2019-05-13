@@ -15,8 +15,8 @@ h5{
 }
 #chart {
   width: inherit;
-  height: 400px;
-  color: red;
+  height: 30%;
+  display:flex ;
 }
 .content-card-stats{
   margin: 20px 0;

@@ -24,8 +24,7 @@ import {CustomMaterialModule} from './components/customer/core/material.module';
 import { CloseDialogComponent } from './components/employee/chat/close-dialog/close-dialog.component';
 import { RatingDialogComponent } from './components/client-chat/rating-dialog/rating-dialog.component';
 import { StatisticsComponent } from './components/admin/statistics/statistics.component';
-import { GoogleChartsModule } from 'angular-google-charts';
-
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +52,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
-    GoogleChartsModule
+    ChartsModule
   ],
   providers: [ChatService, EmployeeService, QuestionnaireService],
   entryComponents: [CreateEmployeeComponent, CloseDialogComponent, RatingDialogComponent],

@@ -1,13 +1,16 @@
 <div class="content">
   <h1>Statistics</h1>
   <mat-card>
-      <google-chart id="chart"
-                    [title]="title"
-                    [type]="type"
-                    [data]="data"
-                    [columnNames]="columnNames"
-                    [options]="options">
-      </google-chart>
+    <div id="chart">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            [colors]="myColors">
+    </canvas>
+    </div>
     <div class="stat-box">
       <div class="content-card-row">
         <div class="content-card-column">
@@ -18,8 +21,8 @@
           <h5>N/A</h5>
         </div>
         <div class="content-card-column">
-            <i class="fas fa-comment-alt fa-2x"></i>
-            <h5>Total chats</h5>
+          <i class="fas fa-comment-alt fa-2x"></i>
+          <h5>Total chats</h5>
         </div>
         <div class="content-card-column-results">
           <h5>{{stats.totalChats}}</h5>

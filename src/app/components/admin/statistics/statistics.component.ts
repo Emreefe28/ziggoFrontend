@@ -8,23 +8,42 @@ import {Stats} from '../../../models/stats.model';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  title = 'amount of chats';
-  type = 'ColumnChart';
+
   stats: Stats = new Stats();
-  data = [
-    ["2012", 900],
-    ["2013", 1000],
-    ["2014", 1170],
-    ["2015", 1250],
-    ["2016", 1530]
-  ];
-  columnNames = ['week', 'Chats'];
-  options = {
-    colors: ['#FF0000'],
-    legendTextStyle: {color: '#8B8B8B' },
-    titleTextStyle: {color: '#8B8B8B'},
+    barChartOptions = {
+    scaleShowVerticalLines: true,
+    responsive: true,
 
   };
+    myColors = [
+    {
+      backgroundColor: '#E92400',
+      borderColor: '#E92400',
+      pointBackgroundColor: '#E92400',
+      pointBorderColor: '#E92400',
+      pointHoverBackgroundColor: '#E92400',
+      pointHoverBorderColor: '#E92400'
+    }];
+    barChartLabels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'];
+    barChartType = 'bar';
+    barChartLegend = false;
+    barChartData = [
+    {
+      data: [0, 0, 0, 0, 0, 0, 0], label: 'Chats'
+    }];
 
   constructor(private statService: StatisticsService) {
   }
@@ -33,8 +52,24 @@ export class StatisticsComponent implements OnInit {
     this.statService.getStats().subscribe(
       data => {
         this.stats = data;
-        console.log(this.stats);
-
+        console.log(data);
+        this.barChartData = [
+          {
+            data: [
+              this.stats.chatsPerMonth.January,
+              this.stats.chatsPerMonth.February,
+              this.stats.chatsPerMonth.March,
+              this.stats.chatsPerMonth.April,
+              this.stats.chatsPerMonth.May,
+              this.stats.chatsPerMonth.June,
+              this.stats.chatsPerMonth.July,
+              this.stats.chatsPerMonth.August,
+              this.stats.chatsPerMonth.September,
+              this.stats.chatsPerMonth.October,
+              this.stats.chatsPerMonth.November,
+              this.stats.chatsPerMonth.December,
+            ], label: 'Chats'
+          }];
       }
     );
   }
