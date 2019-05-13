@@ -10,9 +10,14 @@ import {Stats} from '../../../models/stats.model';
 export class StatisticsComponent implements OnInit {
   title = 'amount of chats';
   type = 'ColumnChart';
-  data;
   stats: Stats = new Stats();
-
+  data = [
+    ["2012", 900],
+    ["2013", 1000],
+    ["2014", 1170],
+    ["2015", 1250],
+    ["2016", 1530]
+  ];
   columnNames = ['week', 'Chats'];
   options = {
     colors: ['#FF0000'],
@@ -29,6 +34,7 @@ export class StatisticsComponent implements OnInit {
       data => {
         this.stats = data;
         console.log(this.stats);
+
       }
     );
   }
