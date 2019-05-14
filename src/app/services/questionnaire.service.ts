@@ -49,13 +49,17 @@ export class QuestionnaireService {
 
 
 
+  baseUrl = 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question';
 
-  getQuestionsUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questionnaire/questions/1';
+  questionCountUrl =this.baseUrl+'/true';
+
+
+  getQuestionsUrl= this.baseUrl+'/questionnaire/questions/1';
   //this.getQuestionnaireId();
 
-  allQuestionsUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question';
+  allQuestionsUrl=this.baseUrl;
 
-  postQuestionUrl='localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestion';
+  postQuestionUrl=this.baseUrl+'/addquestion';
 
   postQuestionnaireUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionnaire/1';
 
@@ -109,6 +113,10 @@ export class QuestionnaireService {
   getQuestions(): Observable<Question[]> {
     return this.http.get(this.getQuestionsUrl)
       .pipe(map(data => data as Question[]));
+  }
+  getQuestionCount(): Observable<number> {
+    return this.http.get(this.questionCountUrl)
+      .pipe(map(data => data as number));
   }
 
   getAllQuestions(): Observable<Question[]> {

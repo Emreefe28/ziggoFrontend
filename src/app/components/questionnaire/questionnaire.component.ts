@@ -16,6 +16,7 @@ export class QuestionnaireComponent implements OnInit {
   htmlQuestions = [Question];
 
 
+  testnumber= 10;
   QuestionCount = 1;
   category = 0;
   geenVragenOver = false;
@@ -47,12 +48,13 @@ export class QuestionnaireComponent implements OnInit {
 
 
     var tester= new Questionnaire(87,200);
-    this.questionnaireservice.submitQuestionnaire(tester).subscribe(
-      (data: Questionnaire) => {
-        console.log(data);
-      },
-      (error: any) => console.log(error)
-    );
+    // this.questionnaireservice.submitQuestionnaire(tester).subscribe(
+    //   (data: Questionnaire) => {
+    //     console.log(data);
+    //   },
+    //   (error: any) => console.log(error)
+    // );
+
 
   }
 
@@ -60,10 +62,10 @@ export class QuestionnaireComponent implements OnInit {
 
     var ok  = [question];
 
-    this.questionnaireservice.getAllQuestions().subscribe(
-      data => {ok = data;
-      }
-    );
+    // this.questionnaireservice.getAllQuestions().subscribe(
+    //   data => {ok = data;
+    //   }
+    // );
 
 
 
@@ -72,6 +74,20 @@ export class QuestionnaireComponent implements OnInit {
     question.id=57;
     question.solved=false;
 
+
+    this.questionnaireservice.submitQuestion(question).subscribe(
+      (data: Question) => {
+        console.log(data);
+      },
+      (error: any) => console.log(error)
+    );
+
+    this.questionnaireservice.submitQuestion(question).subscribe(
+      (data: Question) => {
+        console.log(data);
+      },
+      (error: any) => console.log(error)
+    );
 
     this.questionnaireservice.submitQuestion(question).subscribe(
       (data: Question) => {
@@ -126,8 +142,16 @@ export class QuestionnaireComponent implements OnInit {
       data => {this.questions = data;
         this.htmlQuestions.push(this.questions[0]);
       }
+
     );
 
+    this.questionnaireservice.getQuestionCount().subscribe(
+      data => {this.testnumber = data;
+      console.log("testnumber is: "+this.testnumber);
+      }
+
+    );
+    console.log("testnumber is: "+this.testnumber);
 
 
 
