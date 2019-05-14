@@ -33,7 +33,6 @@ export class QuestionnaireService {
   }
 
 
-
   setQuestionnaireId(value: number) {
     this.questionnaireId = value;
     console.log("DE QUESTIONNAIRE ID IS NU"+this.questionnaireId);
@@ -104,10 +103,6 @@ export class QuestionnaireService {
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.addQuestionToQuestionnaireUrl+userId+'/'+questionnaireId,null,  {headers});
   }
-
-
-
-
 
 
   submitQuestionToQuestionnaire(questionnaireId:number, questionId:number) {

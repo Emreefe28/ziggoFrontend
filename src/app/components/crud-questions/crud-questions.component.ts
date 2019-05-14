@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {QuestionnaireService} from "../../../services/questionnaire.service";
-import {Question} from "../../../models/question.model";
+import {QuestionnaireService} from "../../services/questionnaire.service";
+import {Question} from "../../models/question.model";
 
 @Component({
   selector: 'app-crud-questions',
