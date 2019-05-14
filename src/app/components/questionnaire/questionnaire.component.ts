@@ -82,18 +82,24 @@ export class QuestionnaireComponent implements OnInit {
         this.questionnaireservice.submitQuestion(question).subscribe(
           (data: Question) => {
             console.log(data);
+
+
+            this.questionnaireservice.submitQuestionToQuestionnaire( this.questionnaire.id , question.id).subscribe(
+              (data: Question) => {
+                console.log("de geuploadde question id is: "+question.id);
+                console.log(data);
+              },
+              (error: any) => console.log(error)
+            );
           },
+
+
           (error: any) => console.log(error)
         );
 
 
 
-        this.questionnaireservice.submitQuestionToQuestionnaire( this.questionnaire.id , question.id).subscribe(
-          (data: Question) => {
-            console.log(data);
-          },
-          (error: any) => console.log(error)
-        );
+
 
 
       }
@@ -118,13 +124,16 @@ export class QuestionnaireComponent implements OnInit {
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
 
     if (this.QuestionCount < this.questions.length) {
-      this.htmlQuestions.push(this.questions[this.QuestionCount]);
-      this.answerFalse(this.questions[this.QuestionCount]);
+      this.htmlQuestions.push(this.questions[this.QuestionCount-1]);
+      this.answerFalse(this.questions[this.QuestionCount-1]);
 
       this.QuestionCount++;
 
-
-    } else if (this.QuestionCount >= this.questions.length) {
+    }
+    else if(this.QuestionCount==this.questions.length){
+      this.answerFalse(this.questions[this.QuestionCount-1]);
+    }
+    else if (this.QuestionCount > this.questions.length) {
       console.log('er zijn geen vragen meer. Roep gerust een supercoole functie aan om chatknop ' +
         'tevoorschijn te halen');
       this.geenVragenMeer();
