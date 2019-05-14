@@ -18,7 +18,7 @@ export class QuestionnaireService {
 
 
 
-  private category: number;
+   category =1;
   private questionnaireId:number;
   private question:Question;
 
@@ -59,11 +59,13 @@ export class QuestionnaireService {
   getQuestionnairesUrl= this.baseUrl+'/questionnaire';
   //this.getQuestionnaireId();
 
-  allQuestionsUrl=this.baseUrl;
+  allQuestionsUrl=this.baseUrl
 
   postQuestionUrl=this.baseUrl+'/addquestion';
 
-  postQuestionnaireUrl=this.baseUrl+'/addquestionnaire/2';  //+this.category;
+  addQuestionToQuestionnaireUrl=this.baseUrl+'/addquestion/questionnaire/';
+
+  postQuestionnaireUrl=this.baseUrl+'/addquestionnaire/' +this.category;
 
 
 
@@ -74,7 +76,6 @@ export class QuestionnaireService {
 
    setCategory(value: number) {
     this.category = value;
-    console.log("DE CATEGORY VALUE IS NU:"+this.category);
   }
 
   submitQuestion(model: Question): Observable<Question> {
@@ -94,11 +95,14 @@ export class QuestionnaireService {
 
 
 
+
+
+
   //MOET NOG GEIMPLEMENTEERD WORDEN
-  submitQuestionnaireToUser(model: Question): Observable<Question> {
+  submitQuestionnaireToUser(userId:number, questionnaireId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Question>(this.postQuestionUrl, model, {headers});
+    return this.http.post(this.addQuestionToQuestionnaireUrl+userId+'/'+questionnaireId,null,  {headers});
   }
 
 
@@ -106,10 +110,10 @@ export class QuestionnaireService {
 
 
 
-  submitQuestionToQuestionnaire(url:string) {
+  submitQuestionToQuestionnaire(questionnaireId:number, questionId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(url,  {headers});
+    return this.http.post(this.addQuestionToQuestionnaireUrl+questionnaireId+'/'+questionId,  {},{headers});
   }
 
 

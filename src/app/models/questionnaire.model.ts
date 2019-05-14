@@ -3,10 +3,10 @@ import {Category} from './category.model';
 
 export class Questionnaire{
 
-  private id:number;
-  private created:number;
-  private questions:[Question];
-  private category:Category;
+   id:number;
+   created:number;
+   questions:[Question];
+   category:Category;
 
 
   constructor(id: number, created: number) {

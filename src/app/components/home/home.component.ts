@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   }
   toCategory(categoryValue: number ) {
     this.questionnaireService.setCategory(categoryValue);
+    console.log(this.questionnaireService.getCategory());
   }
 
   ngOnInit() {

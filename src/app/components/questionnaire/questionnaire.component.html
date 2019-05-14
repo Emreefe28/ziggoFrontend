@@ -32,10 +32,11 @@
 
   <div class="main-content">
 
-      <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" *ngFor="let question of htmlQuestions">
+    <div *ngFor="let question of htmlQuestions; let i =index ">
+      <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" >
         <div class="troubleshoot-card-title mdl-card__title">
 
-          <div class=" mdl-card__title-text troubleshoot-card__numbering">-</div>
+          <div class=" mdl-card__title-text troubleshoot-card__numbering">{{i+1}}</div>
           <h2 class="mdl-card__title-text">{{question.title}}</h2>
         </div>
 
@@ -68,6 +69,7 @@
           </div>
         </div>
       </div>
+    </div>
 
   </div>
 
