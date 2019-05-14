@@ -49,10 +49,10 @@ export class QuestionnaireComponent implements OnInit {
 
 
         questionnaire.id = holder[holder.length - 1].id + 1;
-        questionnaire.created = 1111;
+        questionnaire._created = Date.now();
 
 
-        this.questionnaireservice.submitQuestionnaire(questionnaire).subscribe(
+        this.questionnaireservice.submitQuestionnaire(questionnaire,Date.now()).subscribe(
           (data: Questionnaire) => {
             console.log(data);
           },
@@ -88,7 +88,7 @@ export class QuestionnaireComponent implements OnInit {
 
 
 
-        this.questionnaireservice.submitQuestionToQuestionnaire( 2 , question.id).subscribe(
+        this.questionnaireservice.submitQuestionToQuestionnaire( this.questionnaire.id , question.id).subscribe(
           (data: Question) => {
             console.log(data);
           },

@@ -86,11 +86,11 @@ export class QuestionnaireService {
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
 
-  submitQuestionnaire(model: Questionnaire): Observable<Questionnaire> {
-    console.log("Questionnaire id is: "+ model.id+" created value is: "+ model.created);
+  submitQuestionnaire(model: Questionnaire, date:number): Observable<Questionnaire> {
+    console.log("Questionnaire id is: "+ model.id+" created value is: "+ model._created);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Questionnaire>(this.postQuestionnaireUrl, model, {headers});
+    return this.http.post<Questionnaire>(this.postQuestionnaireUrl+'/'+date, model, {headers});
   }
 
 
