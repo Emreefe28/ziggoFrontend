@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../../services/questionnaire.service';
 import {CreateService} from '../../services/create.service';
 import {Question} from '../../models/question.model';
 import {Questionnaire} from '../../models/questionnaire.model';
 import {Employee} from '../../models/employee.model';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-questionnaire',
@@ -16,7 +17,6 @@ export class QuestionnaireComponent implements OnInit {
   htmlQuestions = [Question];
 
 
-  testnumber= 10;
   QuestionCount = 1;
   category = 0;
   geenVragenOver = false;
@@ -24,81 +24,77 @@ export class QuestionnaireComponent implements OnInit {
   questionnaire =  new Questionnaire(87,1500);
 
 
-
-  constructor(private questionnaireservice: QuestionnaireService) {
+  constructor(private questionnaireservice: QuestionnaireService, private changeDetector: ChangeDetectorRef) {
 
 
   }
-
 
 
   geenVragenMeer() {
     this.geenVragenOver = true;
     console.log('deze methode is aangeroepen');
 
-  }
+}
 
-  defineQuestionnaire(){
+
+  submitQuestionnaire(questionnaire:Questionnaire) {
     /*Pak de questionnaire list size +1 voor id. dit gaat mogelijk wel voor problemen zorgen als er questionnaires worden gedelete.
     * als echt nodig ga de lijst met ids door tot de vorige id verschil tussen momentele id groter is dan 1 en pak dat getal.
     * */
-    this.questionnaire.questionnaireId=1;
-    //Category is gelijk aan momentele category van questionnaireservice.
-    this.questionnaire.created=12;
+
+    var holder = [];
+    this.questionnaireservice.getQuestionnaires().subscribe(
+      data => {
+        holder = data;
+        console.log("iets length is: " + holder.length);
 
 
-    var tester= new Questionnaire(87,200);
-    // this.questionnaireservice.submitQuestionnaire(tester).subscribe(
-    //   (data: Questionnaire) => {
-    //     console.log(data);
-    //   },
-    //   (error: any) => console.log(error)
-    // );
+        questionnaire.id = holder[holder.length - 1].id + 1;
+        questionnaire.created = 1111;
 
+
+        this.questionnaireservice.submitQuestionnaire(questionnaire).subscribe(
+          (data: Questionnaire) => {
+            console.log(data);
+          },
+          (error: any) => console.log(error)
+        );
+      }
+    );
 
   }
+
 
   answerFalse(question:Question) {
 
-    var ok  = [question];
 
-    // this.questionnaireservice.getAllQuestions().subscribe(
-    //   data => {ok = data;
-    //   }
-    // );
-
+    var iets = [];
+    this.questionnaireservice.getAllQuestions().subscribe(
+      data => {iets = data;
+        console.log("iets length is: "+iets.length);
 
 
-    // question.id= ok[ok.length];
 
-    question.id=57;
-    question.solved=false;
+        question.id= iets[iets.length-1].id+1;
+        question.solved=false;
 
 
-    this.questionnaireservice.submitQuestion(question).subscribe(
-      (data: Question) => {
-        console.log(data);
-      },
-      (error: any) => console.log(error)
-    );
+        this.questionnaireservice.submitQuestion(question).subscribe(
+          (data: Question) => {
+            console.log(data);
+          },
+          (error: any) => console.log(error)
+        );
 
-    this.questionnaireservice.submitQuestion(question).subscribe(
-      (data: Question) => {
-        console.log(data);
-      },
-      (error: any) => console.log(error)
-    );
 
-    this.questionnaireservice.submitQuestion(question).subscribe(
-      (data: Question) => {
-        console.log(data);
-      },
-      (error: any) => console.log(error)
+      }
     );
 
 
 
   }
+
+
 
   answerTrue(question:Question) {
 
@@ -107,15 +103,18 @@ export class QuestionnaireComponent implements OnInit {
     question.solved=true;
 
   }
+
   nextQuestion() {
     // console.log("nextQuestionCount: "+this.QuestionCount
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
 
     if (this.QuestionCount < this.questions.length) {
-
       this.htmlQuestions.push(this.questions[this.QuestionCount]);
       this.answerFalse(this.questions[this.QuestionCount]);
+
       this.QuestionCount++;
+
+
     } else if (this.QuestionCount >= this.questions.length) {
       console.log('er zijn geen vragen meer. Roep gerust een supercoole functie aan om chatknop ' +
         'tevoorschijn te halen');
@@ -130,30 +129,29 @@ export class QuestionnaireComponent implements OnInit {
 
 
     console.log("submitting questionnaire");
-    this.defineQuestionnaire();
+    this.submitQuestionnaire(this.questionnaire);
+    this.questionnaireservice.setCategory(2);
     this.category=this.questionnaireservice.getCategory();
-       this.questionnaireservice.setCategory(1);
-
     console.log(this.category);
-    this.questionnaireservice.setQuestionnaireId(1);
 
 
     this.questionnaireservice.getQuestions().subscribe(
       data => {this.questions = data;
+      console.log("De lengte van thisquestions is: "+this.questions.length);
         this.htmlQuestions.push(this.questions[0]);
       }
 
     );
 
-    this.questionnaireservice.getQuestionCount().subscribe(
-      data => {this.testnumber = data;
-      console.log("testnumber is: "+this.testnumber);
-      }
 
-    );
-    console.log("testnumber is: "+this.testnumber);
-
-
+    //
+    // this.questionnaireservice.getQuestionCount().subscribe(
+    //   data => {this.testnumber = data;
+    //   console.log("testnumber is: "+this.testnumber);
+    //   }
+    //
+    // );
+    // console.log("testnumber is: "+this.testnumber);
 
   }
 

@@ -55,13 +55,15 @@ export class QuestionnaireService {
 
 
   getQuestionsUrl= this.baseUrl+'/questionnaire/questions/1';
+
+  getQuestionnairesUrl= this.baseUrl+'/questionnaire';
   //this.getQuestionnaireId();
 
   allQuestionsUrl=this.baseUrl;
 
   postQuestionUrl=this.baseUrl+'/addquestion';
 
-  postQuestionnaireUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionnaire/1';
+  postQuestionnaireUrl=this.baseUrl+'/addquestionnaire/2';  //+this.category;
 
 
 
@@ -84,18 +86,13 @@ export class QuestionnaireService {
   }
 
   submitQuestionnaire(model: Questionnaire): Observable<Questionnaire> {
-
+    console.log("Questionnaire id is: "+ model.id+" created value is: "+ model.created);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post<Questionnaire>(this.postQuestionnaireUrl, model, {headers});
   }
 
-  //MOET NOG GEIMPLEMENTEERD WORDEN
-  submitQuestionToQuestionnaire(model: Question): Observable<Question> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post<Question>(this.postQuestionUrl, model, {headers});
-  }
+
 
   //MOET NOG GEIMPLEMENTEERD WORDEN
   submitQuestionnaireToUser(model: Question): Observable<Question> {
@@ -109,10 +106,21 @@ export class QuestionnaireService {
 
 
 
+  submitQuestionToQuestionnaire(url:string) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(url,  {headers});
+  }
+
 
   getQuestions(): Observable<Question[]> {
     return this.http.get(this.getQuestionsUrl)
       .pipe(map(data => data as Question[]));
+  }
+
+  getQuestionnaires(): Observable<Questionnaire[]> {
+    return this.http.get(this.getQuestionnairesUrl)
+      .pipe(map(data => data as Questionnaire[]));
   }
   getQuestionCount(): Observable<number> {
     return this.http.get(this.questionCountUrl)
@@ -120,7 +128,6 @@ export class QuestionnaireService {
   }
 
   getAllQuestions(): Observable<Question[]> {
-    console.log("getquestions is aangeroepen");
     return this.http.get(this.allQuestionsUrl)
       .pipe(map(data => data as Question[]));
   }
