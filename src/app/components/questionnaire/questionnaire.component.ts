@@ -20,7 +20,7 @@ export class QuestionnaireComponent implements OnInit {
   QuestionCount = 1;
   geenVragenOver = false;
 
-  questionnaire =  new Questionnaire(0,1);
+   questionnaire =  new Questionnaire(0,1);
 
 
   constructor(private questionnaireservice: QuestionnaireService, private changeDetector: ChangeDetectorRef) {
@@ -87,7 +87,7 @@ export class QuestionnaireComponent implements OnInit {
 
 
 
-        this.questionnaireservice.submitQuestionToQuestionnaire( 2 , question.id).subscribe(
+        this.questionnaireservice.submitQuestionToQuestionnaire( this.questionnaire.id , question.id).subscribe(
           (data: Question) => {
             console.log(data);
           },
