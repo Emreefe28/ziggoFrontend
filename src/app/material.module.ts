@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {MatButtonModule, MatMenuModule, MatIconModule, MatSortModule, MatSelectModule, } from '@angular/material';
+import {MatButtonModule, MatMenuModule, MatIconModule, MatSortModule, MatSelectModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
@@ -52,7 +52,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSortModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatExpansionModule]
+    MatExpansionModule
+  ]
 })
 export class MaterialModule {
 }

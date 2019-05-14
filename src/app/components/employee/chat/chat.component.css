@@ -90,6 +90,13 @@ mat-nav-list .mat-list-item:hover {
 .edit-btn{
   color: #555353 ;
 }
+.menu-icon{
+margin-right: 5px;
+}
+.status-btn{
+  width: 24px;
+  height: 24px;
+}
 
 .employee-chatbox {
   height: 90px;

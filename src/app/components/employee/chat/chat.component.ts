@@ -164,4 +164,12 @@ export class ChatComponent implements OnInit {
       }
     });
   }
+
+  addEquipment() {
+
+  }
+
+  editEquipment() {
+
+  }
 }
