@@ -52,7 +52,6 @@ export class QuestionnaireService {
 
   questionCountUrl =this.baseUrl+'/true';
 
-
   getQuestionsUrl= this.baseUrl+'/questionnaire/questions/1';
 
   getQuestionnairesUrl= this.baseUrl+'/questionnaire';
@@ -63,6 +62,8 @@ export class QuestionnaireService {
   postQuestionUrl=this.baseUrl+'/addquestion';
 
   addQuestionToQuestionnaireUrl=this.baseUrl+'/addquestion/questionnaire/';
+
+  addQuestionnaireToUserUrl='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionaire/user/'
 
   postQuestionnaireUrl=this.baseUrl+'/addquestionnaire/' +this.category;
 
@@ -97,14 +98,12 @@ export class QuestionnaireService {
 
 
 
-  //MOET NOG GEIMPLEMENTEERD WORDEN
   submitQuestionnaireToUser(userId:number, questionnaireId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(this.addQuestionToQuestionnaireUrl+userId+'/'+questionnaireId,null,  {headers});
+    return this.http.post(this.addQuestionnaireToUserUrl+userId+'/'+questionnaireId,{},  {headers});
   }
-
-
+  
   submitQuestionToQuestionnaire(questionnaireId:number, questionId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
