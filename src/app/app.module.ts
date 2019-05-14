@@ -17,6 +17,7 @@ import {QuestionnaireService} from './services/questionnaire.service';
 import {ClientChatComponent} from './components/client-chat/client-chat.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {CreateEmployeeComponent} from './components/admin/create-employee/create-employee.component';
+import { CrudQuestionsComponent } from './components/crud-questions/crud-questions.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {CreateEmployeeComponent} from './components/admin/create-employee/create
     HomeComponent,
     QuestionnaireComponent,
     CreateEmployeeComponent,
+    CrudQuestionsComponent,
   ],
   imports: [
     BrowserModule,
