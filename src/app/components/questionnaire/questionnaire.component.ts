@@ -18,10 +18,9 @@ export class QuestionnaireComponent implements OnInit {
 
 
   QuestionCount = 1;
-  category = 0;
   geenVragenOver = false;
 
-  questionnaire =  new Questionnaire(0,0);
+  questionnaire =  new Questionnaire(0,1);
 
 
   constructor(private questionnaireservice: QuestionnaireService, private changeDetector: ChangeDetectorRef) {
@@ -33,6 +32,7 @@ export class QuestionnaireComponent implements OnInit {
   geenVragenMeer() {
     this.geenVragenOver = true;
     console.log('deze methode is aangeroepen');
+    //Verplaats de user id met get user id
     this.questionnaireservice.submitQuestionnaireToUser(2335216 ,this.questionnaire.id).subscribe(
       (error: any) => console.log(error)
     );
@@ -49,10 +49,9 @@ export class QuestionnaireComponent implements OnInit {
 
 
         questionnaire.id = holder[holder.length - 1].id + 1;
-        questionnaire.created = 1111;
 
 
-        this.questionnaireservice.submitQuestionnaire(questionnaire).subscribe(
+        this.questionnaireservice.submitQuestionnaire(questionnaire,Date.now()).subscribe(
           (data: Questionnaire) => {
             console.log(data);
           },
