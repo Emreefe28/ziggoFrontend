@@ -4,13 +4,13 @@ import {Category} from './category.model';
 export class Questionnaire{
 
    id:number;
-   created:number;
+   _created:number;
    questions:[Question];
    category:Category;
 
 
   constructor(id: number, created: number) {
     this.id = id;
-    this.created = created;
+    this._created = created;
   }
 }

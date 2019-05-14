@@ -21,11 +21,8 @@ export class QuestionnaireComponent implements OnInit {
   category = 0;
   geenVragenOver = false;
 
-<<<<<<< HEAD
    questionnaire =  new Questionnaire(0,1);
-=======
-  questionnaire =  new Questionnaire(0,0);
->>>>>>> parent of ff19b59... werkt bijna helemaal
+
 
 
   constructor(private questionnaireservice: QuestionnaireService, private changeDetector: ChangeDetectorRef) {
@@ -53,10 +50,10 @@ export class QuestionnaireComponent implements OnInit {
 
 
         questionnaire.id = holder[holder.length - 1].id + 1;
-        questionnaire.created = 1111;
+        questionnaire._created = Date.now();
 
 
-        this.questionnaireservice.submitQuestionnaire(questionnaire).subscribe(
+        this.questionnaireservice.submitQuestionnaire(questionnaire,Date.now()).subscribe(
           (data: Questionnaire) => {
             console.log(data);
           },
