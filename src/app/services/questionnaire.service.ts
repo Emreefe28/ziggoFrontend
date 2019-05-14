@@ -15,9 +15,6 @@ export class QuestionnaireService {
 
   }
 
-
-
-
    category =1;
   private questionnaireId:number;
   private question:Question;
@@ -103,7 +100,7 @@ export class QuestionnaireService {
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.addQuestionnaireToUserUrl+userId+'/'+questionnaireId,{},  {headers});
   }
-  
+
   submitQuestionToQuestionnaire(questionnaireId:number, questionId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -130,4 +127,7 @@ export class QuestionnaireService {
       .pipe(map(data => data as Question[]));
   }
 
+  deleteQuestion(id: number): Observable<QuestionnaireService> {
+    return this.http.delete<QuestionnaireService>(this.baseUrl + '/' + id);
+  }
 }

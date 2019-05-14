@@ -8,6 +8,7 @@ import {AdminComponent} from './components/admin/admin.component';
 import {UsersComponent} from './components/admin/users/users.component';
 import {HomeComponent} from './components/home/home.component';
 import {QuestionnaireComponent} from "./components/questionnaire/questionnaire.component";
+import {CrudQuestionsComponent} from "./components/crud-questions/crud-questions.component";
 
 const routes: Routes = [
 
@@ -27,6 +28,11 @@ const routes: Routes = [
   },
 
   {
+    path: 'crud-questions',
+    component: CrudQuestionsComponent
+  },
+
+  {
     path: 'admin',
     component: AdminComponent
     , children: [
@@ -36,7 +42,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: 'crud-questions', pathMatch: 'full' }
 ];
 
 @NgModule({
