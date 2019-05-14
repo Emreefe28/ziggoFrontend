@@ -83,11 +83,16 @@ export class QuestionnaireService {
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
 
+<<<<<<< HEAD
   submitQuestionnaire(model: Questionnaire, date:number): Observable<Questionnaire> {
     console.log("Questionnaire id is: "+ model.id+" created value is: "+ model._created);
+=======
+  submitQuestionnaire(model: Questionnaire): Observable<Questionnaire> {
+    console.log("Questionnaire id is: "+ model.id+" created value is: "+ model.created);
+>>>>>>> parent of ff19b59... werkt bijna helemaal
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Questionnaire>(this.postQuestionnaireUrl+'/'+date, model, {headers});
+    return this.http.post<Questionnaire>(this.postQuestionnaireUrl, model, {headers});
   }
 
 
@@ -101,6 +106,14 @@ export class QuestionnaireService {
     return this.http.post(this.addQuestionnaireToUserUrl+userId+'/'+questionnaireId,{},  {headers});
   }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> parent of ff19b59... werkt bijna helemaal
   submitQuestionToQuestionnaire(questionnaireId:number, questionId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
