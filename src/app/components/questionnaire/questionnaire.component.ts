@@ -63,8 +63,17 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
+  answerFalse(question:Question){
+    question.solved=false;
+    this.postQuestion(question);
+  }
 
-  answerFalse(question:Question) {
+  answerTrue(question:Question){
+    question.solved=true;
+    this.postQuestion(question);
+  }
+
+  postQuestion(question:Question) {
 
     console.log("Questionnaire id:"+this.questionnaire.id)
 
@@ -76,7 +85,6 @@ export class QuestionnaireComponent implements OnInit {
 
 
         question.id= iets[iets.length-1].id+1;
-        question.solved=false;
 
 
         this.questionnaireservice.submitQuestion(question).subscribe(
@@ -111,29 +119,25 @@ export class QuestionnaireComponent implements OnInit {
 
 
 
-  answerTrue(question:Question) {
 
-    //Get questions. define question id op zelfde manier als questionnaire. Commit deze naar de database.
-    //Commit vervolgens de question id naar de questionnaire van userid.
-    question.solved=true;
-
-  }
 
   nextQuestion() {
     // console.log("nextQuestionCount: "+this.QuestionCount
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
 
     if (this.QuestionCount < this.questions.length) {
-      this.htmlQuestions.push(this.questions[this.QuestionCount-1]);
+      this.htmlQuestions.push(this.questions[this.QuestionCount]);
       this.answerFalse(this.questions[this.QuestionCount-1]);
 
       this.QuestionCount++;
 
     }
     else if(this.QuestionCount==this.questions.length){
+      console.log("lengte vragen:"+ this.questions.length);
       this.answerFalse(this.questions[this.QuestionCount-1]);
+      this.QuestionCount++;
     }
-    else if (this.QuestionCount > this.questions.length) {
+     if (this.QuestionCount > this.questions.length) {
       console.log('er zijn geen vragen meer. Roep gerust een supercoole functie aan om chatknop ' +
         'tevoorschijn te halen');
       this.geenVragenMeer();

@@ -54,7 +54,7 @@ export class QuestionnaireService {
   questionCountUrl =this.baseUrl+'/true';
 
 
-  getQuestionsUrl= this.baseUrl+'/questionnaire/questions/1';
+  getQuestionsUrl= this.baseUrl+'/questionnaire/questions/';
 
   getQuestionnairesUrl= this.baseUrl+'/questionnaire';
   //this.getQuestionnaireId();
@@ -98,7 +98,6 @@ export class QuestionnaireService {
 
 
 
-  //MOET NOG GEIMPLEMENTEERD WORDEN
   submitQuestionnaireToUser(userId:number, questionnaireId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -118,7 +117,7 @@ export class QuestionnaireService {
 
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get(this.getQuestionsUrl)
+    return this.http.get(this.getQuestionsUrl+this.category)
       .pipe(map(data => data as Question[]));
   }
 
