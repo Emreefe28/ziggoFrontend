@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StatisticsService} from '../../../services/statistics.service';
 import {Stats} from '../../../models/stats.model';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-statistics',
@@ -10,12 +11,14 @@ import {Stats} from '../../../models/stats.model';
 export class StatisticsComponent implements OnInit {
 
   stats: Stats = new Stats();
-    barChartOptions = {
+  barChartOptions = {
     scaleShowVerticalLines: true,
     responsive: true,
-
+    scales: {
+      yAxes: [{id: 'y-axis-1', ticks: {min: 0, stepSize: 1}}]
+    }
   };
-    myColors = [
+  myColors = [
     {
       backgroundColor: '#E92400',
       borderColor: '#E92400',
@@ -24,7 +27,7 @@ export class StatisticsComponent implements OnInit {
       pointHoverBackgroundColor: '#E92400',
       pointHoverBorderColor: '#E92400'
     }];
-    barChartLabels = [
+  barChartLabels = [
     'January',
     'February',
     'March',
@@ -38,9 +41,9 @@ export class StatisticsComponent implements OnInit {
     'October',
     'November',
     'December'];
-    barChartType = 'bar';
-    barChartLegend = false;
-    barChartData = [
+  barChartType = 'bar';
+  barChartLegend = false;
+  barChartData = [
     {
       data: [0, 0, 0, 0, 0, 0, 0], label: 'Chats'
     }];
@@ -73,6 +76,4 @@ export class StatisticsComponent implements OnInit {
       }
     );
   }
-
-
 }

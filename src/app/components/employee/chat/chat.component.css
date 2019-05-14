@@ -87,6 +87,10 @@ mat-nav-list .mat-list-item:hover {
   overflow: hidden;
 }
 
+.edit-btn{
+  color: #555353 ;
+}
+
 .employee-chatbox {
   height: 90px;
   background-color: white;
