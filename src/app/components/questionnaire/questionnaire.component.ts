@@ -34,9 +34,7 @@ export class QuestionnaireComponent implements OnInit {
   geenVragenMeer() {
     this.geenVragenOver = true;
     console.log('deze methode is aangeroepen');
-    this.questionnaireservice.submitQuestionnaireToUser(2335216 ,this.questionnaire.id).subscribe(
-      (error: any) => console.log(error)
-    );
+
 
 }
 
@@ -56,9 +54,14 @@ export class QuestionnaireComponent implements OnInit {
         this.questionnaireservice.submitQuestionnaire(questionnaire,this.category,Date.now()).subscribe(
           (data: Questionnaire) => {
             console.log(data);
+            this.questionnaireservice.submitQuestionnaireToUser(2335216 ,this.questionnaire.id).subscribe(
+              (error: any) => console.log(error)
+            );
           },
           (error: any) => console.log(error)
         );
+
+
       }
     );
 
@@ -161,7 +164,6 @@ export class QuestionnaireComponent implements OnInit {
 
     this.category=this.questionnaireservice.getCategory();
 
-    this.submitQuestionnaire(this.questionnaire);
 
 
     this.questionnaireservice.getQuestions().subscribe(
