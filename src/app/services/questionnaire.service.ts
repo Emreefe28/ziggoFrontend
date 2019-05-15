@@ -121,6 +121,8 @@ export class QuestionnaireService {
 
 
   getQuestions(): Observable<Question[]> {
+
+    console.log("De category in get questions is: "+this.category);
     return this.http.get(this.getQuestionsUrl+this.category)
       .pipe(map(data => data as Question[]));
   }

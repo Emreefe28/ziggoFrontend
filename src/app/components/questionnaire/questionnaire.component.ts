@@ -41,6 +41,7 @@ export class QuestionnaireComponent implements OnInit {
 
   submitQuestionnaire(questionnaire:Questionnaire) {
 
+    this.firstQuestion=false;
     var holder = [];
     this.questionnaireservice.getQuestionnaires().subscribe(
       data => {
