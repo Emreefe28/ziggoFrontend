@@ -21,6 +21,7 @@ export class QuestionnaireComponent implements OnInit {
   QuestionCount = 1;
   category = 0;
   geenVragenOver = false;
+  jaGeantwoord=false;
 
   questionnaire =  new Questionnaire(0,0);
 
@@ -69,13 +70,16 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   answerFalse(question:Question){
+    this.jaGeantwoord=false;
     question.solved=false;
     this.postQuestion(question);
+
   }
 
   answerTrue(question:Question){
     question.solved=true;
     this.postQuestion(question);
+    this.jaGeantwoord=true;
   }
 
   postQuestion(question:Question) {
@@ -134,8 +138,8 @@ export class QuestionnaireComponent implements OnInit {
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
 
     if (this.QuestionCount < this.questions.length) {
-      this.htmlQuestions.push(this.questions[this.QuestionCount]);
       this.answerFalse(question);
+      this.htmlQuestions.push(this.questions[this.QuestionCount]);
 
       this.QuestionCount++;
 
