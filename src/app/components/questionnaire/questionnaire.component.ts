@@ -16,6 +16,7 @@ export class QuestionnaireComponent implements OnInit {
   questions = [];
   htmlQuestions = [];
 
+  firstQuestion=true;
 
   QuestionCount = 1;
   category = 0;
@@ -75,6 +76,9 @@ export class QuestionnaireComponent implements OnInit {
 
   postQuestion(question:Question) {
 
+    if(this.firstQuestion==true){
+      this.submitQuestionnaire(this.questionnaire)
+    }
     console.log("Questionnaire id:"+this.questionnaire.id)
 
     var iets = [];
