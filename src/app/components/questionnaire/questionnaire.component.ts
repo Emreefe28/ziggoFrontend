@@ -52,7 +52,7 @@ export class QuestionnaireComponent implements OnInit {
         questionnaire._created = Date.now();
 
 
-        this.questionnaireservice.submitQuestionnaire(questionnaire,Date.now()).subscribe(
+        this.questionnaireservice.submitQuestionnaire(questionnaire,this.category,Date.now()).subscribe(
           (data: Questionnaire) => {
             console.log(data);
           },
@@ -121,20 +121,20 @@ export class QuestionnaireComponent implements OnInit {
 
 
 
-  nextQuestion() {
+  nextQuestion(question:Question) {
     // console.log("nextQuestionCount: "+this.QuestionCount
     // +"questionarray length: "+ this.questions[this.category].vragen.length);
 
     if (this.QuestionCount < this.questions.length) {
       this.htmlQuestions.push(this.questions[this.QuestionCount]);
-      this.answerFalse(this.questions[this.QuestionCount-1]);
+      this.answerFalse(question);
 
       this.QuestionCount++;
 
     }
     else if(this.QuestionCount==this.questions.length){
       console.log("lengte vragen:"+ this.questions.length);
-      this.answerFalse(this.questions[this.QuestionCount-1]);
+      this.answerFalse(question);
       this.QuestionCount++;
     }
      if (this.QuestionCount > this.questions.length) {
@@ -151,11 +151,13 @@ export class QuestionnaireComponent implements OnInit {
 
 
     console.log("submitting questionnaire");
+
+
+
+
+    this.category=this.questionnaireservice.getCategory();
+
     this.submitQuestionnaire(this.questionnaire);
-
-
-
-    console.log(this.questionnaireservice.getCategory());
 
 
     this.questionnaireservice.getQuestions().subscribe(

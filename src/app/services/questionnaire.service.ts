@@ -65,7 +65,7 @@ export class QuestionnaireService {
 
   addQuestionToQuestionnaireUrl=this.baseUrl+'/addquestion/questionnaire/';
 
-  postQuestionnaireUrl=this.baseUrl+'/addquestionnaire/' +this.category;
+  postQuestionnaireUrl=this.baseUrl+'/addquestionnaire/'
 
   addQuestionnaireToUser='http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionaire/user/';
 
@@ -88,11 +88,12 @@ export class QuestionnaireService {
     return this.http.post<Question>(this.postQuestionUrl, model, {headers});
   }
 
-  submitQuestionnaire(model: Questionnaire, date:number): Observable<Questionnaire> {
+  submitQuestionnaire(model: Questionnaire, category:number, date:number): Observable<Questionnaire> {
+    console.log("tijd is: "+Date.now());
     console.log("Questionnaire id is: "+ model.id+" created value is: "+ model._created);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<Questionnaire>(this.postQuestionnaireUrl+'/'+date, model, {headers});
+    return this.http.post<Questionnaire>(this.postQuestionnaireUrl+ category+'/'+date, model, {headers});
   }
 
 
@@ -114,6 +115,7 @@ export class QuestionnaireService {
   submitQuestionToQuestionnaire(questionnaireId:number, questionId:number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    console.log("De categorie is: "+this.category);
     return this.http.post(this.addQuestionToQuestionnaireUrl+questionnaireId+'/'+questionId,  {},{headers});
   }
 
