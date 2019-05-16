@@ -1,19 +1,72 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User} from '../models/user.model';
 import {map} from 'rxjs/operators';
 import {Question} from '../models/question.model';
+import {Questionnaire} from '../models/questionnaire.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionnaireService {
+  constructor(private http: HttpClient) {
 
-  private category: number;
+  }
+
+
+  baseUrl = 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question';
+
+  questionCountUrl = this.baseUrl + '/true';
+
+
+  getQuestionsUrl = this.baseUrl + '/questionnaire/questions/';
+
+  getQuestionnairesUrl = this.baseUrl + '/questionnaire';
+
+  // this.getQuestionnaireId();
+  allQuestionsUrl = this.baseUrl;
+
+  postQuestionUrl = this.baseUrl + '/addquestion';
+
+  addQuestionToQuestionnaireUrl = this.baseUrl + '/addquestion/questionnaire/';
+
+  postQuestionnaireUrl = this.baseUrl + '/addquestionnaire/';
+
+  addQuestionnaireToUser = 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionaire/user/';
+
+  cssquestionnaire;
+
+
+  category = 1;
+  private questionnaireId: number;
+  private question: Question;
+
+  getQuestion(): Question {
+    console.log('questionnaire id is:' + this.question);
+    return this.question;
+  }
+
+  setQuestion(value: Question) {
+    console.log('questionnaire id is:' + this.question);
+    return this.question;
+  }
+
+
+  setQuestionnaireId(value: number) {
+    this.questionnaireId = value;
+    console.log('DE QUESTIONNAIRE ID IS NU' + this.questionnaireId);
+
+  }
+
+
+  getQuestionnaireId(): number {
+    console.log('questionnaire id is:' + this.questionnaireId);
+    return this.questionnaireId;
+  }
 
 
   getCategory(): number {
+    console.log('De category is momenteel: ' + this.category);
     return this.category;
   }
 
@@ -21,15 +74,56 @@ export class QuestionnaireService {
     this.category = value;
   }
 
-  serviceUrl = 'https://api.myjson.com/bins/16yew0';
+  submitQuestion(model: Question): Observable<Question> {
+    console.log('Question id:' + model.id + ' Solved: ' + model.solved + ' vraag: ' + model.question + ' Title:' + model.title);
 
-  constructor(private http: HttpClient) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<Question>(this.postQuestionUrl, model, {headers});
+  }
 
+  submitQuestionnaire(model: Questionnaire, category: number, date: number): Observable<Questionnaire> {
+    console.log('tijd is: ' + Date.now());
+    console.log('Questionnaire id is: ' + model.id + ' created value is: ' + model._created);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<Questionnaire>(this.postQuestionnaireUrl + category + '/' + date, model, {headers});
+  }
+
+
+  submitQuestionnaireToUser(userId: number, questionnaireId: number) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.addQuestionnaireToUser + userId + '/' + questionnaireId, null, {headers});
+  }
+
+  submitQuestionToQuestionnaire(questionnaireId: number, questionId: number) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    console.log('De categorie is: ' + this.category);
+    return this.http.post(this.addQuestionToQuestionnaireUrl + questionnaireId + '/' + questionId, {}, {headers});
   }
 
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get(this.serviceUrl)
+
+    console.log('De category in get questions is: ' + this.category);
+    return this.http.get(this.getQuestionsUrl + this.category)
+      .pipe(map(data => data as Question[]));
+  }
+
+  getQuestionnaires(): Observable<Questionnaire[]> {
+    return this.http.get(this.getQuestionnairesUrl)
+      .pipe(map(data => data as Questionnaire[]));
+  }
+
+  getQuestionCount(): Observable<number> {
+    return this.http.get(this.questionCountUrl)
+      .pipe(map(data => data as number));
+  }
+
+  getAllQuestions(): Observable<Question[]> {
+    return this.http.get(this.allQuestionsUrl)
       .pipe(map(data => data as Question[]));
   }
 

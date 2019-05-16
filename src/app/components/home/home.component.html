@@ -39,16 +39,14 @@
     <div class="content__cards">
 
       <a routerLink="/questionnaire">
-        <mat-card (click)="toCategory(0)" class="nav-card">
-          <img class="nav-card-img" src="../../../assets/images/kabel-icon.png" alt="cable icon">
-          <mat-card-content>
-            <span class="nav-card-title">Kabel internet</span>
-          </mat-card-content>
-        </mat-card>
-      </a>
-
-      <a routerLink="/questionnaire">
         <mat-card (click)="toCategory(1)" class="nav-card">
+         <img class="nav-card-img" src="../../../assets/images/kabel-icon.png" alt="cable icon">
+        <mat-card-content>
+          <span class="nav-card-title">Kabel internet</span>
+        </mat-card-content>
+      </mat-card></a>
+      <a routerLink="/questionnaire">
+        <mat-card (click)="toCategory(2)" class="nav-card">
           <img class="nav-card-img" src="../../../assets/images/slow_wifi.png" alt="cable icon">
           <mat-card-content>
             <span class="nav-card-title">Traag wifi</span>
@@ -58,7 +56,7 @@
 
 
       <a routerLink="/questionnaire">
-        <mat-card (click)="toCategory(2)" class="nav-card">
+        <mat-card (click)="toCategory(3)" class="nav-card">
           <img class="nav-card-img" src="../../../assets/images/no_wifi.png" alt="cable icon">
           <mat-card-content>
             <span class="nav-card-title">Wifi werkt niet</span>

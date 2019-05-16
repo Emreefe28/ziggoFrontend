@@ -31,20 +31,20 @@
   </mat-toolbar>
 
   <div class="main-content">
-      <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" *ngFor="let question of pureQuestions">
 
-
+    <div *ngFor="let question of htmlQuestions; let i =index ">
+      <div class="troubleshoot-card mdl-card mdl-shadow--2dp" id="troubleshoot-card__radio" >
         <div class="troubleshoot-card-title mdl-card__title">
 
-          <div class=" mdl-card__title-text troubleshoot-card__numbering">{{question.questionId}}</div>
-          <h2 class="mdl-card__title-text">{{question.titel}}</h2>
+          <div class=" mdl-card__title-text troubleshoot-card__numbering">{{i+1}}</div>
+          <h2 class="mdl-card__title-text">{{question.title}}</h2>
         </div>
 
         <div class="troubleshoot-card__content mdl-card__supporting-text " align="left">
 
 
           <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
-            <p>{{question.content}}</p>
+            <p>{{question.question}}</p>
 
 
             <p><b>Heeft dit uw probleem opgelost?</b></p>
@@ -55,12 +55,12 @@
               <div class="troubleshoot-card__layout-row">
                 <div class="troubleshoot-card__layout-cell ">
                   <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised"
-                          (click)="nextQuestion()">
+                          (click)="nextQuestion(question)">
                     Nee
                   </button>
                 </div>
                 <div class="troubleshoot-card__layout-cell">
-                  <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+                  <button class="confirmation-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised"(click)="answerTrue(question)">
                     Ja
                   </button>
                 </div>
@@ -69,7 +69,41 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <div *ngIf="jaGeantwoord">
+      <div class="troubleshoot-card mdl-card mdl-shadow--2dp"  >
+        <div class="troubleshoot-card-title mdl-card__title">
+
+          <div class=" mdl-card__title-text troubleshoot-card__numbering">-</div>
+          <h2 class="mdl-card__title-text"></h2>
+        </div>
+
+        <div class="troubleshoot-card__content mdl-card__supporting-text " align="left">
+
+
+          <div class="troubleshoot-card__layout-cell mdl-card__supporting-text">
+            <p>Fijn dat uw probleem is opgelost!</p>
+
+
+            <p><b>Als u nog eens problemen heeft kunt u op deze site terecht!</b></p>
+
+            <p></p>
+
+            <div class="troubleshoot-card__content troubleshoot-card__layout mdl-card__supporting-text">
+              <div class="troubleshoot-card__layout-row">
+                <div class="troubleshoot-card__layout-cell ">
+
+                </div>
+                <div class="troubleshoot-card__layout-cell">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
