@@ -7,7 +7,6 @@ export class User {
   name: string;
   surname: string;
   jwtToken: number;
-  questionnaires: [Questionnaire];
 
   constructor() {
     this.name = '';
