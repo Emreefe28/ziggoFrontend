@@ -7,7 +7,6 @@ import {AuthenticationService} from '@customer//_services';
 import {User} from '../../models/user.model';
 import {Subscription} from 'rxjs';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {CloseDialogComponent} from '../employee/chat/close-dialog/close-dialog.component';
 import {RatingDialogComponent} from './rating-dialog/rating-dialog.component';
 import {Chat} from '../../models/chat/chat.model';
 
@@ -20,6 +19,8 @@ export class ClientChatComponent implements OnInit {
   content: string;
   isHidden = true;
   allOffline = true;
+  showChat = false;
+  showOutro = false;
   chatToken = new ChatToken();
   user: User;
   currentUserSubscription: Subscription;
@@ -50,8 +51,9 @@ export class ClientChatComponent implements OnInit {
       this.scrollToBottom();
     });
     this.chatService.hasChatEnded().subscribe(() => {
-      this.isHidden = true;
       this.rateChat();
+      this.showChat = false;
+      this.showOutro = true;
     });
   }
 
@@ -64,13 +66,14 @@ export class ClientChatComponent implements OnInit {
   }
 
   startChat() {
-    this.chatToken  = new ChatToken();
+    this.chatToken = new ChatToken();
     this.chatToken.client = this.user;
     this.chatService.connectToEmployee(this.chatToken);
     this.chatService.whoJoinedRoom().subscribe(chatToken => {
       this.chatToken = chatToken;
     });
     this.isHidden = false;
+    this.showChat = true;
   }
 
   rateChat() {
@@ -79,6 +82,10 @@ export class ClientChatComponent implements OnInit {
       this.chatService.rateChat(this.chatToken.chat.id, rating).subscribe(
         (data: Chat) => {
           console.log(data);
+          setTimeout(() => {
+              close();
+            },
+            2500);
         },
         (error: any) => console.log(error)
       );

@@ -9,6 +9,7 @@
       </svg>
       <span class="spacer"></span>
       <div *ngIf="currentUser">
+        <span style="font-size: 16px">welkom, {{currentUser.name + ' ' + currentUser.surname}}</span>
         <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-user fa-2x" style="color: #FF4C00;"></i></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="logout()">Logout</button>

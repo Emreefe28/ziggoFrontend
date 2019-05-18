@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar [hidden]="showOutro">
   <mat-toolbar-row class="top-header">
     <span [hidden]="!isHidden">Chat met ons.</span>
     <span [hidden]="isHidden">{{chatToken.employee.name}}</span>
@@ -16,7 +16,7 @@
     <span class="spacer"></span>
   </mat-toolbar-row>
 </mat-toolbar>
-<ng-template [ngIf]="isHidden" [ngIfElse]="chat">
+<ng-template [ngIf]="isHidden">
   <div class="message-intro">
     <span>Welkom bij live chat van VodafoneZiggo. Kom je er zelf niet uit en heb je een vraag? We helpen je graag! Chat nu met één van onze medewerkers.</span>
     <br> <br>
@@ -32,7 +32,7 @@
   </div>
 </ng-template>
 
-<ng-template #chat>
+<ng-template [ngIf]="showChat">
   <div class="chat-messages">
     <span>You are connected to: <b>{{chatToken.employee.name + ' ' + chatToken.employee.surname }}</b></span>
     <div *ngFor="let message of chatToken.chat.messages">
@@ -55,4 +55,12 @@
     </div>
   </div>
 
+</ng-template>
+<ng-template [ngIf]="showOutro">
+  <div class="outro">
+    <div class="outro-container">
+      <span class="outro-title"> Bedankt voor uw feedback</span><br>
+      <span class="outro-message">(Dit venster wordt over enkele seconden gesloten)</span>
+    </div>
+  </div>
 </ng-template>
