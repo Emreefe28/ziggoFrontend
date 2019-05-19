@@ -11,6 +11,7 @@ import {QuestionnaireComponent} from './components/questionnaire/questionnaire.c
 import {LoginComponent} from './components/customer/login';
 import {RegisterComponent} from './components/customer/register';
 import {StatisticsComponent} from './components/admin/statistics/statistics.component';
+import {QuestionnaireManagerComponent} from './components/admin/questionnaire-manager/questionnaire-manager.component';
 
 const routes: Routes = [
 
@@ -31,13 +32,14 @@ const routes: Routes = [
     component: QuestionnaireComponent
 
   },
-
   {
     path: 'admin',
     component: AdminComponent
     , children: [
       {path: 'users', component: UsersComponent},
-      {path: 'statistics', component: StatisticsComponent}]
+      {path: 'statistics', component: StatisticsComponent},
+      {path: 'questionnaire', component: QuestionnaireManagerComponent},
+      { path: '**', redirectTo: 'statistics', pathMatch: 'full' }]
   },
   {
     path: 'home',

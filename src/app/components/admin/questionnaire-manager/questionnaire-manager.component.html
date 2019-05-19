@@ -1,0 +1,42 @@
+<div class="content">
+  <div class="header">
+    <h1>Questionnaires</h1>
+    <div><span class="data-display">Total Questionnaires: 10</span>
+      <span class="data-display">Currently displayed: 3/10</span>
+    </div>
+  </div>
+  <div class="action-row">
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <button mat-stroked-button id="add-btn">Add</button>
+  <mat-card class="table-card">
+    <div class="questionnaire-table">
+      <div id="table-header">
+        <div class="questionnaire-table-column"><span>Name</span></div>
+        <div class="questionnaire-table-column"><span>Category</span></div>
+        <div class="questionnaire-table-column"><span>Status</span></div>
+        <div class="questionnaire-table-column"><span>Created</span></div>
+        <div class="questionnaire-table-column"><span>Operation</span></div>
+      </div>
+      <div *ngFor="let questionnaire of questionnaires; let i = index  ">
+        <mat-divider></mat-divider>
+        <div class="questionnaire-table-row">
+          <div class="questionnaire-table-column"><span>trial</span></div>
+          <div class="questionnaire-table-column"><span>Geen internet</span></div>
+          <div class="questionnaire-table-column"><span>Inactive</span></div>
+          <div class="questionnaire-table-column"><span>2019-06-02 09:00:00</span></div>
+          <div class="questionnaire-table-column">
+            <button mat-icon-button>
+              <i class="fas fa-edit fa-2x action-btn edit"></i>
+            </button>
+            <button mat-icon-button>
+              <i class="fas fa-trash-alt fa-2x action-btn delete"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

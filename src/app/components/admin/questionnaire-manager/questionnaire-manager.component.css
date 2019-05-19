@@ -1,0 +1,63 @@
+h1 {
+  font-weight: bolder;
+  color: #8B8B8B;
+  font-size: 40px;
+}
+
+.content {
+  margin: 15px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.data-display{
+  color: #8B8B8B;
+  font-weight: bold;
+  display:block
+}
+.action-row{
+  display: flex;
+  justify-content: flex-end;
+}
+.table-card{
+  padding: 0;
+}
+.questionnaire-table{
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+#table-header{
+  color: #8B8B8B;
+  font-weight: bold;
+  display: table-row;
+  width: 100%;
+}
+.questionnaire-table-row{
+  display: table-row;
+  width: 100%;
+}
+.questionnaire-table-row:hover{
+  background-color: #EBEBEB;
+}
+.questionnaire-table-column{
+   display: table-cell;
+  color: #5D5D5D;
+  padding: 10px;
+}
+#add-btn{
+  font-weight: bold;
+  max-height: 30px;
+  margin-bottom: 2px;
+}
+.action-btn{
+  margin: 5px;
+}
+.edit {
+  color: #F48C00;
+}
+.delete {
+  color: #E60000;
+}

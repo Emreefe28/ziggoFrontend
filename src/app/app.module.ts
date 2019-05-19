@@ -25,6 +25,7 @@ import { CloseDialogComponent } from './components/employee/chat/close-dialog/cl
 import { RatingDialogComponent } from './components/client-chat/rating-dialog/rating-dialog.component';
 import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 import { ChartsModule } from 'ng2-charts';
+import { QuestionnaireManagerComponent } from './components/admin/questionnaire-manager/questionnaire-manager.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { ChartsModule } from 'ng2-charts';
     RegisterComponent,
     CloseDialogComponent,
     RatingDialogComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    QuestionnaireManagerComponent
   ],
   imports: [
     BrowserModule,
