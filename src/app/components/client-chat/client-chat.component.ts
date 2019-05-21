@@ -29,8 +29,7 @@ export class ClientChatComponent implements OnInit {
               private el: ElementRef,
               private authenticationService: AuthenticationService,
               private dialog: MatDialog) {
-    this.authenticationService.checkIfLoggedIn();
-    if (authenticationService.loggedIn === true) {
+    if (this.authenticationService.currentUserValue) {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
         this.user = user;
       });

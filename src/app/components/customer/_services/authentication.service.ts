@@ -10,7 +10,6 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   private userService: UserService;
-  public loggedIn: boolean;
 
 
   constructor(private http: HttpClient, private router: Router ) {
@@ -22,17 +21,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  checkIfLoggedIn() {
-    if (this.currentUserSubject.value) {
-      this.loggedIn = true;
-    }
-  }
 
   authenticate(user: User) {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
-    this.loggedIn = true;
-
   }
 
   // TODO: endpoint works, just need to make it work on frontend
@@ -45,6 +37,5 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.loggedIn = false;
   }
 }

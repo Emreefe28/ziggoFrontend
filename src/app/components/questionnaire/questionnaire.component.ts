@@ -2,6 +2,9 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../../services/questionnaire.service';
 import {Question} from '../../models/question.model';
 import {Questionnaire} from '../../models/questionnaire.model';
+import {AuthenticationService} from "@customer//_services";
+import {User} from "../../models/user.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-questionnaire',
@@ -22,8 +25,18 @@ export class QuestionnaireComponent implements OnInit {
 
   questionnaire = new Questionnaire(0, 0);
 
+  currentUser: User;
+  currentUserSubscription: Subscription;
 
-  constructor(private questionnaireservice: QuestionnaireService, private changeDetector: ChangeDetectorRef) {
+  constructor(private questionnaireservice: QuestionnaireService,
+              private changeDetector: ChangeDetectorRef,
+              private authenticationService: AuthenticationService) {
+
+    if (this.authenticationService.currentUserValue) {
+      this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+        this.currentUser = user;
+      });
+    }
 
 
   }
