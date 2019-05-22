@@ -10,6 +10,8 @@ import {Category} from '../../../models/category.model';
 })
 export class QuestionnaireManagerComponent implements OnInit {
   questionnaires;
+  showQuestionnaireDetails = false;
+  showQuestionDetails = false;
   showList = true;
   currentQuestionnaire: Questionnaire;
   categories: Category[] = [
@@ -29,14 +31,17 @@ export class QuestionnaireManagerComponent implements OnInit {
 
   newQuestionnaire() {
     this.showList = false;
+    this.showQuestionnaireDetails = true;
   }
 
   cancelAdd() {
     this.showList = true;
+    this.showQuestionnaireDetails = false;
   }
 
   saveQuestionnaire() {
     this.showList = true;
+    this.showQuestionnaireDetails = false;
   }
 
   getImage(category) {
@@ -54,6 +59,14 @@ export class QuestionnaireManagerComponent implements OnInit {
   }
 
   newQuestion() {
+    this.showQuestionDetails = true;
+  }
 
+  cancelQuestion() {
+    this.showQuestionDetails = false;
+  }
+
+  saveQuestion() {
+    this.showQuestionDetails = false;
   }
 }

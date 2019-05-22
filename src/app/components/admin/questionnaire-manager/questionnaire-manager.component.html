@@ -1,5 +1,5 @@
 <div class="content">
-  <ng-template [ngIf]="showList" [ngIfElse]="addQuestionnaire">
+  <ng-template [ngIf]="showList">
     <div class="header">
       <h1>Questionnaires</h1>
       <div><span class="data-display">Total Questionnaires: 10</span>
@@ -41,10 +41,10 @@
       </div>
     </mat-card>
   </ng-template>
-  <ng-template #addQuestionnaire>
+  <ng-template [ngIf]="showQuestionnaireDetails">
     <div class="add-action">
       <button mat-stroked-button (click)="cancelAdd()">Cancel</button>
-      <button mat-stroked-button (click)="saveQuestionnaire()" id="add-save">Save</button>
+      <button mat-stroked-button (click)="saveQuestionnaire()" class="add-save">Save</button>
     </div>
     <mat-card class="questionnaire-details-card">
       <mat-card-header>
@@ -98,9 +98,29 @@
         </div>
       </div>
     </mat-card>
+    <mat-card class="question-card" *ngIf="showQuestionDetails">
+      <div class="question-form-row">
+        <div>
+          <mat-card-subtitle>Title</mat-card-subtitle>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Title">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-card-subtitle>Question</mat-card-subtitle>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Question">
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-card-actions class="question-card-actions">
+        <button mat-stroked-button (click)="cancelQuestion()">Cancel</button>
+        <button mat-stroked-button (click)="saveQuestion()" class="add-save">Save</button>
+      </mat-card-actions>
+    </mat-card>
     <mat-card class="question-card" id="addCard" (click)="newQuestion()">
       <i class="fas fa-plus-circle fa-2x"></i>
     </mat-card>
   </ng-template>
-  <ng-template></ng-template>
 </div>
