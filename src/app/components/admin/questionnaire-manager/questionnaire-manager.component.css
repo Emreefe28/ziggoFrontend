@@ -24,25 +24,25 @@ h1 {
 .table-card{
   padding: 0;
 }
-.questionnaire-table{
+.manager-table{
   display: table;
   table-layout: fixed;
   width: 100%;
 }
-#table-header{
+.manager-table-header{
   color: #8B8B8B;
   font-weight: bold;
   display: table-row;
   width: 100%;
 }
-.questionnaire-table-row{
+.manager-table-row{
   display: table-row;
   width: 100%;
 }
-.questionnaire-table-row:hover{
+.manager-table-row:hover{
   background-color: #EBEBEB;
 }
-.questionnaire-table-column{
+.manager-table-column{
    display: table-cell;
   color: #5D5D5D;
   padding: 10px;
@@ -60,4 +60,31 @@ h1 {
 }
 .delete {
   color: #E60000;
+}
+
+.add-action{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+#add-save:hover{
+  background-color: #FF8D00;
+  color: #ffffff;
+}
+
+.question-card{
+  margin-top: 10px;
+}
+#addCard{
+  background-color: transparent;
+  border: 2px dashed #5D5D5D;
+  color: #5D5D5D;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+#addCard:hover{
+  border-color: #FF8D00;
+  color: #FF8D00;
 }
