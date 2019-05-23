@@ -60,7 +60,7 @@
         <mat-card-subtitle>
           <mat-form-field>
             <mat-label>{{currentQuestionnaire.category.name}}</mat-label>
-            <mat-select>
+            <mat-select  [(value)]="currentQuestionnaire.category.name">
               <mat-option *ngFor="let category of categories" [value]="category.name">
                 {{category.name}}
               </mat-option>
