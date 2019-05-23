@@ -21,21 +21,20 @@
           <div class="manager-table-column"><span>Created</span></div>
           <div class="manager-table-column"><span>Operation</span></div>
         </div>
-        <div *ngFor="let questionnaire of questionnaires; let i = index  ">
-          <mat-divider></mat-divider>
-          <div class="manager-table-row">
-            <div class="manager-table-column"><span>trial</span></div>
-            <div class="manager-table-column"><span>Geen internet</span></div>
-            <div class="manager-table-column"><span>Inactive</span></div>
-            <div class="manager-table-column"><span>2019-06-02 09:00:00</span></div>
-            <div class="manager-table-column">
-              <button mat-icon-button>
-                <i class="fas fa-edit fa-2x action-btn edit"></i>
-              </button>
-              <button mat-icon-button>
-                <i class="fas fa-trash-alt fa-2x action-btn delete"></i>
-              </button>
-            </div>
+        <mat-divider></mat-divider>
+        <div class="manager-table-row">
+          <div class="manager-table-column"><span>trial</span></div>
+          <div class="manager-table-column"><span>Geen internet</span></div>
+          <div class="manager-table-column"><span>Inactive</span></div>
+          <div class="manager-table-column"><span>2019-06-02 09:00:00</span></div>
+          <div class="manager-table-column">
+            <button mat-icon-button>
+              <i class="fas fa-edit fa-2x action-btn edit"></i>
+            </button>
+            <button mat-icon-button>
+              <i class="fas fa-trash-alt fa-2x action-btn delete"></i>
+            </button>
+            <mat-slide-toggle>Active</mat-slide-toggle>
           </div>
         </div>
       </div>
@@ -79,21 +78,19 @@
           <div class="manager-table-column"><span>Created</span></div>
           <div class="manager-table-column"><span>Operation</span></div>
         </div>
-        <div *ngFor="let question of currentQuestionnaire.questions; let i = index ">
-          <mat-divider></mat-divider>
-          <div class=" manager-table-row">
-            <div class="manager-table-column"><span>trial</span></div>
-            <div class="manager-table-column"><span>Geen internet</span></div>
-            <div class="manager-table-column"><span>Inactive</span></div>
-            <div class="manager-table-column"><span>2019-06-02 09:00:00</span></div>
-            <div class="manager-table-column">
-              <button mat-icon-button>
-                <i class="fas fa-edit fa-2x action-btn edit"></i>
-              </button>
-              <button mat-icon-button>
-                <i class="fas fa-trash-alt fa-2x action-btn delete"></i>
-              </button>
-            </div>
+        <mat-divider></mat-divider>
+        <div class="manager-table-row">
+          <div class="manager-table-column"><span>trial</span></div>
+          <div class="manager-table-column"><span>Geen internet</span></div>
+          <div class="manager-table-column"><span>Inactive</span></div>
+          <div class="manager-table-column"><span>2019-06-02 09:00:00</span></div>
+          <div class="manager-table-column">
+            <button mat-icon-button>
+              <i class="fas fa-edit fa-2x action-btn edit"></i>
+            </button>
+            <button mat-icon-button>
+              <i class="fas fa-trash-alt fa-2x action-btn delete"></i>
+            </button>
           </div>
         </div>
       </div>

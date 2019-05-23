@@ -9,7 +9,8 @@ import {Category} from '../../../models/category.model';
 
 })
 export class QuestionnaireManagerComponent implements OnInit {
-  questionnaires;
+  questionnaires = [new Questionnaire()];
+  disabled = true;
   showQuestionnaireDetails = false;
   showQuestionDetails = false;
   showList = true;
@@ -26,7 +27,7 @@ export class QuestionnaireManagerComponent implements OnInit {
   ngOnInit() {
     this.currentQuestionnaire = new Questionnaire(1, Date.now());
     this.currentQuestionnaire.name = 'Poging 1';
-    this.currentQuestionnaire.category = new Category(1, 'geen internet');
+    this.currentQuestionnaire.category = new Category(2, 'geen wifi');
   }
 
   newQuestionnaire() {

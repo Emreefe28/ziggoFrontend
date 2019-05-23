@@ -6,11 +6,11 @@ export class Questionnaire {
   id: number;
   name: string;
   _created: number;
-  questions: [Question];
+  questions: Question[];
   category: Category;
+  active = true;
 
-
-  constructor(id: number, created: number) {
+  constructor(id?: number, created?: number) {
     this.id = id;
     this._created = created;
   }
