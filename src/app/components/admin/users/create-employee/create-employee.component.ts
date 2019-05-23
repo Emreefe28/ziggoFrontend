@@ -14,18 +14,17 @@ import {EmployeeService} from '../../../../services/employee.service';
 
 export class CreateEmployeeComponent implements OnInit {
   public employeeForm = new FormGroup({
-    username: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    role: new FormControl([], Validators.required)
+    department: new FormControl('', Validators.required),
   });
 
   constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private service: EmployeeService) {
   }
 
-  newEmployee;
+  newEmployee = new Employee(null, '', '', '', '', null, '');
 
   onSubmit(): void {
     this.service.createEmployee(this.newEmployee).subscribe(
@@ -35,6 +34,7 @@ export class CreateEmployeeComponent implements OnInit {
       },
       (error: any) => console.log(error)
     );
+    this.service.getEmployees();
   }
 
 
