@@ -9,6 +9,7 @@ import {Subscription} from 'rxjs';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {RatingDialogComponent} from './rating-dialog/rating-dialog.component';
 import {Chat} from '../../models/chat/chat.model';
+import {ErrorDialogComponent} from './error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-client-chat',
@@ -24,7 +25,7 @@ export class ClientChatComponent implements OnInit {
   chatToken = new ChatToken();
   user: User;
   currentUserSubscription: Subscription;
-  rateDialog: MatDialogRef<RatingDialogComponent>;
+  dialogRef: MatDialogRef<any>;
 
   constructor(private chatService: ChatService,
               private el: ElementRef,
@@ -46,14 +47,20 @@ export class ClientChatComponent implements OnInit {
         this.allOffline = false;
       }
     });
+
     this.chatService.getMessages().subscribe((token: MessageToken) => {
       this.chatToken.chat.messages.push(token.message);
       this.scrollToBottom();
     });
+
     this.chatService.hasChatEnded().subscribe(() => {
       this.rateChat();
       this.showChat = false;
       this.showOutro = true;
+    });
+
+    this.chatService.hasCheckedOut().subscribe(() => {
+      this.reconnect();
     });
   }
 
@@ -76,9 +83,24 @@ export class ClientChatComponent implements OnInit {
     this.showChat = true;
   }
 
+  reconnect() {
+    this.dialogRef = this.dialog.open(ErrorDialogComponent);
+    this.dialogRef.afterClosed().subscribe(() => {
+
+      this.chatService.whosOnline().subscribe(data => {
+        if (data === 0) {
+          this.isHidden = true;
+          this.showChat = false;
+        } else {
+          this.startChat();
+        }
+      });
+    });
+  }
+
   rateChat() {
-    this.rateDialog = this.dialog.open(RatingDialogComponent);
-    this.rateDialog.afterClosed().subscribe(rating => {
+    this.dialogRef = this.dialog.open(RatingDialogComponent);
+    this.dialogRef.afterClosed().subscribe(rating => {
       this.chatService.rateChat(this.chatToken.chat.id, rating).subscribe(
         (data: Chat) => {
           console.log(data);

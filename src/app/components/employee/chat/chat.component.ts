@@ -21,7 +21,7 @@ import {Chat} from '../../../models/chat/chat.model';
 export class ChatComponent implements OnInit {
   chatLabel = 'Klanten';
   content: string;
-  chats = Array<ChatToken>();
+  chats = new Array<ChatToken>();
   currentChat = new ChatToken();
   isOnline: boolean;
   isHidden = true;
@@ -73,7 +73,8 @@ export class ChatComponent implements OnInit {
     if (this.isOnline) {
       this.isOnline = false;
       this.status = 'offline';
-      this.chatService.checkOut();
+      this.chatService.checkOut(this.chats);
+      this.chats = new Array<ChatToken>();
     }
   }
 
@@ -165,11 +166,4 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  addEquipment() {
-
-  }
-
-  editEquipment() {
-
-  }
 }

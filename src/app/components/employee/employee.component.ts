@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {QuestionnaireService} from '../../services/questionnaire.service';
 import {AuthenticationService} from '@customer//_services';
 
 @Component({

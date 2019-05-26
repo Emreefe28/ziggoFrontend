@@ -78,8 +78,9 @@ export class ChatService {
     this.socket.emit('check-in', employee);
   }
 
-  public checkOut() {
-    this.socket.emit('check-out');
+  public checkOut(chats) {
+    console.log(chats);
+    this.socket.emit('check-out', chats);
   }
 
   public endChat(chat: Chat) {
@@ -99,6 +100,15 @@ export class ChatService {
       });
     });
   }
+
+  public hasCheckedOut() {
+    return Observable.create((observer) => {
+      this.socket.on('checked-out', () => {
+        observer.next();
+      });
+    });
+  }
+
   public rateChat(chatId: string, rating: number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
