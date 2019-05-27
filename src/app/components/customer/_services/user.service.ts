@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '@environments/environment';
 import {Observable} from 'rxjs';
 import {User} from '../../../models/user.model';
+import {Customer} from "../../../models/customer.model";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -20,7 +21,7 @@ export class UserService {
   }
 
 
-  register(user: User): Observable<any> {
+  register(user: Customer): Observable<any> {
     const headers = new HttpHeaders();
     UserService.createAuthorizationHeader(headers);
     return this.http.post(

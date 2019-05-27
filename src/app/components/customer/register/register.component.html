@@ -19,9 +19,21 @@
         </div>
       </mat-form-field>
       <mat-form-field  class="big-field">
+        <input matInput type="text" formControlName="address" class="form-control" placeholder="Adress" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required">Adress is required</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field  class="big-field">
+        <input matInput type="text" formControlName="phone" class="form-control" placeholder="Mobile phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+          <div *ngIf="f.phone.errors.required">Mobile phone is required</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field  class="big-field">
         <input matInput type="text" formControlName="email" class="form-control" placeholder="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-          <div *ngIf="f.email.errors.required">email is invalid</div>
+          <div *ngIf="f.email.errors.required">email is required</div>
           <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
         </div>
       </mat-form-field>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService, UserService, AuthenticationService } from '../_services';
-import {User} from '../../../models/user.model';
+import {Customer} from "../../../models/customer.model";
 
 @Component({templateUrl: 'register.component.html',
             styleUrls: ['../my-theme.scss' + '../styles.css']})
@@ -11,7 +11,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  user: User;
+  customer: Customer;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +30,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -46,11 +48,11 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.user = this.registerForm.value;
+    this.customer = this.registerForm.value;
 
     this.loading = true;
-    this.userService.register(this.user).subscribe(
-      (data: User) => {
+    this.userService.register(this.customer).subscribe(
+      (data: Customer) => {
         this.alertService.success('register successful', true);
         this.router.navigate(['/login']);
       },

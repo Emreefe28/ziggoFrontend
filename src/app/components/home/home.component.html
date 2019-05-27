@@ -29,10 +29,9 @@
   </mat-toolbar>
   <div class="content">
     <div class="content__text">
-      <span>Heb je geen internet of wifi? Is je verbinding traag of valt de verbinding steeds weg?</span>
-      <br>
-      <span>Stap voor stap gaan we je probleem oplossen.</span>
-      <br>
+      <div *ngIf="currentUser">
+       <h2>Welcome {{currentUser.firstName}} !</h2>
+      </div>
       <span style="color: #FF4C00; font-size: 24px; font-weight: bold;">Waar heb je problemen mee?</span>
       <span>Geef aan waar de storing zich voordoet. We helpen je graag met de oplossing.</span>
     </div>

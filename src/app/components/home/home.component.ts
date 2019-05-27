@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
         this.currentUser = user;
       });
+      console.log(this.currentUser);
     }
   }
 
