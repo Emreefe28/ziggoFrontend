@@ -18,7 +18,6 @@ export class QuestionnaireService {
 
   questionCountUrl = this.baseUrl + '/true';
 
-
   getQuestionsUrl = this.baseUrl + '/questionnaire/questions/';
 
   getQuestionnairesUrl = this.baseUrl + '/questionnaire';
@@ -26,13 +25,13 @@ export class QuestionnaireService {
   // this.getQuestionnaireId();
   allQuestionsUrl = this.baseUrl;
 
-  postQuestionUrl = this.baseUrl + '/addquestion';
+  postQuestionUrl = this.baseUrl;
 
-  addQuestionToQuestionnaireUrl = this.baseUrl + '/addquestion/questionnaire/';
+  addQuestionToQuestionnaireUrl = this.baseUrl + '/questionnaire/';
 
   postQuestionnaireUrl = this.baseUrl + '/addquestionnaire/';
 
-  addQuestionnaireToUser = 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/addquestionaire/user/';
+  addQuestionnaireToUser = 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questionnaire/';
 
   cssquestionnaire;
 
@@ -94,14 +93,14 @@ export class QuestionnaireService {
   submitQuestionnaireToUser(userId: number, questionnaireId: number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(this.addQuestionnaireToUser + userId + '/' + questionnaireId, null, {headers});
+    return this.http.post(this.addQuestionnaireToUser + questionnaireId + '/user/' + userId, null, {headers});
   }
 
   submitQuestionToQuestionnaire(questionnaireId: number, questionId: number) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     console.log('De categorie is: ' + this.category);
-    return this.http.post(this.addQuestionToQuestionnaireUrl + questionnaireId + '/' + questionId, {}, {headers});
+    return this.http.post(this.addQuestionToQuestionnaireUrl + questionnaireId + '/question/' + questionId, {}, {headers});
   }
 
 
