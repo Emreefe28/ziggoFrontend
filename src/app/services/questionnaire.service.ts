@@ -29,7 +29,7 @@ export class QuestionnaireService {
 
   addQuestionToQuestionnaireUrl = this.baseUrl + '/questionnaire/';
 
-  postQuestionnaireUrl = this.baseUrl + '/addquestionnaire/';
+  postQuestionnaireUrl = this.baseUrl + '/questionnaire/';
 
   addQuestionnaireToUser = 'http://localhost:8080/VodafoneZiggoApi-1.2/services/rest/question/questionnaire/';
 
