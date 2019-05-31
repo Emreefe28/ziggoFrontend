@@ -25,7 +25,7 @@ export class UserService {
     const headers = new HttpHeaders();
     UserService.createAuthorizationHeader(headers);
     return this.http.post(
-      `${environment.apiUrl}/adduser`, user, {headers});
+      `${environment.apiUrl}/register`, user, {headers});
   }
 
   getJwtToken(user: User) {
