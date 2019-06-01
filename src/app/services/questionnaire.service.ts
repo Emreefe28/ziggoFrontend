@@ -18,7 +18,7 @@ export class QuestionnaireService {
 
   questionCountUrl = this.baseUrl + '/true';
 
-  getQuestionsUrl = this.baseUrl + '/questionnaire/questions/';
+  getQuestionsUrl = this.baseUrl + '/active/questions/';
 
   getQuestionnairesUrl = this.baseUrl + '/questionnaire';
 
