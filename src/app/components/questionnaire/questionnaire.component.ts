@@ -155,7 +155,7 @@ export class QuestionnaireComponent implements OnInit {
     this.category = this.questionnaireservice.getCategory();
 
 
-    this.questionnaireservice.getQuestions().subscribe(
+    this.questionnaireservice.getQuestionsOfCategory().subscribe(
       data => {
         this.questions = data;
         console.log('De lengte van thisquestions is: ' + this.questions.length);
