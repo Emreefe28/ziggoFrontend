@@ -35,10 +35,6 @@ export class AuthenticationService {
 
   }
 
-  // TODO: endpoint works, just need to make it work on frontend
-  checkJwtToken(user: User) {
-    this.userService.getJwtToken(user);
-  }
 
   logout() {
     // remove user from local storage to log user out
