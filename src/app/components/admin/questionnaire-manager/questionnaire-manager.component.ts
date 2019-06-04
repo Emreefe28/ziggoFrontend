@@ -11,6 +11,7 @@ import {Category} from '../../../models/category.model';
 export class QuestionnaireManagerComponent implements OnInit {
   questionnaires = [new Questionnaire()];
   disabled = true;
+  isActive = false;
   showQuestionnaireDetails = false;
   showQuestionDetails = false;
   showList = true;
