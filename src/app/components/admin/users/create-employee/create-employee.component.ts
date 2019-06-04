@@ -19,13 +19,13 @@ export class CreateEmployeeComponent implements OnInit {
     surname: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    role: new FormControl([], Validators.required)
+    department: new FormControl('', Validators.required),
   });
 
   constructor(private dialogRef: MatDialogRef<CreateEmployeeComponent>, private service: EmployeeService) {
   }
 
-  newEmployee;
+  newEmployee = new Employee(null, '', '', '', '', null, '');
 
   onSubmit(): void {
     this.service.createEmployee(this.newEmployee).subscribe(
@@ -35,6 +35,7 @@ export class CreateEmployeeComponent implements OnInit {
       },
       (error: any) => console.log(error)
     );
+    this.service.getEmployees;
   }
 
 
@@ -48,3 +49,4 @@ export class CreateEmployeeComponent implements OnInit {
 
 
 }
+
