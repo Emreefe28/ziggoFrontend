@@ -7,9 +7,9 @@ import {AuthenticationService} from '@customer//_services';
 import {User} from '../../models/user.model';
 import {Subscription} from 'rxjs';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {CloseDialogComponent} from '../employee/chat/close-dialog/close-dialog.component';
 import {RatingDialogComponent} from './rating-dialog/rating-dialog.component';
 import {Chat} from '../../models/chat/chat.model';
+import {ErrorDialogComponent} from './error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-client-chat',
@@ -20,10 +20,12 @@ export class ClientChatComponent implements OnInit {
   content: string;
   isHidden = true;
   allOffline = true;
+  showChat = false;
+  showOutro = false;
   chatToken = new ChatToken();
   user: User;
   currentUserSubscription: Subscription;
-  rateDialog: MatDialogRef<RatingDialogComponent>;
+  dialogRef: MatDialogRef<any>;
 
   constructor(private chatService: ChatService,
               private el: ElementRef,
@@ -45,13 +47,20 @@ export class ClientChatComponent implements OnInit {
         this.allOffline = false;
       }
     });
+
     this.chatService.getMessages().subscribe((token: MessageToken) => {
       this.chatToken.chat.messages.push(token.message);
       this.scrollToBottom();
     });
+
     this.chatService.hasChatEnded().subscribe(() => {
-      this.isHidden = true;
       this.rateChat();
+      this.showChat = false;
+      this.showOutro = true;
+    });
+
+    this.chatService.hasCheckedOut().subscribe(() => {
+      this.reconnect();
     });
   }
 
@@ -64,21 +73,41 @@ export class ClientChatComponent implements OnInit {
   }
 
   startChat() {
-    this.chatToken  = new ChatToken();
+    this.chatToken = new ChatToken();
     this.chatToken.client = this.user;
     this.chatService.connectToEmployee(this.chatToken);
     this.chatService.whoJoinedRoom().subscribe(chatToken => {
       this.chatToken = chatToken;
     });
     this.isHidden = false;
+    this.showChat = true;
+  }
+
+  reconnect() {
+    this.dialogRef = this.dialog.open(ErrorDialogComponent);
+    this.dialogRef.afterClosed().subscribe(() => {
+
+      this.chatService.whosOnline().subscribe(data => {
+        if (data === 0) {
+          this.isHidden = true;
+          this.showChat = false;
+        } else {
+          this.startChat();
+        }
+      });
+    });
   }
 
   rateChat() {
-    this.rateDialog = this.dialog.open(RatingDialogComponent);
-    this.rateDialog.afterClosed().subscribe(rating => {
+    this.dialogRef = this.dialog.open(RatingDialogComponent);
+    this.dialogRef.afterClosed().subscribe(rating => {
       this.chatService.rateChat(this.chatToken.chat.id, rating).subscribe(
         (data: Chat) => {
           console.log(data);
+          setTimeout(() => {
+              close();
+            },
+            2500);
         },
         (error: any) => console.log(error)
       );

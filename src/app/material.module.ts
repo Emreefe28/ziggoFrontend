@@ -13,6 +13,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSortModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatExpansionModule],
+    MatExpansionModule,
+    MatSlideToggleModule],
   exports: [
     MatButtonModule,
     MatToolbarModule,
@@ -52,7 +54,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSortModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule {

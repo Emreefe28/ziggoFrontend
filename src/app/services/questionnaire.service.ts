@@ -18,7 +18,15 @@ export class QuestionnaireService {
 
   questionCountUrl = this.baseUrl + '/true';
 
+
   getQuestionsUrl = this.baseUrl + '/active/questions/';
+
+  getQuestionsOfQuestionnaireUrl = this.baseUrl + '/questionnaire/questions/';
+
+  getQuestionsOfCategoryUrl = this.baseUrl + '/active/questions/';
+
+  setActiveQuestionnaireUrl = this.baseUrl + '/active/';
+
 
   getQuestionnairesUrl = this.baseUrl + '/questionnaire';
 
@@ -104,12 +112,27 @@ export class QuestionnaireService {
   }
 
 
-  getQuestions(): Observable<Question[]> {
+  setActiveQuestionnaire(questionnaireId: number) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    console.log('De categorie is: ' + this.category);
+    return this.http.post(this.setActiveQuestionnaireUrl + questionnaireId , {}, {headers});
+  }
+
+
+  getQuestionsOfCategory(): Observable<Question[]> {
 
     console.log('De category in get questions is: ' + this.category);
-    return this.http.get(this.getQuestionsUrl + this.category)
+    return this.http.get(this.getQuestionsOfCategoryUrl + this.category)
       .pipe(map(data => data as Question[]));
   }
+
+  getQuestionsOfCQuestionnaire(questionnaireId:number): Observable<Question[]> {
+    console.log('De category in get questions is: ' + this.category);
+    return this.http.get(this.getQuestionsOfQuestionnaireUrl + questionnaireId)
+      .pipe(map(data => data as Question[]));
+  }
+
 
   getQuestionnaires(): Observable<Questionnaire[]> {
     return this.http.get(this.getQuestionnairesUrl)

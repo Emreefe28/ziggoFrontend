@@ -10,10 +10,10 @@ export class Customer extends User {
 
   constructor() {
     super();
-    this.customerCode = '';
-    this.address = '';
-    this.birthdate = '';
-    this.phone = '';
-    this.mobilePhone = '';
+    this.customerCode = 'N/A';
+    this.address = 'N/A';
+    this.birthdate = 'N/A';
+    this.phone = 'N/A';
+    this.mobilePhone = 'N/A';
   }
 }

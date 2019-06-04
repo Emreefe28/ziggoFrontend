@@ -14,10 +14,17 @@
           <span class="nav-label">Users</span>
         </div>
       </a>
+
+      <a mat-list-item routerLink='questionnaire' routerLinkActive="active">
+        <div>
+          <i class="fas fa-clipboard-list fa-4x nav-label"></i>
+          <span class="nav-label" style="word-break: break-word;">Questionnaires</span>
+        </div>
+      </a>
     </mat-nav-list>
 
     <div class="logout" (click)="logout()">
-      <i class="fa fa-sign-out fa-4x nav-label" ></i>
+      <i class="fa fa-sign-out fa-4x nav-label"></i>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

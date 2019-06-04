@@ -163,10 +163,19 @@ export class QuestionnaireComponent implements OnInit {
     console.log('submitting questionnaire');
 
 
+    //voorbeeld set questionnaire
+    // this.questionnaireservice.setActiveQuestionnaire(1).subscribe(
+    //   (data: Questionnaire) => {
+    //     console.log('de questionnaire is geset');
+    //     console.log(data);
+    //   },
+    //   (error: any) => console.log(error)
+    // );
+
     this.category = this.questionnaireservice.getCategory();
 
 
-    this.questionnaireservice.getQuestions().subscribe(
+    this.questionnaireservice.getQuestionsOfCategory().subscribe(
       data => {
         this.questions = data;
         console.log('De lengte van thisquestions is: ' + this.questions.length);

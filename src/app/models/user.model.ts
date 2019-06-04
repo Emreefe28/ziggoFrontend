@@ -1,5 +1,3 @@
-import {Questionnaire} from './questionnaire.model';
-
 export class User {
   idUser: number;
   email: string;
