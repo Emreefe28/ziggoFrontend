@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Questionnaire} from '../../../models/questionnaire.model';
 import {Category} from '../../../models/category.model';
+import {QuestionnaireService} from '../../../services/questionnaire.service';
+import {Question} from '../../../models/question.model';
 
 @Component({
   selector: 'app-questionnaire-manager',
@@ -12,6 +14,7 @@ export class QuestionnaireManagerComponent implements OnInit {
   questionnaires = [new Questionnaire()];
   disabled = true;
   isActive = false;
+  question= new Question(15,"asd","asd");
   showQuestionnaireDetails = false;
   showQuestionDetails = false;
   showList = true;
@@ -22,13 +25,22 @@ export class QuestionnaireManagerComponent implements OnInit {
     {categoryId: 3, name: 'traag wifi'}
   ];
 
-  constructor() {
+  constructor(private questionnaireservice: QuestionnaireService) {
   }
 
   ngOnInit() {
-    this.currentQuestionnaire = new Questionnaire(1, Date.now());
+
+    this.question.id=15;
+    this.question.title="asd";
+    this.question.question="asd";
+
+
+    this.currentQuestionnaire = new Questionnaire(15, Date.now());
     this.currentQuestionnaire.name = 'Poging 1';
     this.currentQuestionnaire.category = new Category(2, 'geen wifi');
+
+    this.newQuestion(this.question,this.currentQuestionnaire.id);
+
   }
 
   newQuestionnaire() {
@@ -60,8 +72,26 @@ export class QuestionnaireManagerComponent implements OnInit {
     }
   }
 
-  newQuestion() {
+  newQuestion(question:Question,questionnaireId:number) {
     this.showQuestionDetails = true;
+
+
+    this.questionnaireservice.submitQuestion(question).subscribe(
+      (data: Question) => {
+        console.log(data);
+
+
+        this.questionnaireservice.submitQuestionToQuestionnaire(questionnaireId, question.id).subscribe(
+          (data: Question) => {
+            console.log('de geuploadde question id is: ' + question.id);
+            console.log(data);
+          },
+          (error: any) => console.log(error)
+        );
+      },
+      (error: any) => console.log(error)
+    );
+
   }
 
   cancelQuestion() {
