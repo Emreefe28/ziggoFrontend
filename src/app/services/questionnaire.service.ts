@@ -22,6 +22,8 @@ export class QuestionnaireService {
 
   getQuestionsOfCategoryUrl = this.baseUrl + '/active/questions/';
 
+  setActiveQuestionnaireUrl = this.baseUrl + '/active/';
+
   getQuestionnairesUrl = this.baseUrl + '/questionnaire';
 
   // this.getQuestionnaireId();
@@ -103,6 +105,14 @@ export class QuestionnaireService {
     headers.append('Content-Type', 'application/json');
     console.log('De categorie is: ' + this.category);
     return this.http.post(this.addQuestionToQuestionnaireUrl + questionnaireId + '/' + questionId, {}, {headers});
+  }
+
+
+  setActiveQuestionnaire(questionnaireId: number) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    console.log('De categorie is: ' + this.category);
+    return this.http.post(this.setActiveQuestionnaireUrl + questionnaireId , {}, {headers});
   }
 
 
