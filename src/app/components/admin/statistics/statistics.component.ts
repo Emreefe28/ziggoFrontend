@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StatisticsService} from '../../../services/statistics.service';
 import {Stats} from '../../../models/stats.model';
-import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-statistics',

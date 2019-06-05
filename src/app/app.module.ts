@@ -21,12 +21,14 @@ import {AlertComponent} from './components/customer/_components';
 import {LoginComponent} from './components/customer/login';
 import {RegisterComponent} from './components/customer/register';
 import {CustomMaterialModule} from './components/customer/core/material.module';
-import { CloseDialogComponent } from './components/employee/chat/close-dialog/close-dialog.component';
-import { RatingDialogComponent } from './components/client-chat/rating-dialog/rating-dialog.component';
-import { StatisticsComponent } from './components/admin/statistics/statistics.component';
-import { ChartsModule } from 'ng2-charts';
-import { QuestionnaireManagerComponent } from './components/admin/questionnaire-manager/questionnaire-manager.component';
-import { ErrorDialogComponent } from './components/client-chat/error-dialog/error-dialog.component';
+import {CloseDialogComponent} from './components/employee/chat/close-dialog/close-dialog.component';
+import {RatingDialogComponent} from './components/client-chat/rating-dialog/rating-dialog.component';
+import {StatisticsComponent} from './components/admin/statistics/statistics.component';
+import {ChartsModule} from 'ng2-charts';
+import {QuestionnaireManagerComponent} from './components/admin/questionnaire-manager/questionnaire-manager.component';
+import {ErrorDialogComponent} from './components/client-chat/error-dialog/error-dialog.component';
+import {RegisterDialogComponent} from './components/customer/register/register-dialog/register-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { ErrorDialogComponent } from './components/client-chat/error-dialog/erro
     RatingDialogComponent,
     StatisticsComponent,
     QuestionnaireManagerComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    RegisterDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,10 +59,10 @@ import { ErrorDialogComponent } from './components/client-chat/error-dialog/erro
     FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
-    ChartsModule
+    ChartsModule,
   ],
   providers: [ChatService, EmployeeService, QuestionnaireService],
-  entryComponents: [CreateEmployeeComponent, CloseDialogComponent, RatingDialogComponent, ErrorDialogComponent],
+  entryComponents: [CreateEmployeeComponent, CloseDialogComponent, RatingDialogComponent, ErrorDialogComponent, RegisterDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

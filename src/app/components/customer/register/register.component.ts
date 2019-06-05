@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService, UserService, AuthenticationService } from '../_services';
 import {User} from '../../../models/user.model';
+import {ErrorDialogComponent} from '../../client-chat/error-dialog/error-dialog.component';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {RegisterDialogComponent} from '@customer//register/register-dialog/register-dialog.component';
 
 @Component({templateUrl: 'register.component.html',
             styleUrls: ['../my-theme.scss' + '../styles.css']})
@@ -12,13 +15,15 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   user: User;
+  dialogRef: MatDialogRef<RegisterDialogComponent>;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private dialog: MatDialog
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -50,8 +55,8 @@ export class RegisterComponent implements OnInit {
 
     this.loading = true;
     this.userService.register(this.user).subscribe(
-      (data: User) => {
-        this.alertService.success('register successful', true);
+      () => {
+        this.dialogRef = this.dialog.open(RegisterDialogComponent);
         this.router.navigate(['/login']);
       },
       error => {
