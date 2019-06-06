@@ -24,7 +24,7 @@ export class QuestionnaireComponent implements OnInit {
   questionnaire = new Questionnaire(0, 0);
 
 
-  constructor(private questionnaireservice: QuestionnaireService, private authenticationService:AuthenticationService) {
+  constructor(private questionnaireservice: QuestionnaireService, private authenticationService: AuthenticationService) {
 
 
   }
@@ -52,13 +52,11 @@ export class QuestionnaireComponent implements OnInit {
 
 
         this.questionnaireservice.submitQuestionnaire(questionnaire, this.category, Date.now()).subscribe(
-          (data: Questionnaire) => {
-            console.log(data);
+          (data2: Questionnaire) => {
+            console.log(data2);
 
             //werkt alleen met customers als t goed is en kan niet inloggen met customer om een of andere reden.
-            //this.questionnaireservice.submitQuestionnaireToUser(this.authenticationService.currentUserValue.idUser, this.questionnaire.id).subscribe(
-            this.questionnaireservice.submitQuestionnaireToUser(2335216, this.questionnaire.id).subscribe(
-
+            this.questionnaireservice.submitQuestionnaireToUser(this.authenticationService.currentUserValue.idUser, this.questionnaire.id).subscribe(
               (error: any) => console.log(error)
             );
           },
@@ -71,9 +69,10 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  setFalse(){
-    this.jaGeantwoord=false;
+  setFalse() {
+    this.jaGeantwoord = false;
   }
+
   answerFalse(question: Question) {
     this.jaGeantwoord = false;
     question.solved = false;
@@ -82,7 +81,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   answerTrue(question: Question) {
-    if(this.jaGeantwoord==true){
+    if (this.jaGeantwoord == true) {
       return;
     }
     question.solved = true;

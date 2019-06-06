@@ -1,4 +1,6 @@
 import {User} from './user.model';
+import {Questionnaire} from './questionnaire.model';
+import {Category} from './category.model';
 
 export class Customer extends User {
 
@@ -7,6 +9,7 @@ export class Customer extends User {
   birthdate: string;
   phone: string;
   mobilePhone: string;
+  issues: Questionnaire[];
 
   constructor() {
     super();
@@ -15,5 +18,9 @@ export class Customer extends User {
     this.birthdate = 'N/A';
     this.phone = 'N/A';
     this.mobilePhone = 'N/A';
+    this.issues = [];
+    const questionnaire = new Questionnaire();
+    questionnaire.category =  new Category(1, 'geen internet');
+    this.issues.push(questionnaire);
   }
 }
