@@ -185,6 +185,15 @@ h2.mdl-card__title-text {
 }
 
 
+.big-button{
+  background-color:#FCFCFC;
+  color:grey;
+  height: 60px;
+  width: 328px;
+  margin: 30px 0 30px 0;
+}
+
+
 .footer {
   position: relative;
   width:100%;

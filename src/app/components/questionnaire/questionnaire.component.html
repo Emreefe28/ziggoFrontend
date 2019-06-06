@@ -88,14 +88,21 @@
 
             <p><b>Als u nog eens problemen heeft kunt u op deze site terecht!</b></p>
 
-            <p></p>
+            <p><i>Als uw probleem toch niet opgelost is klik dan op nee bij de vorige vraag.</i></p>
 
             <div class="troubleshoot-card__content troubleshoot-card__layout mdl-card__supporting-text">
               <div class="troubleshoot-card__layout-row">
                 <div class="troubleshoot-card__layout-cell ">
-
+                  <button class="big-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised"(click)="setFalse()">
+                    Mijn probleem is toch niet opgelost
+                  </button>
                 </div>
                 <div class="troubleshoot-card__layout-cell">
+                  <a routerLink="/home">
+                  <button class="big-button troubleshoot-btn mdl-button mdl-js-button mdl-button--raised">
+                    Terug naar homepagina
+                  </button>
+                  </a>
 
                 </div>
               </div>

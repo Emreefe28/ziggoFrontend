@@ -30,7 +30,7 @@ export class QuestionnaireManagerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.question.id=15;
+    this.question.id=17;
     this.question.title="asd";
     this.question.question="asd";
 
@@ -74,7 +74,6 @@ export class QuestionnaireManagerComponent implements OnInit {
 
   newQuestion(question:Question,questionnaireId:number) {
     this.showQuestionDetails = true;
-
 
     this.questionnaireservice.submitQuestion(question).subscribe(
       (data: Question) => {
