@@ -162,8 +162,8 @@ export class QuestionnaireComponent implements OnInit {
 
     console.log('submitting questionnaire');
 
-    //
-    // voorbeeld set questionnaire
+
+    //voorbeeld set questionnaire
     // this.questionnaireservice.setActiveQuestionnaire(1).subscribe(
     //   (data: Questionnaire) => {
     //     console.log('de questionnaire is geset');

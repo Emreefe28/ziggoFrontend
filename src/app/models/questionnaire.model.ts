@@ -8,7 +8,7 @@ export class Questionnaire {
   _created: number;
   questions: Question[];
   category: Category;
-  active = false;
+  active = true;
 
   constructor(id?: number, created?: number) {
     this.id = id;
